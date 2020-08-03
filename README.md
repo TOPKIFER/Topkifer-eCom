@@ -1,3 +1,3 @@
 # Topkiffer e-commerce site
 
-This topkiffer a personal project.
+This is topkiffer a personal project.
