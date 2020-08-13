@@ -4,7 +4,6 @@
 }
 
 .App {
-  background: rgb(224, 223, 223);
   text-align: center;
   font-size: 4rem;
   height: 100vh;
@@ -14,40 +13,5 @@
   .App {
     font-size: 2rem;
     padding-top: 5rem;
-
-    h2 {
-      margin: 2rem 0;
-    }
-
-    p {
-      margin-bottom: 1rem;
-    }
-  }
-}
-
-span {
-  color: #36b8bc;
-}
-
-p {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-top: 4rem;
-  animation: message 2s infinite 0s linear;
-}
-
-@keyframes message {
-  0% {
-  }
-  20% {
-    color: #ff4040;
-  }
-  50% {
-    color: #36b8bc;
-  }
-  80% {
-    color: #ff4040;
-  }
-  100% {
   }
 }
