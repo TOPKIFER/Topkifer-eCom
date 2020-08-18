@@ -1,10 +1,12 @@
 import React from "react";
-import Logo from "../../assets/logo.png";
+
+import Logo from "../../assets/Logo/tklogoword1.png";
+
 import search from "../../assets/icons/search.png";
 import heart from "../../assets/icons/heart.png";
 import bag from "../../assets/icons/bag.png";
-import user from "../../assets/icons/user.png";
 
+import Menu from "./Menu";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
@@ -16,10 +18,6 @@ export default function Navbar() {
           <div></div>
           <div></div>
         </div>
-        <div className="menu">
-          <div></div>
-        </div>
-
         <div className="logo">
           <Link to="/">
             <img src={Logo} alt="topkifer logo" />
@@ -39,6 +37,7 @@ export default function Navbar() {
             <span className="cart-number">9+</span>
           </Link>
         </div>
+        <Menu />
       </div>
     </div>
   );
