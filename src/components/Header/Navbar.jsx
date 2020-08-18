@@ -34,7 +34,7 @@ export default function Navbar() {
           </Link>
           <Link to="/cart">
             <img className="icon" src={bag} alt="shopping bag" />
-            <span className="cart-number">9+</span>
+            <span className="cart-number">1</span>
           </Link>
         </div>
         <Menu />
