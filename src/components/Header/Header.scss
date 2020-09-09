@@ -1,12 +1,13 @@
 .Header {
   width: 100vw;
-  height: 15vh;
+  height: 3.2rem;
   overflow-x: hidden;
 }
 
 .Navbar {
   position: fixed;
   width: 100%;
+  z-index: 2;
 }
 //Navbar with store search icons
 .nav-wrapper {
