@@ -143,17 +143,17 @@
 //Items Display
 
 .items-display {
-  background-color: red;
+  background-color: #92f0ed;
+  //background-color: white;
   h4 {
     margin: 0;
   }
   .item-list {
-    background-color: yellow;
     width: 100%;
-    padding: 0.2rem;
+    padding: 0.2rem 0.4rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 0.5rem;
+    grid-gap: 0.3rem;
 
     h3 {
       margin: 0;
@@ -164,23 +164,15 @@
 // Item Card
 
 .item-card {
-  width: 100%;
-  padding: 0.2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0.5rem;
-
-  //Will go to .Item-card
-
-  .card1 {
-    display: flex;
-    flex-direction: column;
-    height: 28vh;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-  }
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  height: 28vh;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 6px;
 
   .pic-holder {
     position: relative;
@@ -204,8 +196,6 @@
       background-color: rgb(247, 247, 247);
       border-radius: 12px;
     }
-
-    //test
 
     .not-fav {
     }
