@@ -2,17 +2,18 @@ import React from "react";
 import "./Homepage.scss";
 
 import Categories from "./Categories";
-import Carousel from "./Carousel";
-import Carousel2 from "./CarouselManual";
+//import CarouselManual from "./CarouselManual";
 import CarouselAuto from "./CarouselAuto";
+import ItemsDisplay from "./ItemsDisplay";
+import ItemCard from "./ItemCard";
 
 export default function index() {
   return (
     <div className="Homepage">
       <Categories />
       <CarouselAuto />
-
-      <h1>Level</h1>
+      <ItemsDisplay />
+      <ItemCard />
     </div>
   );
 }
