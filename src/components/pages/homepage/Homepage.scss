@@ -143,9 +143,32 @@
 //Items Display
 
 .items-display {
-  background-color: #92f0ed;
-  //background-color: white;
-  h4 {
+  //background-color: #92f0ed;
+  background-color: rgb(238, 238, 238);
+  margin-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  //border-top: 1px solid black;
+
+  .category-bar {
+    display: flex;
+    text-emphasis: none;
+    color: black;
+    border-top: 1px solid black;
+    padding: 0.3rem 0.5rem;
+    .category-name {
+      font-size: 1.5rem;
+      margin-right: auto;
+      text-transform: capitalize;
+    }
+
+    .see-all {
+      font-size: 1rem;
+      margin: auto 0;
+      padding: 0 0.7rem 0 0;
+      color: black;
+    }
+  }
+  h3 {
     margin: 0;
   }
   .item-list {

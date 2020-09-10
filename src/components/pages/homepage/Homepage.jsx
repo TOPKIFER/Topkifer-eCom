@@ -11,7 +11,11 @@ export default function index() {
     <div className="Homepage">
       <Categories />
       <CarouselAuto />
-      <ItemsDisplay />
+      <ItemsDisplay name="Top of the day" />
+      <ItemsDisplay name="Phones" />
+      <CarouselAuto />
+      <ItemsDisplay name="Fashion" />
+      <ItemsDisplay name="Home apliances" />
     </div>
   );
 }

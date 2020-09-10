@@ -33,10 +33,15 @@ const items = [
   },
 ];
 
-export default function ItemsDisplay() {
+export default function ItemsDisplay(props) {
   return (
     <div className="items-display">
-      <h4>Fashion</h4>
+      <a className="category-bar" href="https://www.amazon.com/">
+        <h3 className="category-name">{props.name}</h3>
+        <h3 className="see-all">
+          SEE ALL <i className="fas fa-arrow-circle-right"></i>
+        </h3>
+      </a>
 
       <div className="item-list">
         {items.map((item, index) => (
