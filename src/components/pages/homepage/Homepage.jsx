@@ -5,7 +5,6 @@ import Categories from "./Categories";
 //import CarouselManual from "./CarouselManual";
 import CarouselAuto from "./CarouselAuto";
 import ItemsDisplay from "./ItemsDisplay";
-import ItemCard from "./ItemCard";
 
 export default function index() {
   return (
@@ -13,7 +12,6 @@ export default function index() {
       <Categories />
       <CarouselAuto />
       <ItemsDisplay />
-      <ItemCard />
     </div>
   );
 }
