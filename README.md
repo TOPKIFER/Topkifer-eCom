@@ -1,3 +1,3 @@
-# Topkiffer e-commerce site
+# Topkifer e-commerce site
 
-This is topkiffer a personal project.
+This is Topkifer an e-commerce platform that will allow different stores to sell their products.
