@@ -5,6 +5,7 @@
   @include positionChanged;
   position: fixed;
   width: 100%;
+  height: $commonHeight;
   z-index: 2000;
 }
 
@@ -14,11 +15,11 @@
   position: relative;
   padding: 1.1rem;
   background-color: $siteColor;
-  border-bottom: 2px solid rgb(221, 219, 219);
+  box-shadow: $smallShadow;
 
   // menu icon and logo
   .menuIconAndLogo {
-    display: flex;
+    @include flexCenterSpace;
 
     .logoContainer {
       position: relative;
@@ -34,46 +35,45 @@
     }
   }
 
+  .logoMobileContainer {
+    display: none;
+  }
+
   // search, favorite and cart icons
   .icons {
     @include flexCenterSpace;
 
     .icon {
+      position: relative;
       cursor: pointer;
       color: black;
-      margin: 0 .6rem;
+      margin: 0 .4rem;
+      transition: all .3s ease;
 
       &:first-child {
         display: none;
       }
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      .bagBadge {
+        position: absolute;
+        right: -.6rem;
+        top: -.6rem;
+        min-width: 20px;
+        text-align: center;
+        font-size: 10px;
+        background-color: $cyanColor;
+        border-radius: 50%;
+        padding: .2rem;
+        box-shadow: $smallShadow;
+
+      }
     }
   }
 
-  //search button
-  button {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-
-  //favorite and cart
-  .info {
-    position: relative;
-    //cart red items number
-    .cart-number {
-      position: absolute;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 700;
-      border-radius: 50%;
-      color: white;
-      height: 20px;
-      width: 20px;
-      background: red;
-      top: -0.6rem;
-      left: 3.1rem;
-    }
-  }
 }
 
 //Menu
@@ -87,6 +87,16 @@
   .icon {
     &:first-child {
       display: inline-flex !important;
+    }
+  }
+  .logoContainer {
+    display: none !important;
+  }
+  .logoMobileContainer {
+    display: inline-flex !important;
+
+    .logo {
+      height: 35px;
     }
   }
 }

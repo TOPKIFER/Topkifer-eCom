@@ -1,44 +1,91 @@
 import React from "react";
-import {Heart, Menu, Search, User} from "react-feather";
 import {NavLink} from "react-router-dom";
 import Logo from "assets/Logo/logo.jpg"
 import navbarClasses from "./navbar.module.scss"
 import SearchBar from "../searchBar/SearchBar";
 import bag from "assets/icons/bag.svg"
+import search from "assets/icons/search.svg"
+import user from "assets/icons/user.svg"
+import heart from "assets/icons/heart.svg"
+import menu from "assets/icons/menu.svg"
 import Icon from "../../icon/Icon";
+import {multipleClasses, overHundred} from "utilities/utilities";
+import {height} from "utilities/constant"
+
+const {
+    navbar, navWrapper,
+    menuIconAndLogo,
+    logoContainer,
+    logoMobileContainer,
+    logo,
+    icons, icon,
+    bagBadge
+} = navbarClasses;
+
+const LogoFiles = (classes) => <div className={classes}>
+    <NavLink exact to="/">
+        <img className={logo} src={Logo} alt="topkifer logo"/>
+    </NavLink>
+</div>
 
 const Navbar = (props) => {
 
-    const {toggleMobileSearch} = props;
-    const {
-        navbar, navWrapper,
-        menuIconAndLogo,
-        logoContainer, logo,
-        icons, icon,
-    } = navbarClasses;
+    const {toggleMobileSearch, mobileSearch} = props;
+
     return (
         <div className={navbar}>
             <div className={navWrapper}>
                 <div className={menuIconAndLogo}>
-                    <Menu size="40"/>
-                    <div className={logoContainer}>
-                        <NavLink exact to="/">
-                            <img className={logo} src={Logo} alt="topkifer logo"/>
-                        </NavLink>
-                    </div>
+                    <Icon
+                        className={icon}
+                        src={menu}
+                        style={{
+                            height,
+                        }}
+                        alt="menu-icon"
+                    />
+                    {LogoFiles(logoContainer)}
                 </div>
                 <SearchBar/>
+                {LogoFiles(logoMobileContainer)}
                 <div className={icons}>
-                    <Search onClick={toggleMobileSearch} className={icon}/>
-                    <User className={icon}/>
+                    {
+                        !mobileSearch && <Icon
+                            onClick={toggleMobileSearch}
+                            className={multipleClasses(icon, "mr-2")}
+                            src={search}
+                            style={{
+                                height,
+                            }}
+                            alt="search-icon"
+                        />
+                    }
+
+                    <Icon
+                        className={icon}
+                        src={user}
+                        style={{
+                            height,
+                        }}
+                        alt="user-icon"
+                    />
                     <NavLink className={icon} to="/favorite">
-                        <Heart/>
+                        <Icon
+                            src={heart}
+                            style={{
+                                height,
+                            }}
+                            alt="heart-icon"
+                        />
                     </NavLink>
                     <NavLink className={icon} to="/cart">
+                        <div className={bagBadge}>{
+                            overHundred(120)
+                        }</div>
                         <Icon
                             src={bag}
                             style={{
-                                height: "24px",
+                                height
                             }}
                             alt="bag-icon"
                         />

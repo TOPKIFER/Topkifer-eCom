@@ -11,14 +11,12 @@ const Header = () => {
         showMobileSearch(!mobileSearch)
     }
 
-    console.log(mobileSearch)
-
-    const {header} = headerClasses;
+    const {header, mobileSearchWrapper} = headerClasses;
     return (
         <header className={header}>
-            <Navbar toggleMobileSearch={toggleMobileSearch}/>
-            <div className="w-100">
-                {mobileSearch && <SearchBar mobile/>}
+            <Navbar mobileSearch={mobileSearch} toggleMobileSearch={toggleMobileSearch}/>
+            <div className={mobileSearchWrapper}>
+                {mobileSearch && <SearchBar onClick={toggleMobileSearch} mobile/>}
             </div>
         </header>
     );

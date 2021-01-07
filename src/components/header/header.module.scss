@@ -5,3 +5,12 @@
   justify-content: space-between;
   height: $commonHeight;
 }
+
+.mobileSearchWrapper {
+  width: 100%;
+  padding: .6rem 1rem;
+
+  div {
+    border-radius: 8px;
+  }
+}
