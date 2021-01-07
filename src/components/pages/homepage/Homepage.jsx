@@ -7,6 +7,7 @@ import CarouselAuto from "./CarouselAuto";
 import ItemsDisplay from "./ItemsDisplay";
 
 export default function index() {
+    return null
   return (
     <div className="Homepage">
       <Categories />

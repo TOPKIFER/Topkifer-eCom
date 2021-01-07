@@ -1,0 +1,29 @@
+@import "../../../assets/styles/variable";
+@import "../../../assets/styles/mixins";
+
+.searchBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 2px solid #f1f1f1;
+  border-radius: 8px;
+  padding: .5rem;
+
+
+  .searchInput, .searchInputMobile {
+    width: 400px;
+    background-color: $siteColor;
+    border: none;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint) {
+  .searchBar {
+    display: none !important;
+  }
+}

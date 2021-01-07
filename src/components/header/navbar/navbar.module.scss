@@ -1,0 +1,91 @@
+@import "../../../assets/styles/mixins";
+@import "../../../assets/styles/variable";
+
+.navbar {
+  @include positionChanged;
+  position: fixed;
+  width: 100%;
+  z-index: 2000;
+}
+
+//Navbar with store search icons
+.navWrapper {
+  @include flexCenterSpace;
+  position: relative;
+  padding: 1.1rem;
+  background-color: $siteColor;
+  border-bottom: 2px solid rgb(221, 219, 219);
+
+  // menu icon and logo
+  .menuIconAndLogo {
+    display: flex;
+
+    .logoContainer {
+      position: relative;
+      max-width: 400px;
+      height: 40px;
+      margin-left: 1rem;
+
+      .logo {
+        @include positionChanged;
+        position: absolute;
+        height: 100%;
+      }
+    }
+  }
+
+  // search, favorite and cart icons
+  .icons {
+    @include flexCenterSpace;
+
+    .icon {
+      color: black;
+      margin: 0 .6rem;
+
+      &:first-child {
+        display: none;
+      }
+    }
+  }
+
+  //search button
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  //favorite and cart
+  .info {
+    position: relative;
+    //cart red items number
+    .cart-number {
+      position: absolute;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 50%;
+      color: white;
+      height: 20px;
+      width: 20px;
+      background: red;
+      top: -0.6rem;
+      left: 3.1rem;
+    }
+  }
+}
+
+//Menu
+.Menu {
+  display: none;
+  position: absolute;
+  background-color: red;
+}
+
+@media screen and (max-width: $breakpoint) {
+  .icon {
+    &:first-child {
+      display: inline-flex !important;
+    }
+  }
+}

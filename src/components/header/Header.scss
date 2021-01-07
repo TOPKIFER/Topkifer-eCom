@@ -1,0 +1,7 @@
+@import "../../assets/styles/variable";
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  height: $commonHeight;
+}

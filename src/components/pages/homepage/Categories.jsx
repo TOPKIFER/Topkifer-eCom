@@ -14,7 +14,7 @@ export default function Categories() {
             <li>hello 2</li>
             <li>hello 2</li>
             <li>hello 2</li>
-            <li>hello 2</li>
+            <li>hello 2</li> 
           </ul>
         </li>
         <li>
