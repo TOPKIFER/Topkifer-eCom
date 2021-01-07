@@ -1,7 +1,7 @@
 @import "../../../assets/styles/variable";
 @import "../../../assets/styles/mixins";
 
-.searchBar {
+.searchBar , .searchBarMobile {
   position: relative;
   display: flex;
   align-items: center;
@@ -19,6 +19,14 @@
       outline: none;
       border: none;
     }
+  }
+}
+
+.searchBarMobile {
+  margin-top: $commonHeight;
+
+  .searchInputMobile {
+    background-color: white;
   }
 }
 

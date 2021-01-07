@@ -6,9 +6,10 @@ const SearchBar = ({mobile}) => {
     const {
         searchBar,
         searchInput,
-        searchInputMobile
+        searchInputMobile,
+        searchBarMobile
     } = searchBarClasses;
-    return <div className={searchBar}>
+    return <div className={!mobile ? searchBar : searchBarMobile}>
         <Search className="mr-2"/>
         <input className={!mobile ? searchInput : searchInputMobile} type="text" placeholder="Search anything you want"/>
     </div>

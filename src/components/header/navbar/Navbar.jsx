@@ -1,18 +1,15 @@
-import React, {useState} from "react";
-import {Heart, Menu, Search, ShoppingBag, User} from "react-feather";
+import React from "react";
+import {Heart, Menu, Search, User} from "react-feather";
 import {NavLink} from "react-router-dom";
 import Logo from "assets/Logo/logo.jpg"
 import navbarClasses from "./navbar.module.scss"
 import SearchBar from "../searchBar/SearchBar";
+import bag from "assets/icons/bag.svg"
+import Icon from "../../icon/Icon";
 
-const Navbar = () => {
+const Navbar = (props) => {
 
-    const [mobileSearch, showMobileSearch] = useState(false);
-
-    const toggleMobileSearch = () => {
-        showMobileSearch(!mobileSearch)
-    }
-
+    const {toggleMobileSearch} = props;
     const {
         navbar, navWrapper,
         menuIconAndLogo,
@@ -32,17 +29,19 @@ const Navbar = () => {
                 </div>
                 <SearchBar/>
                 <div className={icons}>
-                    {
-                        mobileSearch ? <SearchBar mobile/> : <Search onClick={toggleMobileSearch} className={icon}/>
-
-                    }
-
+                    <Search onClick={toggleMobileSearch} className={icon}/>
                     <User className={icon}/>
                     <NavLink className={icon} to="/favorite">
                         <Heart/>
                     </NavLink>
                     <NavLink className={icon} to="/cart">
-                        <ShoppingBag/>
+                        <Icon
+                            src={bag}
+                            style={{
+                                height: "24px",
+                            }}
+                            alt="bag-icon"
+                        />
                     </NavLink>
                 </div>
                 {
