@@ -1,0 +1,30 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+
+.auth {
+
+  .authTab {
+    height: 60px;
+    display: flex;
+    width: 100%;
+    box-shadow: $smallShadow;
+
+    .loginTab, .registerTab {
+      width: 50%;
+      @include flexCenterSpace;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .3s ease;
+    }
+
+    .loginTab.active, .registerTab.active {
+      background-color: $sitePrimaryColor;
+      box-shadow: $smallShadow;
+    }
+  }
+
+  .authTabContent {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,67 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/extends";
+
+.register {
+
+
+  .registerHeader {
+    @include flexCenterSpace;
+    justify-content: center;
+  }
+
+  .registerContent {
+    @include flexCenterSpace;
+    flex-flow: column;
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: $smallShadow;
+    @include scale3dAnimation;
+
+    label {
+      width: 100%;
+    }
+
+    .label {
+      vertical-align: sub;
+    }
+
+    .input {
+      @extend .inputMaterial
+    }
+
+    .registerButton {
+      background-color: $sitePrimaryColor;
+      border: none;
+      padding: .6rem 2rem;
+      width: 100%;
+      margin-top: 1rem;
+      border-radius: 6px;
+      transition: all .3s ease;
+
+      &:hover {
+        transform: translateY(-8px);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .usefulMessage {
+    @include flexCenterSpace;
+    justify-content: center;
+    padding: 2rem 1rem 0;
+    cursor: pointer;
+    transition: all .3s ease;
+
+    .text {
+      border-bottom: 2px solid #cccccc;
+
+      &:hover {
+        color: blue;
+        border-color: blue;
+      }
+    }
+  }
+}

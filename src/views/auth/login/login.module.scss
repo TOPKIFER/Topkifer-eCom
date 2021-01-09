@@ -1,0 +1,120 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/extends";
+
+
+.login {
+
+  .loginHeader {
+    @include flexCenterSpace;
+    justify-content: center;
+  }
+
+  .loginContent {
+    @include flexCenterSpace;
+    flex-flow: column;
+    padding: 1rem;
+    margin-top: 1rem;
+    box-shadow: $smallShadow;
+    @include scale3dAnimation;
+
+    label {
+      width: 100%;
+    }
+
+    .label {
+      vertical-align: sub;
+    }
+
+    .otherLoginOptions {
+      @include flexCenterSpace;
+      width: 100%;
+      font-size: 12px;
+      flex-wrap: wrap;
+
+      .rememberMe {
+        margin-right: 3.8rem;
+        position: relative;
+
+        .inputRadio {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          z-index: 3;
+          width: 100%;
+
+          &:checked ~ .customRadio {
+            border: 2px solid white;
+            background-color: #6bb8f5;
+          }
+        }
+
+        .customRadio {
+          position: absolute;
+          top: -.4rem;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: white;
+          border: 2px solid #cccccc;
+          border-radius: 50%;
+          transition: all .3s ease;
+        }
+
+        span:last-child {
+          margin-left: 2rem;
+        }
+      }
+
+      .lostPassword {
+        padding-bottom: .2rem;
+        border-bottom: 1px solid #ccc;
+        cursor: pointer;
+
+        &:hover {
+          color: blue;
+        }
+      }
+
+    }
+
+    .input {
+      @extend .input
+    }
+
+    .loginButton {
+      background-color: $sitePrimaryColor;
+      border: none;
+      padding: .6rem 2rem;
+      width: 100%;
+      margin-top: 1rem;
+      border-radius: 6px;
+      transition: all .3s ease;
+
+      &:hover {
+        transform: translateY(-8px);
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .usefulMessage {
+    @include flexCenterSpace;
+    justify-content: center;
+    padding: 2rem 1rem 0;
+    cursor: pointer;
+    transition: all .3s ease;
+
+    .text {
+      border-bottom: 2px solid #cccccc;
+
+      &:hover {
+        color: blue;
+        border-color: blue;
+      }
+    }
+  }
+}
