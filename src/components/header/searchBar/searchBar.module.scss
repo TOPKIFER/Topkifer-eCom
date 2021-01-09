@@ -1,4 +1,4 @@
-@import "~assets/styles/variable";
+@import "~assets/styles/variables";
 @import "~assets/styles/mixins";
 
 @include keyframes(slideInDown) {
@@ -17,11 +17,6 @@
   border: 2px solid #f1f1f1;
   border-radius: 8px;
   padding: .5rem;
-  transition: all .3s ease;
-
-  &:hover {
-    box-shadow: $verySmallShadow;
-  }
 
   .searchInput, .searchInputMobile {
     width: 400px;

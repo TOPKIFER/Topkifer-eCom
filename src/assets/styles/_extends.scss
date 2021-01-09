@@ -1,0 +1,36 @@
+@import "~assets/styles/variables";
+
+.inputMaterial {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  height: 36px;
+  border: none;
+  border-bottom: 2px solid #6bb8f5;
+  padding-left: 1rem;
+  border-radius: 4px;
+  transition: all .3s ease;
+  background-color: transparent;
+  box-shadow: $smallShadow;
+
+  &:focus, &:active {
+    outline: none;
+
+  }
+}
+
+.input {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  height: 36px;
+  border: none;
+  padding-left: 1rem;
+  border-radius: 4px;
+  box-shadow: $smallShadow;
+  transition: all .3s ease;
+
+  &:focus, &:active {
+    outline: 2px solid $sitePrimaryColor;
+  }
+}

@@ -1,5 +1,5 @@
-@import "../../../assets/styles/mixins";
-@import "../../../assets/styles/variable";
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
 
 .navbar {
   @include positionChanged;
@@ -65,7 +65,7 @@
         min-width: 20px;
         text-align: center;
         font-size: 10px;
-        background-color: $cyanColor;
+        background-color: $sitePrimaryColor;
         border-radius: 50%;
         padding: .2rem;
         box-shadow: $smallShadow;

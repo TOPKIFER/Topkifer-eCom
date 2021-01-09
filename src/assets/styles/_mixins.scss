@@ -11,6 +11,10 @@
   bottom: 0;
 }
 
+@mixin scale3dAnimation {
+  animation: scale3d .3s ease;
+}
+
 @mixin animation($value) {
   -webkit-animation: #{$value};
   -moz-animation: #{$value};
@@ -30,5 +34,20 @@
   }
   @keyframes #{$animationName} {
     @content;
+  }
+}
+
+@keyframes scale3d {
+  0% {
+    opacity: .2;
+    transform: scale(1.1) translateZ(60px);
+  }
+  20% {
+    opacity: .6;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate(0);
   }
 }

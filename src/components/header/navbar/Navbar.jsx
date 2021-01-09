@@ -11,6 +11,8 @@ import menu from "assets/icons/menu.svg"
 import Icon from "../../icon/Icon";
 import {multipleClasses, overHundred} from "utilities/utilities";
 import {height} from "utilities/constant"
+import {AuthContext} from "../../../App";
+import {toggleAuthVisibility} from "../../../utilities/utilities";
 
 const {
     navbar, navWrapper,
@@ -29,21 +31,25 @@ const LogoFiles = (classes) => <div className={classes}>
 </div>
 
 const Navbar = (props) => {
-
     const {toggleMobileSearch, mobileSearch} = props;
 
     return (
         <div className={navbar}>
             <div className={navWrapper}>
                 <div className={menuIconAndLogo}>
-                    <Icon
-                        className={icon}
-                        src={menu}
-                        style={{
-                            height,
-                        }}
-                        alt="menu-icon"
-                    />
+                    <AuthContext.Consumer>
+                        {({visible, setVisible}) => (
+                            <Icon
+                                onClick={() => toggleAuthVisibility(setVisible, !visible)}
+                                className={multipleClasses(icon, "pointer")}
+                                src={menu}
+                                style={{
+                                    height,
+                                }}
+                                alt="menu-icon"
+                            />
+                        )}
+                    </AuthContext.Consumer>
                     {LogoFiles(logoContainer)}
                 </div>
                 <SearchBar/>
