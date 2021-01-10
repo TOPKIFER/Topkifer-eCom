@@ -10,7 +10,7 @@ import user from "assets/icons/user.svg"
 import heart from "assets/icons/heart.svg"
 import menu from "assets/icons/menu.svg"
 import Icon from "components/icon/Icon";
-import {multipleClasses, overHundred} from "utilities/utilities";
+import {multipleClasses, overTen} from "utilities/utilities";
 import {height} from "utilities/constant"
 import {AuthContext} from "App";
 import {toggleAuthVisibility} from "utilities/utilities";
@@ -87,7 +87,7 @@ const Navbar = (props) => {
                     </NavLink>
                     <NavLink className={icon} to="/cart">
                         <div className={bagBadge}>{
-                            overHundred(120)
+                            overTen(120)
                         }</div>
                         <Icon
                             src={bag}
