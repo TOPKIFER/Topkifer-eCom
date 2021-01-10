@@ -11,7 +11,7 @@
   font-weight: bold;
   @include animation("fadeInSlideInDown .3s ease");
 
-  .categoryClass {
+  .categoryClass, .mobileCategoryClass {
     font-weight: 600;
     position: relative;
     cursor: pointer;
@@ -36,14 +36,54 @@
       }
     }
   }
+
+  .mobileCategories {
+    display: none;
+
+    .categoryController {
+      background-color: $sitePrimaryColor;
+      border-radius: 50%;
+      width: 25px;
+      text-align: center;
+      color: black;
+      font-weight: bold;
+      transition: all .3s ease;
+      cursor: pointer;
+
+      &:first-child {
+        margin-right: .6rem;
+
+        &:hover {
+          transform: translateX(-2px);
+        }
+
+      }
+
+      &:last-child {
+        margin-left: .6rem;
+
+        &:hover {
+          transform: translateX(2px);
+        }
+
+      }
+    }
+
+  }
 }
 
 @media screen and (max-width: $breakpoint) {
   .categoriesBar {
-    padding: 1rem;
+    padding: 1rem .4rem;
 
     .categoryClass {
+      display: none;
       margin-bottom: 1rem;
+    }
+
+    .mobileCategories {
+      @include flexCenterSpace;
+      width: 100%;
     }
   }
 }

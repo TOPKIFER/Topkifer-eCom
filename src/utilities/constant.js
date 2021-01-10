@@ -23,7 +23,10 @@ export const categoriesConstants = [
         name: "Machinery"
     },
     {
-        name: "Home & Garden"
+        name: "Home"
+    },
+    {
+        name: "Garden"
     },
     {
         name: "Personal"

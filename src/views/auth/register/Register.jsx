@@ -15,13 +15,8 @@ const Register = (props) => {
         registerHeader,
         registerContent,
         input,
-        inputRadio,
         registerButton,
-        otherRegisterOptions,
         label,
-        rememberMe,
-        lostPassword,
-        customRadio,
         usefulMessage,
         text
     } = registerClasses;

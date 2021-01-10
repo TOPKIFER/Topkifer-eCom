@@ -1,0 +1,136 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+
+.common {
+  width: 90%;
+  margin: 0 auto;
+}
+
+$carouselBg: #f6f6f6;
+
+.carousel {
+  @include flexCenterSpace;
+  position: relative;
+  padding: 0 4rem;
+  background-color: $carouselBg;
+  border-radius: 12px;
+
+  .carouselContainer {
+    padding: 0 4rem;
+    height: 360px;
+    background-color: $carouselBg;
+    @extend .common;
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: background-image .3s ease-in;
+  }
+
+  .carouselText {
+    @include positionChanged;
+    position: absolute;
+    @include flexCenterSpace;
+    flex-flow: column;
+    width: 40%;
+    margin-left: 13%;
+    justify-content: center;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 500;
+    z-index: 5;
+
+    .showMore {
+      position: relative;
+      margin-top: 1.6rem;
+      font-size: 20px;
+      font-weight: 600;
+      background-color: black;
+      padding: .9rem 1.6rem;
+      margin-bottom: 1rem;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all .3s ease;
+
+      &:hover {
+        background-color: white;
+        color: black;
+        box-shadow: 0 4px 8px #cccccc;
+
+        &::after {
+          transform-origin: 50%;
+          transform: scale(1);
+        }
+      }
+
+      &::after {
+        @include positionChanged;
+        position: absolute;
+        content: "";
+        border: 2px solid black;
+        border-radius: 12px;
+        transform: scale(0);
+        transition: all .3s ease;
+      }
+    }
+  }
+
+  .carouselControllerContainer {
+    @include positionChanged;
+    @include flexCenterSpace;
+    position: absolute;
+    @extend .common;
+
+    .carouselController {
+      cursor: pointer;
+      transition: all .3s ease;
+
+      &:first-child:hover {
+        transform: translateX(-10px);
+      }
+
+      &:last-child:hover {
+        transform: translateX(10px);
+      }
+    }
+  }
+
+
+}
+
+@media screen and (max-width: $breakpoint) {
+  .carousel {
+    justify-content: center;
+    flex-flow: column;
+    padding: .6rem;
+
+    .carouselContainer {
+      height: 200px;
+      width: 100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .carouselText {
+      margin-left: 0;
+      position: relative;
+      width: 90%;
+      font-size: 36px;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .carouselControllerContainer {
+      justify-content: center;
+      position: relative;
+      margin-bottom: 1rem;
+
+      .carouselController {
+        margin: 0 1rem;
+      }
+    }
+
+  }
+}
