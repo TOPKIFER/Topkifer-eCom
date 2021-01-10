@@ -38,9 +38,9 @@ const Navbar = (props) => {
             <div className={navWrapper}>
                 <div className={menuIconAndLogo}>
                     <AuthContext.Consumer>
-                        {({visible, setVisible}) => (
+                        {({visible, setContextValue}) => (
                             <Icon
-                                onClick={() => toggleAuthVisibility(setVisible, !visible)}
+                                onClick={() => toggleAuthVisibility(setContextValue, !visible)}
                                 className={multipleClasses(icon, "pointer")}
                                 src={menu}
                                 style={{
@@ -97,13 +97,6 @@ const Navbar = (props) => {
                         />
                     </NavLink>
                 </div>
-                {
-                    /*
-
-            
-                <Menum/>
-                     */
-                }
             </div>
         </div>
     );

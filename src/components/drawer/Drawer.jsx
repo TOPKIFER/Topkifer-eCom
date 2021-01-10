@@ -12,8 +12,8 @@ const Drawer = ({position, content}) => {
         {({visible, isClosing}) => (
             visible && <>
                 <AuthContext.Consumer>
-                    {({setVisible}) => (
-                        <div onClick={() => toggleAuthVisibility(setVisible, !visible)}
+                    {({setContextValue}) => (
+                        <div onClick={() => toggleAuthVisibility(setContextValue, !visible)}
                              className={drawerOverlay}/>
                     )}
                 </AuthContext.Consumer>

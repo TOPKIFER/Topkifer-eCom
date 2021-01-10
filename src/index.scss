@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
+@import "~assets/styles/variables";
 
 * {
   box-sizing: border-box;
@@ -28,10 +29,24 @@ a {
   text-decoration: none;
 }
 
-.container {
-  min-height: 100vh;
+.predefinedHeight {
+  margin-top: $commonHeight;
+}
+
+.app-container {
+  min-height: 150vh;
+  width: 100%;
 }
 
 .pointer {
   cursor: pointer;
+}
+
+@media screen and (max-width: $breakpoint) {
+  .app-container {
+    margin-top: -.6rem;
+  }
+  .predefinedHeight {
+    margin-top: 4.4rem;
+  }
 }

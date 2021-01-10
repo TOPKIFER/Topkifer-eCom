@@ -6,11 +6,11 @@
   height: $commonHeight;
 }
 
-.mobileSearchWrapper {
+.contentWrapper {
   width: 100%;
-  padding: .6rem 1rem;
 
-  div {
+  .searchInput {
     border-radius: 8px;
   }
 }
+

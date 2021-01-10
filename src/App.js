@@ -1,23 +1,22 @@
 import React, {createContext, useState} from "react";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router} from "react-router-dom";
 import Header from "components/header/Header";
-import Homepage from "views/pages/homepage/Homepage";
 import Drawer from "components/drawer/Drawer";
 import Auth from "views/auth/Auth";
-import {APP_URL, LEFT} from "utilities/constant";
-
-const {BASE} = APP_URL;
+import {LEFT} from "utilities/constant";
+import AppRoute from "./router/Router";
 
 export const AuthContext = createContext();
 
 const App = () => {
     const [state, setState] = useState({
         visible: false,
-        isClosing: false
+        isClosing: false,
+        mobileSearch: false
     });
 
-    const setVisible = (target,value) => {
-        setState({...state,[target]: value})
+    const setContextValue = (target, value) => {
+        setState({...state, [target]: value})
     }
 
     return (
@@ -25,16 +24,12 @@ const App = () => {
             <div className="App">
                 <AuthContext.Provider value={{
                     ...state,
-                    setVisible: setVisible
+                    setContextValue: setContextValue
                 }}>
                     <Header/>
                     <Drawer content={<Auth/>} position={LEFT}/>
+                    <AppRoute/>
                 </AuthContext.Provider>
-                <Switch>
-                    <Route exact path={BASE}>
-                        <Homepage/>
-                    </Route>
-                </Switch>
             </div>
         </Router>
     );

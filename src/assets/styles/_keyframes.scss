@@ -1,0 +1,50 @@
+@import "~assets/styles/mixins";
+
+@include keyframes(scaleSlideInDown) {
+  0% {
+    opacity: .6;
+    transform: scale(.8) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@include keyframes(fadeInSlideInDown) {
+  0% {
+    opacity: .6;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include keyframes(slideInLeft) {
+  0% {
+    transform: translateX(-400px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@include keyframes(reverseSlideInLeft) {
+  100% {
+    transform: translateX(-400px);
+  }
+  0% {
+    transform: translateX(0);
+  }
+}
+
+@include keyframes(slideInDown) {
+  0% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

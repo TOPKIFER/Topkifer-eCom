@@ -1,14 +1,6 @@
 @import "~assets/styles/variables";
 @import "~assets/styles/mixins";
-
-@include keyframes(slideInDown) {
-  0% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
+@import "~assets/styles/keyframes";
 
 .searchBar, .searchBarMobile {
   position: relative;
@@ -17,6 +9,7 @@
   border: 2px solid #f1f1f1;
   border-radius: 8px;
   padding: .5rem;
+
 
   .searchInput, .searchInputMobile {
     width: 400px;
@@ -32,6 +25,7 @@
 
 .searchBarMobile {
   margin-top: $commonHeight;
+  margin-bottom: .5rem;
   border-radius: 0;
   @include animation("slideInDown .3s ease");
 
@@ -46,7 +40,9 @@
   }
 
   .searchBarMobile {
-    margin-top: 4.4rem;
+    padding: .6rem 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
 
     .searchInputMobile {
       width: 96%;

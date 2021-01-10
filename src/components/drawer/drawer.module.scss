@@ -1,24 +1,6 @@
 @import "~assets/styles/mixins";
 @import "~assets/styles/variables";
-
-
-@include keyframes(slideInLeft) {
-  0% {
-    transform: translateX(-400px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@include keyframes(reverseSlideInLeft) {
-  100% {
-    transform: translateX(-400px);
-  }
-  0% {
-    transform: translateX(0);
-  }
-}
+@import "~assets/styles/keyframes";
 
 .drawer {
   @include positionChanged;
@@ -27,6 +9,7 @@
   background-color: #f1f1f1;
   width: 30%;
   z-index: 2002;
+  overflow: auto;
   @include animation("slideInLeft .6s ease")
 }
 
@@ -47,5 +30,10 @@
 @media screen and (max-width: $breakpoint) {
   .drawer {
     width: 100%;
+    margin-top: -1rem;
+  }
+
+  .drawerOverlay {
+    margin-top: -1rem;
   }
 }

@@ -1,24 +1,30 @@
-import React, {useState} from "react";
+import React from "react";
 import headerClasses from "./header.module.scss";
 import Navbar from "./navbar/Navbar";
 import SearchBar from "./searchBar/SearchBar";
+import {AuthContext} from "../../App";
 
 const Header = () => {
 
-    const [mobileSearch, showMobileSearch] = useState(false);
+    const {header, contentWrapper, searchInput} = headerClasses;
 
-    const toggleMobileSearch = () => {
-        showMobileSearch(!mobileSearch)
-    }
-
-    const {header, mobileSearchWrapper} = headerClasses;
     return (
-        <header className={header}>
-            <Navbar mobileSearch={mobileSearch} toggleMobileSearch={toggleMobileSearch}/>
-            <div className={mobileSearchWrapper}>
-                {mobileSearch && <SearchBar onClick={toggleMobileSearch} mobile/>}
-            </div>
-        </header>
+
+        <AuthContext.Consumer>
+            {({mobileSearch, setContextValue}) => {
+                return <header className={header}>
+                    <Navbar mobileSearch={mobileSearch}
+                            toggleMobileSearch={() => setContextValue("mobileSearch", !mobileSearch)}/>
+                    <div className={contentWrapper}>
+                        {mobileSearch &&
+                        <SearchBar searchInputClass={searchInput}
+                                   onClick={() => setContextValue("mobileSearch", !mobileSearch)}
+                                   mobile/>}
+                    </div>
+                </header>
+            }}
+        </AuthContext.Consumer>
+
     );
 }
 
