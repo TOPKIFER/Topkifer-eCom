@@ -21,7 +21,7 @@ const App = () => {
 
     return (
         <Router>
-            <div className="App">
+            <div className="app">
                 <AuthContext.Provider value={{
                     ...state,
                     setContextValue: setContextValue
