@@ -2,6 +2,10 @@
 @import "~assets/styles/mixins";
 @import "~assets/styles/keyframes";
 
+.searchBar {
+  margin-left: 9rem;
+}
+
 .searchBar, .searchBarMobile {
   position: relative;
   display: flex;
@@ -12,7 +16,7 @@
 
 
   .searchInput, .searchInputMobile {
-    width: 400px;
+    width: 600px;
     background-color: $siteColor;
     border: none;
 
@@ -46,6 +50,16 @@
 
     .searchInputMobile {
       width: 96%;
+    }
+  }
+}
+
+@media screen and (min-width: $breakpoint4K) {
+  .searchBar {
+    margin-left: 9rem;
+
+    .searchInput {
+      width: 76em !important;
     }
   }
 }

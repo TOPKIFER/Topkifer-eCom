@@ -3,6 +3,7 @@ import headerClasses from "./header.module.scss";
 import Navbar from "./navbar/Navbar";
 import SearchBar from "./searchBar/SearchBar";
 import {AuthContext} from "../../App";
+import {HIDE_ALL} from "../../utilities/constant";
 
 const Header = () => {
 
@@ -11,14 +12,14 @@ const Header = () => {
     return (
 
         <AuthContext.Consumer>
-            {({mobileSearch, setContextValue}) => {
+            {({visible, mobileSearch, setContextValue}) => {
                 return <header className={header}>
                     <Navbar mobileSearch={mobileSearch}
                             toggleMobileSearch={() => setContextValue("mobileSearch", !mobileSearch)}/>
                     <div className={contentWrapper}>
                         {mobileSearch &&
                         <SearchBar searchInputClass={searchInput}
-                                   onClick={() => setContextValue("mobileSearch", !mobileSearch)}
+                                   onClick={() => setContextValue(HIDE_ALL, !mobileSearch)}
                                    mobile/>}
                     </div>
                 </header>

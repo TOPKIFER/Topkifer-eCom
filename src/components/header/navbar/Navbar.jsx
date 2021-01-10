@@ -1,6 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import Logo from "assets/Logo/logo.jpg"
+import LogoMobile from "assets/Logo/logo.jpg"
+import LogoDesktop from "assets/Logo/tklogoword1-resized.png"
 import navbarClasses from "./navbar.module.scss"
 import SearchBar from "../searchBar/SearchBar";
 import bag from "assets/icons/bag.svg"
@@ -8,11 +9,11 @@ import search from "assets/icons/search.svg"
 import user from "assets/icons/user.svg"
 import heart from "assets/icons/heart.svg"
 import menu from "assets/icons/menu.svg"
-import Icon from "../../icon/Icon";
+import Icon from "components/icon/Icon";
 import {multipleClasses, overHundred} from "utilities/utilities";
 import {height} from "utilities/constant"
-import {AuthContext} from "../../../App";
-import {toggleAuthVisibility} from "../../../utilities/utilities";
+import {AuthContext} from "App";
+import {toggleAuthVisibility} from "utilities/utilities";
 
 const {
     navbar, navWrapper,
@@ -20,13 +21,13 @@ const {
     logoContainer,
     logoMobileContainer,
     logo,
-    icons, icon,
+    icons, icon, noIcon,
     bagBadge
 } = navbarClasses;
 
-const LogoFiles = (classes) => <div className={classes}>
+const LogoFiles = (classes, mobile) => <div className={classes}>
     <NavLink exact to="/">
-        <img className={logo} src={Logo} alt="topkifer logo"/>
+        <img className={logo} src={mobile ? LogoMobile : LogoDesktop} alt="topkifer logo"/>
     </NavLink>
 </div>
 
@@ -53,7 +54,7 @@ const Navbar = (props) => {
                     {LogoFiles(logoContainer)}
                 </div>
                 <SearchBar/>
-                {LogoFiles(logoMobileContainer)}
+                {LogoFiles(logoMobileContainer, true)}
                 <div className={icons}>
                     {
                         !mobileSearch && <Icon
@@ -68,7 +69,7 @@ const Navbar = (props) => {
                     }
 
                     <Icon
-                        className={icon}
+                        className={multipleClasses(icon, noIcon)}
                         src={user}
                         style={{
                             height,

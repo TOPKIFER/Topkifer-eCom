@@ -10,8 +10,7 @@ const Carousel = ({pictures, auto, time}) => {
         carousel, carouselController,
         carouselContainer, carouselControllerContainer,
         carouselText,
-        showMore,
-        showMoreMobile
+        showMore
     } = carouselClasses;
 
     const [position, setPosition] = useState(1);

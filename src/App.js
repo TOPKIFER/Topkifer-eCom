@@ -3,7 +3,7 @@ import {BrowserRouter as Router} from "react-router-dom";
 import Header from "components/header/Header";
 import Drawer from "components/drawer/Drawer";
 import Auth from "views/auth/Auth";
-import {LEFT} from "utilities/constant";
+import {HIDE_ALL, LEFT} from "utilities/constant";
 import AppRoute from "./router/Router";
 
 export const AuthContext = createContext();
@@ -16,6 +16,10 @@ const App = () => {
     });
 
     const setContextValue = (target, value) => {
+        if (target === HIDE_ALL) {
+            setState({...state, visible: false, mobileSearch: false})
+            return
+        }
         setState({...state, [target]: value})
     }
 

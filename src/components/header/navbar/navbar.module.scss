@@ -13,7 +13,7 @@
 .navWrapper {
   @include flexCenterSpace;
   position: relative;
-  padding: 1.1rem 1.6rem;
+  padding: .4rem 1.6rem;
   background-color: $siteColor;
   box-shadow: $smallShadow;
 
@@ -24,7 +24,7 @@
     .logoContainer {
       position: relative;
       max-width: 400px;
-      height: 40px;
+      height: 30px;
       margin-left: 1rem;
 
       .logo {
@@ -42,6 +42,10 @@
   // search, favorite and cart icons
   .icons {
     @include flexCenterSpace;
+
+    .notOnMobile {
+      display: inline-flex;
+    }
 
     .icon {
       position: relative;
@@ -84,6 +88,10 @@
 }
 
 @media screen and (max-width: $breakpoint) {
+  .notOnMobile {
+    display: none !important;
+  }
+
   .icon {
     &:first-child {
       display: inline-flex !important;

@@ -1,4 +1,5 @@
 export const height = "24px";
+export const HIDE_ALL = "hideAll";
 export const RIGHT = "right";
 export const LEFT = "left";
 

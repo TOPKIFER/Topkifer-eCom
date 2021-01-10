@@ -9,8 +9,8 @@ const Drawer = ({position, content}) => {
 
 
     return <AuthContext.Consumer>
-        {({visible, isClosing}) => (
-            visible && <>
+        {({visible,mobileSearch, isClosing}) => (
+            visible && !mobileSearch && <>
                 <AuthContext.Consumer>
                     {({setContextValue}) => (
                         <div onClick={() => toggleAuthVisibility(setContextValue, !visible)}
