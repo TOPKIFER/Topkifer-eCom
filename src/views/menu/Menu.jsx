@@ -25,7 +25,8 @@ const Menu = () => {
 
     const listMenuConstants = [...categoriesConstants]
     const listAccountConstants = [...accountConstants.map(value => {
-        return {...value, onClick: () => setSimulateLogin(false)}
+        const {name} = value;
+        return {...value, onClick: name === "Logout" ? () => setSimulateLogin(false) : null}
     })]
 
     const isLogin = () => activeTab === LOGIN;
