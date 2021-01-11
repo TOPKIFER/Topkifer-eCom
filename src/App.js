@@ -10,7 +10,7 @@ export const AuthContext = createContext();
 
 const App = () => {
     const [state, setState] = useState({
-        visible: true,
+        visible: false,
         isClosing: false,
         mobileSearch: false
     });
