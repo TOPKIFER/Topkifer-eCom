@@ -7,6 +7,7 @@ import {height} from "../../../utilities/constant";
 import lock from "../../../assets/icons/lock.svg";
 import LoginIcon from "../../../assets/icons/login.svg";
 import mailIcon from "../../../assets/icons/email.svg";
+import contactIcon from "../../../assets/icons/contacts.svg";
 
 const Register = (props) => {
 
@@ -33,10 +34,11 @@ const Register = (props) => {
                     }}
                     alt="icon-register-user"
                 />
+                <div className={usefulMessage}>
+                    <span className={text}>Please create your account</span>
+                </div>
             </div>
-            <div className={usefulMessage}>
-                <span className={text}>Please create your account</span>
-            </div>
+
             <div className={registerContent}>
                 <label htmlFor="username">
                     <Icon
@@ -73,6 +75,18 @@ const Register = (props) => {
                     />
                     <span className={label}>Password</span>
                     <input type="password" className={input} placeholder="Enter your password"/>
+                </label>
+                <label htmlFor="email">
+                    <Icon
+                        className="mr-1"
+                        src={contactIcon}
+                        style={{
+                            height: "24px",
+                        }}
+                        alt="contact-icon"
+                    />
+                    <span className={label}>Contact</span>
+                    <input id="username" type="tel" className={input} placeholder="Enter your phone number"/>
                 </label>
                 <button className={registerButton}>
                     <Icon

@@ -1,0 +1,36 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/extends";
+
+.listMenu {
+  @extend .absoluteMenu;
+
+  .listMenuItems {
+    list-style: none;
+    padding: 0;
+    overflow-x: hidden;
+
+    .listMenuItem {
+      padding: 1rem 2rem;
+      border: 1px solid $siteColor;
+      cursor: pointer;
+      transition: all .3s ease;
+      @include flexCenterSpace;
+
+      &:hover {
+        box-shadow: $smallShadow;
+        background-color: #1f2222;
+        color: white;
+        font-weight: bold;
+      }
+
+      .menuAccountBadge {
+        @extend .commonBadge;
+        font-size: 14px;
+        width: 30px;
+        color: black;
+      }
+    }
+
+  }
+}

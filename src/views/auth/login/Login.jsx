@@ -24,7 +24,7 @@ const Login = (props) => {
         text
     } = loginClasses;
 
-    const {changeTab} = props;
+    const {changeTab, simulateLogin} = props;
 
     return (
         <div className={login}>
@@ -36,9 +36,9 @@ const Login = (props) => {
                     }}
                     alt="icon-login-user"
                 />
-            </div>
-            <div className={usefulMessage}>
-                <span className={text}>Please login to your account</span>
+                <div className={usefulMessage}>
+                    <span className={text}>Please login to your account</span>
+                </div>
             </div>
             <div className={loginContent}>
                 <label htmlFor="username">
@@ -75,7 +75,7 @@ const Login = (props) => {
                     </span>
                     <span className={lostPassword}>Lost your password ?</span>
                 </div>
-                <button className={loginButton}>
+                <button onClick={() => simulateLogin(true)} className={loginButton}>
                     <Icon
                         className="mr-2"
                         src={LoginIcon}

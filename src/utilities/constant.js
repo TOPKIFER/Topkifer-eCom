@@ -1,3 +1,5 @@
+import {overTen} from "./utilities";
+
 export const height = "24px";
 export const HIDE_ALL = "hideAll";
 export const RIGHT = "right";
@@ -31,5 +33,21 @@ export const categoriesConstants = [
     },
     {
         name: "Personal"
+    }
+]
+
+export const accountConstants = [
+    {
+        name: "Shopping cart",
+        total: overTen(120)
+    },
+    {
+        name: "Favorites"
+    },
+    {
+        name: "Contact us"
+    },
+    {
+        name: "Logout"
     }
 ]

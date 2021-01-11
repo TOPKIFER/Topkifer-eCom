@@ -31,7 +31,7 @@
   }
 }
 
-@include keyframes(reverseSlideInLeft) {
+@include keyframes(slideInRight) {
   100% {
     transform: translateX(-400px);
   }

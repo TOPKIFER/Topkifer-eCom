@@ -1,4 +1,5 @@
 @import "~assets/styles/variables";
+@import "~assets/styles/mixins";
 
 .inputMaterial {
   margin-bottom: 1rem;
@@ -6,7 +7,7 @@
   width: 100%;
   height: 36px;
   border: none;
-  border-bottom: 2px solid #6bb8f5;
+  border-bottom: 2px solid $sitePrimaryColor;
   padding-left: 1rem;
   border-radius: 4px;
   transition: all .3s ease;
@@ -33,4 +34,42 @@
   &:focus, &:active {
     outline: 2px solid $sitePrimaryColor;
   }
+}
+
+.absoluteMenu {
+  @include positionChanged;
+  position: absolute;
+  margin-top: 16%;
+  overflow: auto;
+}
+
+.usefulMessageStyle {
+  @include flexCenterSpace;
+  justify-content: center;
+  padding: .6rem 1rem 0;
+  cursor: pointer;
+  transition: all .3s ease;
+
+  &:last-child {
+    margin-top: 1rem;
+  }
+
+  .text {
+    border-bottom: 2px solid #cccccc;
+
+    &:hover {
+      color: blue;
+      border-color: blue;
+    }
+  }
+}
+
+.commonBadge {
+  min-width: 20px;
+  text-align: center;
+  font-size: 10px;
+  background-color: $sitePrimaryColor;
+  border-radius: 50%;
+  padding: .2rem;
+  box-shadow: $smallShadow;
 }

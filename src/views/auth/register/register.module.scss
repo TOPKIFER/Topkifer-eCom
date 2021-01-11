@@ -49,19 +49,6 @@
   }
 
   .usefulMessage {
-    @include flexCenterSpace;
-    justify-content: center;
-    padding: 2rem 1rem 0;
-    cursor: pointer;
-    transition: all .3s ease;
-
-    .text {
-      border-bottom: 2px solid #cccccc;
-
-      &:hover {
-        color: blue;
-        border-color: blue;
-      }
-    }
+    @extend .usefulMessageStyle
   }
 }

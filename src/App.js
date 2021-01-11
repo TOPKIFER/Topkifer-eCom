@@ -2,7 +2,7 @@ import React, {createContext, useState} from "react";
 import {BrowserRouter as Router} from "react-router-dom";
 import Header from "components/header/Header";
 import Drawer from "components/drawer/Drawer";
-import Auth from "views/auth/Auth";
+import Menu from "views/menu/Menu";
 import {HIDE_ALL, LEFT} from "utilities/constant";
 import AppRoute from "./router/Router";
 
@@ -10,7 +10,7 @@ export const AuthContext = createContext();
 
 const App = () => {
     const [state, setState] = useState({
-        visible: false,
+        visible: true,
         isClosing: false,
         mobileSearch: false
     });
@@ -31,7 +31,7 @@ const App = () => {
                     setContextValue: setContextValue
                 }}>
                     <Header/>
-                    <Drawer content={<Auth/>} position={LEFT}/>
+                    <Drawer content={<Menu/>} position={LEFT}/>
                     <AppRoute/>
                 </AuthContext.Provider>
             </div>
