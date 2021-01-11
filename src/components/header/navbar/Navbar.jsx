@@ -10,10 +10,9 @@ import user from "assets/icons/user.svg"
 import heart from "assets/icons/heart.svg"
 import menu from "assets/icons/menu.svg"
 import Icon from "components/icon/Icon";
-import {multipleClasses, overTen} from "utilities/utilities";
+import {multipleClasses, overTen, toggleAuthVisibility} from "utilities/utilities";
 import {height} from "utilities/constant"
 import {AuthContext} from "App";
-import {toggleAuthVisibility} from "utilities/utilities";
 
 const {
     navbar, navWrapper,
@@ -21,7 +20,8 @@ const {
     logoContainer,
     logoMobileContainer,
     logo,
-    icons, icon, noIcon,
+    icons, icon, notOnMobile,
+    searchIcon,
     bagBadge
 } = navbarClasses;
 
@@ -59,7 +59,7 @@ const Navbar = (props) => {
                     {
                         !mobileSearch && <Icon
                             onClick={toggleMobileSearch}
-                            className={multipleClasses(icon, "mr-2")}
+                            className={multipleClasses(icon, searchIcon, "mr-2")}
                             src={search}
                             style={{
                                 height,
@@ -68,14 +68,6 @@ const Navbar = (props) => {
                         />
                     }
 
-                    <Icon
-                        className={multipleClasses(icon, noIcon)}
-                        src={user}
-                        style={{
-                            height,
-                        }}
-                        alt="user-icon"
-                    />
                     <NavLink className={icon} to="/favorite">
                         <Icon
                             src={heart}
@@ -97,6 +89,14 @@ const Navbar = (props) => {
                             alt="bag-icon"
                         />
                     </NavLink>
+                    <Icon
+                        className={multipleClasses(icon, notOnMobile)}
+                        src={user}
+                        style={{
+                            height,
+                        }}
+                        alt="user-icon"
+                    />
                 </div>
             </div>
         </div>

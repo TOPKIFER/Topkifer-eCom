@@ -92,16 +92,34 @@
     display: none !important;
   }
 
-  .icon {
-    &:first-child {
-      display: inline-flex !important;
+  .searchIcon {
+    margin-top: .6rem !important;
+  }
+
+  .icons {
+    margin-top: -.2rem;
+
+    .icon, .icon img {
+      height: 18px !important;
+
+      &:first-child {
+        display: inline-flex !important;
+      }
+
+      .bagBadge {
+        top: -.3rem !important;
+        padding: .1rem !important;
+      }
     }
   }
+
+
   .logoContainer {
     display: none !important;
   }
   .logoMobileContainer {
     display: inline-flex !important;
+    margin-left: 3rem;
 
     .logo {
       height: 35px;
