@@ -9,7 +9,7 @@ import {height} from "../../utilities/constant";
  * Item card component
  * @description The item card component for categories images
  * @param {Boolean} full Display only image or not
- * @param {Object} picture The object image to display
+ * @param {Object} picture The object image to display with the source, the price and the title
  * @return An item card with the image
  * @author Arnaud LITAABA
  */
@@ -28,7 +28,6 @@ const ItemCard = ({full = true, picture}) => {
 
     const {title, src, price} = picture;
 
-    return null
     return <div className={itemCardWrapper}>
         <div className={itemCard}>
             <div
