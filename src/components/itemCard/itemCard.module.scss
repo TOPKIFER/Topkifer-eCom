@@ -18,7 +18,7 @@ $carouselBg: #f6f6f6;
   &:hover {
     border: 1px solid $sitePrimaryColor;
     box-shadow: $normalShadow;
-    transform: translateY(-10px);
+    transform: scale(1.06) translateY(-10px);
 
     .itemCard {
       position: relative;

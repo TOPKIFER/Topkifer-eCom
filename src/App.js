@@ -1,6 +1,7 @@
 import React, {createContext, useState} from "react";
 import {BrowserRouter as Router} from "react-router-dom";
 import Header from "components/header/Header";
+import Footer from "components/footer/Footer";
 import Drawer from "components/drawer/Drawer";
 import Menu from "views/menu/Menu";
 import {HIDE_ALL, LEFT} from "utilities/constant";
@@ -51,6 +52,7 @@ const App = () => {
                     <Header/>
                     <Drawer content={<Menu/>} position={LEFT}/>
                     <AppRoute/>
+                    <Footer/>
                 </DrawerSearchContext.Provider>
             </div>
         </Router>
