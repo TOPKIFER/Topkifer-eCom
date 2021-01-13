@@ -141,10 +141,14 @@
     }
 
     .footerFooter {
-      font-size: 16px;
+      font-size: 18px;
       margin-top: 0;
+      flex-direction: column-reverse;
+      padding-top: 1rem;
 
       .paymentIconsClass {
+        margin-bottom: 1rem;
+
         img {
           height: 24px !important;;
         }
