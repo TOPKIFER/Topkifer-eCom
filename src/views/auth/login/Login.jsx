@@ -7,6 +7,11 @@ import lock from "assets/icons/lock.svg"
 import {height} from "../../../utilities/constant";
 import LoginIcon from "../../../assets/icons/login.svg";
 
+/**
+ * Login component
+ * @param {props} props all properties of the login component inherited or not
+ * @author Arnaud LITAABA
+ */
 const Login = (props) => {
 
     const {

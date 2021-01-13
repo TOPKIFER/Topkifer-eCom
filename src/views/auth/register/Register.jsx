@@ -9,6 +9,11 @@ import LoginIcon from "../../../assets/icons/login.svg";
 import mailIcon from "../../../assets/icons/email.svg";
 import contactIcon from "../../../assets/icons/contacts.svg";
 
+/**
+ * Register component
+ * @param {props} props all properties of the register component inherited or not
+ * @author Arnaud LITAABA
+ */
 const Register = (props) => {
 
     const {

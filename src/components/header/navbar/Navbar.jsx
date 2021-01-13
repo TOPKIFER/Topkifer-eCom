@@ -12,7 +12,7 @@ import menu from "assets/icons/menu.svg"
 import Icon from "components/icon/Icon";
 import {multipleClasses, overTen, toggleAuthVisibility} from "utilities/utilities";
 import {height} from "utilities/constant"
-import {AuthContext} from "App";
+import {DrawerSearchContext} from "App";
 
 const {
     navbar, navWrapper,
@@ -25,20 +25,36 @@ const {
     bagBadge
 } = navbarClasses;
 
+/**
+ * LogoFiles
+ * @description The LogoFiles function is for displaying the logo
+ * @param {String} classes The wrapper class of the logo
+ * @param {Boolean} mobile to know if we are displaying the logo on mobile or not
+ * @author Arnaud LITAABA
+ */
 const LogoFiles = (classes, mobile) => <div className={classes}>
     <NavLink exact to="/">
         <img className={logo} src={mobile ? LogoMobile : LogoDesktop} alt="topkifer logo"/>
     </NavLink>
 </div>
 
+/**
+ * Navbar component
+ * @description The Navbar function is for displaying all navbar elements.
+ * It will use @DrawerSearchContext in CONSUMER mode to check the visibility
+ * and also trigger this one with @toggleAuthVisibility
+ * @param {props} props props all properties of the AppRoute component inherited or not
+ * @author Arnaud LITAABA
+ */
 const Navbar = (props) => {
+
     const {toggleMobileSearch, mobileSearch} = props;
 
     return (
         <div className={navbar}>
             <div className={navWrapper}>
                 <div className={menuIconAndLogo}>
-                    <AuthContext.Consumer>
+                    <DrawerSearchContext.Consumer>
                         {({visible, setContextValue}) => (
                             <Icon
                                 onClick={() => toggleAuthVisibility(setContextValue, !visible)}
@@ -50,7 +66,7 @@ const Navbar = (props) => {
                                 alt="menu-icon"
                             />
                         )}
-                    </AuthContext.Consumer>
+                    </DrawerSearchContext.Consumer>
                     {LogoFiles(logoContainer)}
                 </div>
                 <SearchBar/>

@@ -5,7 +5,13 @@ import Carousel from "components/carousel/Carousel";
 import shoes from "assets/products/shoes.jpg";
 import shoes2 from "assets/products/shoes2.jpg";
 import shoes3 from "assets/products/shoes3.jpg";
+import CategoriesContent from "../../../components/categoriesContent/CategoriesContent";
+import {makeIndex} from "../../../utilities/utilities";
 
+/**
+ * Home component
+ * @author Arnaud LITAABA
+ */
 const Home = () => {
 
     const {homepage, homeWrapper} = homeClasses;
@@ -25,10 +31,77 @@ const Home = () => {
         },
     ]
 
+    const categoriesPictures = [
+        {
+            src: shoes,
+            title: "Nike Shoes",
+            price: "45000 cfa",
+        },
+        {
+            src: shoes2,
+            title: "Nike Shoes",
+            price: "45000 cfa",
+        },
+        {
+            src: shoes3,
+            title: "Nike Shoes",
+            price: "45000 cfa",
+        },
+    ]
+
+    const categories = [
+        {
+            title: "Top of the Day",
+            pictures: [
+                ...categoriesPictures,
+                ...categoriesPictures,
+                ...categoriesPictures,
+                ...categoriesPictures,
+            ]
+        },
+        {
+            title: "Phones",
+            pictures: [
+                ...categoriesPictures,
+                ...categoriesPictures,
+                ...categoriesPictures,
+                ...categoriesPictures,
+            ]
+        },
+        {
+            title: "Fashion",
+            pictures: [
+                ...categoriesPictures,
+                ...categoriesPictures,
+                ...categoriesPictures,
+                ...categoriesPictures,
+            ]
+        },
+        {
+            title: "Home Appliances",
+            pictures: [
+                ...categoriesPictures,
+                ...categoriesPictures,
+                ...categoriesPictures,
+                ...categoriesPictures,
+            ]
+        }
+    ]
+
     return <div className={homepage}>
         <CategoriesBar/>
         <div className={homeWrapper}>
             <Carousel auto time={6000} pictures={carouselPictures}/>
+            {
+                categories.map(category => {
+                    const {title, pictures} = category;
+                    return <CategoriesContent
+                        key={makeIndex(title, "cat")}
+                        pictures={pictures}
+                        title={title}
+                    />
+                })
+            }
         </div>
     </div>
     /*return (

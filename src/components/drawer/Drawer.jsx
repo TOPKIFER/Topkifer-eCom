@@ -1,22 +1,30 @@
 import React from "react";
 import drawerClasses from "./drawer.module.scss"
 import {LEFT} from "../../utilities/constant";
-import {AuthContext} from "../../App";
+import {DrawerSearchContext} from "../../App";
 import {toggleAuthVisibility} from "../../utilities/utilities";
 
+/**
+ * Drawer component
+ * @description The drawer component to display more data. It will use @DrawerSearchContext
+ * in CONSUMER mode to check the visibility and also trigger this one with @toggleAuthVisibility
+ * @param {String} position Where show the drawer !!!
+ * @param {Any} content The content to show !!!
+ * @author Arnaud LITAABA
+ */
 const Drawer = ({position, content}) => {
     const {drawer, drawerOverlay, drawerClosing} = drawerClasses;
 
 
-    return <AuthContext.Consumer>
-        {({visible,mobileSearch, isClosing}) => (
+    return <DrawerSearchContext.Consumer>
+        {({visible, mobileSearch, isClosing}) => (
             visible && !mobileSearch && <>
-                <AuthContext.Consumer>
+                <DrawerSearchContext.Consumer>
                     {({setContextValue}) => (
                         <div onClick={() => toggleAuthVisibility(setContextValue, !visible)}
                              className={drawerOverlay}/>
                     )}
-                </AuthContext.Consumer>
+                </DrawerSearchContext.Consumer>
 
                 <div style={{
                     left: position === LEFT ? 0 : "unset"
@@ -26,7 +34,7 @@ const Drawer = ({position, content}) => {
                 </div>
             </>
         )}
-    </AuthContext.Consumer>
+    </DrawerSearchContext.Consumer>
 }
 
 export default Drawer

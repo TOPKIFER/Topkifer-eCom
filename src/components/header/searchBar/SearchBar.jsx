@@ -5,6 +5,14 @@ import cancel from "assets/icons/cancel.svg";
 import Icon from "../../icon/Icon";
 import {multipleClasses} from "../../../utilities/utilities";
 
+/**
+ * Search bar component
+ * @description The Search bar component is for searching
+ * @param {Boolean} mobile to know if we are displaying the search bar on mobile or not
+ * @param {String} searchInputClass The search input class
+ * @param {Any} rest All other useful props
+ * @author Arnaud LITAABA
+ */
 const SearchBar = ({mobile, searchInputClass, ...rest}) => {
     const {
         searchBar,

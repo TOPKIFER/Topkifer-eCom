@@ -11,6 +11,10 @@ import Register from "../auth/register/Register";
 import menuIcon from "../../assets/icons/menu.svg";
 import ListMenu from "../../components/listMenu/ListMenu";
 
+/**
+ * Menu component
+ * @author Arnaud LITAABA
+ */
 const Menu = () => {
     const {menu, menuTab, menuTabContent, loginTab, registerTab, active} = authClasses;
 
@@ -18,20 +22,31 @@ const Menu = () => {
     const LOGIN = "login";
     const REGISTER = "register";
 
+    // State for active Tab
     const [activeTab, setActiveTab] = useState(MENU);
 
+    // Just for simulating login (Temporarily used, will be replace by REDUX)
     const [simulateLogin, setSimulateLogin] = useState(false);
 
-
+    // Our menu details
     const listMenuConstants = [...categoriesConstants]
+
+    // Our logged in user account details
     const listAccountConstants = [...accountConstants.map(value => {
         const {name} = value;
         return {...value, onClick: name === "Logout" ? () => setSimulateLogin(false) : null}
     })]
 
+    // Tell us is the active tab is login
     const isLogin = () => activeTab === LOGIN;
+
+    // Tell us is the active tab is login
     const isRegister = () => activeTab === REGISTER;
+
+    // Tell us is the active tab is register
     const isMenu = () => activeTab === MENU;
+
+    // Tell us is the active tab is login or menu like default
     const isDefault = () => (isLogin() || isMenu());
 
     return <div className={menu}>

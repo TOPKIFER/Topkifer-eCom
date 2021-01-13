@@ -1,0 +1,130 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/keyframes";
+
+$carouselBg: #f6f6f6;
+
+.itemCommon {
+  border-radius: 18px;
+  transition: all .3s ease-in-out;
+}
+
+.itemCardWrapper {
+  @include flexCenterSpace;
+  width: 15%;
+  margin-bottom: 1rem;
+  @extend .itemCommon;
+
+  &:hover {
+    border: 1px solid $sitePrimaryColor;
+    box-shadow: $normalShadow;
+    transform: translateY(-10px);
+
+    .itemCard {
+      position: relative;
+
+      .itemCardActions {
+        @include positionChanged;
+        top: 20%;
+        position: absolute;
+        display: inline-flex !important;
+
+        .action {
+          height: 30px !important;
+          @include animation("slideInTopWithOpactity .3s linear")
+        }
+      }
+    }
+
+    .itemCardImage {
+      box-shadow: $normalShadow;
+    }
+  }
+
+  .itemCard {
+    @include flexCenterSpace;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+    .itemCardImage {
+      height: 220px;
+      background-color: $carouselBg;
+      width: 100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      @extend .itemCommon;
+    }
+
+    .itemCardActions {
+      @include flexCenterSpace;
+      display: none;
+      justify-content: center;
+      margin-top: .6rem;
+
+      .action {
+        cursor: pointer;
+        margin: 0 .6rem;
+      }
+    }
+
+    .itemCardText {
+      .itemCardTitle {
+        font-weight: bolder;
+        margin: 1rem 0;
+      }
+
+      .itemCardPrice {
+        color: #6e6e6e;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint) {
+  .itemCardWrapper {
+    width: 48% !important;
+
+    &:hover {
+      .itemCardImage {
+        box-shadow: none;
+      }
+    }
+
+  }
+
+  .itemCardActions {
+    display: inline-flex !important;
+    position: relative !important;
+  }
+
+  .itemCardText {
+    .itemCardTitle, .itemCardPrice {
+      font-size: 16px !important;
+    }
+  }
+  .action {
+    height: 24px !important;
+  }
+
+}
+
+
+@media screen and (max-width: $breakpointHD) {
+
+  .itemCardImage {
+    height: 160px !important;
+  }
+  .itemCardText {
+    .itemCardTitle, .itemCardPrice {
+      font-size: 10px;
+      text-align: center;
+    }
+
+  }
+  /*.action {
+    height: 16px !important;
+  }*/
+}
