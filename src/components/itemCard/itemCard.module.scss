@@ -98,11 +98,18 @@ $carouselBg: #f6f6f6;
   .itemCardActions {
     display: inline-flex !important;
     position: relative !important;
+    margin-top: .4rem !important;
   }
 
   .itemCardText {
     .itemCardTitle, .itemCardPrice {
       font-size: 16px !important;
+      margin-top: 0 !important;
+      margin-bottom: .4rem !important;
+    }
+
+    .itemCardPrice {
+      margin-bottom: .4rem !important;
     }
   }
   .action {
