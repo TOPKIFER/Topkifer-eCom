@@ -1,0 +1,34 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/extends";
+
+.menu {
+
+  .menuTab {
+    height: 60px;
+    display: flex;
+    width: 100%;
+    box-shadow: $smallShadow;
+
+    .loginTab, .registerTab {
+      width: 50%;
+      @include flexCenterSpace;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .3s ease;
+      background-color: $siteBlackColor;
+      color: white;
+    }
+
+    .loginTab.active, .registerTab.active {
+      background-color: $sitePrimaryColor;
+      box-shadow: $smallShadow;
+      color: black;
+    }
+  }
+
+  .menuTabContent {
+    padding: .4rem 1rem 1rem;
+    @extend .absoluteMenu
+  }
+}

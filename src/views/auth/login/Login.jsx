@@ -1,18 +1,21 @@
 import React from "react";
-import LoginUserIcon from "../../../assets/icons/userLogin.svg";
-import Icon from "../../../components/icon/Icon";
+import LoginUserIcon from "assets/icons/userLogin.svg";
+import Icon from "components/icon/Icon";
 import loginClasses from "./login.module.scss";
 import user from "assets/icons/user.svg"
 import lock from "assets/icons/lock.svg"
-import {height} from "../../../utilities/constant";
-import LoginIcon from "../../../assets/icons/login.svg";
+import {defaultIconSize} from "utilities/constant";
+import LoginIcon from "assets/icons/login.svg";
+import {connect} from "react-redux";
+import {logInTheUser} from "redux/actions/auth/login/loginActions";
 
 /**
  * Login component
- * @param {props} props all properties of the login component inherited or not
+ * @param {Function} changeTab set actual tab to login
+ * @param {Function} logInTheUser log in the user
  * @author Arnaud LITAABA
  */
-const Login = (props) => {
+const Login = ({changeTab, logInTheUser}) => {
 
     const {
         login,
@@ -29,17 +32,17 @@ const Login = (props) => {
         text
     } = loginClasses;
 
-    const {changeTab, simulateLogin} = props;
+    const connectTheUser = () => {
+        // login staff, for now just simulating
+        logInTheUser({isLoggedIn: true})
+    }
 
     return (
         <div className={login}>
             <div className={loginHeader}>
                 <Icon
                     src={LoginUserIcon}
-                    style={{
-                        height: "60px"
-                    }}
-                    alt="icon-login-user"
+                    size="60px"
                 />
                 <div className={usefulMessage}>
                     <span className={text}>Please login to your account</span>
@@ -50,10 +53,7 @@ const Login = (props) => {
                     <Icon
                         className="mr-1"
                         src={user}
-                        style={{
-                            height,
-                        }}
-                        alt="user-icon"
+                        size={defaultIconSize}
                     />
                     <span className={label}>Username</span>
                     <input id="username" type="text" className={input} placeholder="Enter your username"/>
@@ -62,10 +62,7 @@ const Login = (props) => {
                     <Icon
                         className="mr-1"
                         src={lock}
-                        style={{
-                            height,
-                        }}
-                        alt="user-icon"
+                        size={defaultIconSize}
                     />
                     <span className={label}>Password</span>
                     <input type="password" className={input} placeholder="Enter your password"/>
@@ -80,14 +77,11 @@ const Login = (props) => {
                     </span>
                     <span className={lostPassword}>Lost your password ?</span>
                 </div>
-                <button onClick={() => simulateLogin(true)} className={loginButton}>
+                <button onClick={connectTheUser} className={loginButton}>
                     <Icon
                         className="mr-2"
                         src={LoginIcon}
-                        style={{
-                            height,
-                        }}
-                        alt="user-icon"
+                        size={defaultIconSize}
                     />
                     <span>Login</span>
                 </button>
@@ -101,4 +95,12 @@ const Login = (props) => {
     );
 }
 
-export default Login
+/**
+ * connect the login Component to the whole store
+ * @description Extract the function we need here
+ * Bind it to login props
+ * @author Arnaud LITAABA
+ */
+export default connect(null, {
+    logInTheUser
+})(Login)

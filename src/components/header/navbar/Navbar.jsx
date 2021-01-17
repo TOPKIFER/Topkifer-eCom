@@ -2,7 +2,8 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import LogoMobile from "assets/Logo/logo.jpg"
 import LogoDesktop from "assets/Logo/tklogoword1-resized.png"
-import navbarClasses from "./navbar.module.scss"
+import navbarWhiteClasses from "./navbarWhite.module.scss"
+import navbarBlackClasses from "./navbarBlack.module.scss"
 import SearchBar from "../searchBar/SearchBar";
 import bag from "assets/icons/bag.svg"
 import search from "assets/icons/search.svg"
@@ -11,59 +12,64 @@ import heart from "assets/icons/heart.svg"
 import menu from "assets/icons/menu.svg"
 import Icon from "components/icon/Icon";
 import {multipleClasses, overTen, toggleAuthVisibility} from "utilities/utilities";
-import {height} from "utilities/constant"
+import {defaultIconSize, WHITE} from "utilities/constant"
 import {DrawerSearchContext} from "App";
-
-const {
-    navbar, navWrapper,
-    menuIconAndLogo,
-    logoContainer,
-    logoMobileContainer,
-    logo,
-    icons, icon, notOnMobile,
-    searchIcon,
-    bagBadge
-} = navbarClasses;
-
-/**
- * LogoFiles
- * @description The LogoFiles function is for displaying the logo
- * @param {String} classes The wrapper class of the logo
- * @param {Boolean} mobile to know if we are displaying the logo on mobile or not
- * @author Arnaud LITAABA
- */
-const LogoFiles = (classes, mobile) => <div className={classes}>
-    <NavLink exact to="/">
-        <img className={logo} src={mobile ? LogoMobile : LogoDesktop} alt="topkifer logo"/>
-    </NavLink>
-</div>
+import {connect} from "react-redux";
 
 /**
  * Navbar component
  * @description The Navbar function is for displaying all navbar elements.
  * It will use @DrawerSearchContext in CONSUMER mode to check the visibility
  * and also trigger this one with @toggleAuthVisibility
- * @param {props} props props all properties of the AppRoute component inherited or not
+ * @param {Function} toggleMobileSearch toggle the mobile search visibility
+ * @param {Boolean} mobileSearch track the mobile search visibility
+ * @param {String} actualTheme the actual theme of the app
  * @author Arnaud LITAABA
  */
-const Navbar = (props) => {
+const Navbar = ({toggleMobileSearch, mobileSearch, actualTheme}) => {
 
-    const {toggleMobileSearch, mobileSearch} = props;
+    const {
+        navbar, navWrapper,
+        menuIconAndLogo,
+        logoContainer,
+        logo,
+        logoMobileContainer,
+        icons, icon, notOnMobile,
+        searchIcon,
+        bagBadge
+    } = actualTheme === WHITE ? navbarWhiteClasses : navbarBlackClasses;
+
+
+    /**
+     * LogoFiles
+     * @description The LogoFiles function is for displaying the logo
+     * @param {String} classes The wrapper class of the logo
+     * @param {Boolean} mobile to know if we are displaying the logo on mobile or not
+     * @author Arnaud LITAABA
+     */
+    const LogoFiles = (classes, mobile) => <div className={classes}>
+        <NavLink exact to="/">
+            <img className={logo} src={mobile ? LogoMobile : LogoDesktop} alt="topkifer logo"/>
+        </NavLink>
+    </div>
 
     return (
         <div className={navbar}>
             <div className={navWrapper}>
                 <div className={menuIconAndLogo}>
                     <DrawerSearchContext.Consumer>
+                        {/*
+        We use destructuring to extract only the data
+        we need from DrawerSearchContext. And here we have :
+        - visible to track the drawer visibility.
+        - setContextValue to toggle the visibility of menu
+        */}
                         {({visible, setContextValue}) => (
                             <Icon
                                 onClick={() => toggleAuthVisibility(setContextValue, !visible)}
                                 className={multipleClasses(icon, "pointer")}
                                 src={menu}
-                                style={{
-                                    height,
-                                }}
-                                alt="menu-icon"
+                                size={defaultIconSize}
                             />
                         )}
                     </DrawerSearchContext.Consumer>
@@ -77,20 +83,15 @@ const Navbar = (props) => {
                             onClick={toggleMobileSearch}
                             className={multipleClasses(icon, searchIcon, "mr-2")}
                             src={search}
-                            style={{
-                                height,
-                            }}
-                            alt="search-icon"
+                            size={defaultIconSize}
                         />
                     }
 
                     <NavLink className={icon} to="/favorite">
                         <Icon
+                            className={icon}
                             src={heart}
-                            style={{
-                                height,
-                            }}
-                            alt="heart-icon"
+                            size={defaultIconSize}
                         />
                     </NavLink>
                     <NavLink className={icon} to="/cart">
@@ -98,20 +99,16 @@ const Navbar = (props) => {
                             overTen(120)
                         }</div>
                         <Icon
+                            className={icon}
                             src={bag}
-                            style={{
-                                height
-                            }}
-                            alt="bag-icon"
+                            size={defaultIconSize}
                         />
                     </NavLink>
                     <Icon
-                        className={multipleClasses(icon, notOnMobile)}
+                        wrapperClassName={notOnMobile}
+                        className={icon}
                         src={user}
-                        style={{
-                            height,
-                        }}
-                        alt="user-icon"
+                        size={defaultIconSize}
                     />
                 </div>
             </div>
@@ -119,4 +116,24 @@ const Navbar = (props) => {
     );
 }
 
-export default Navbar
+
+/**
+ * connect the navbar Component to the whole store
+ * Extract the theme value
+ * @param {Object} state the whole state managed by redux
+ * @return {Object} all desired value from redux
+ * @author Arnaud LITAABA
+ */
+const mapStateToProps = state => {
+    return {
+        actualTheme: state.themeState.actualTheme
+    }
+}
+
+/**
+ * connect the navbar Component to the whole store
+ * @description Extract the theme value
+ * bind theme value to navbar props
+ * @author Arnaud LITAABA
+ */
+export default connect(mapStateToProps)(Navbar)

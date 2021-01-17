@@ -2,7 +2,7 @@
 @import "~assets/styles/variables";
 @import "~assets/styles/keyframes";
 
-$carouselBg: #f6f6f6;
+$itemCardBg: #161616;
 
 .itemCommon {
   border-radius: 18px;
@@ -16,9 +16,12 @@ $carouselBg: #f6f6f6;
   @extend .itemCommon;
 
   &:hover {
-    border: 1px solid $sitePrimaryColor;
-    box-shadow: $normalShadow;
+    box-shadow: $normalBlackShadow;
     transform: scale(1.06) translateY(-10px);
+
+  /*  svg {
+      fill: white !important;
+    }*/
 
     .itemCard {
       position: relative;
@@ -37,7 +40,7 @@ $carouselBg: #f6f6f6;
     }
 
     .itemCardImage {
-      box-shadow: $normalShadow;
+      box-shadow: $smallBlackShadow;
     }
   }
 
@@ -49,11 +52,12 @@ $carouselBg: #f6f6f6;
 
     .itemCardImage {
       height: 220px;
-      background-color: $carouselBg;
+      background-color: $itemCardBg;
       width: 100%;
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain;
+      @include animation("scaleIn .6s ease");
       @extend .itemCommon;
     }
 
@@ -73,11 +77,14 @@ $carouselBg: #f6f6f6;
       .itemCardTitle {
         font-weight: bolder;
         margin: 1rem 0;
+        color: white;
+        @include animation("slideInDown .6s ease");
       }
 
       .itemCardPrice {
-        color: #6e6e6e;
+        color: #d2d2d2;
         margin-bottom: 1rem;
+        @include animation("slideInDown .6s ease");
       }
     }
   }
@@ -91,6 +98,10 @@ $carouselBg: #f6f6f6;
       .itemCardImage {
         box-shadow: none;
       }
+
+     /* svg {
+        fill: white !important;
+      }*/
     }
 
   }
@@ -107,6 +118,11 @@ $carouselBg: #f6f6f6;
       margin-top: 0 !important;
       margin-bottom: .4rem !important;
     }
+
+    .itemCardTitle {
+      margin-top: .6rem !important;
+    }
+
 
     .itemCardPrice {
       margin-bottom: .4rem !important;

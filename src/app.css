@@ -3,7 +3,7 @@
  * 1 | @import "~bootstrap/scss/bootstrap";
  *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
  *   '
- *   index.scss 1:9  root stylesheet */
+ *   app.scss 1:9  root stylesheet */
 
 body::before {
   font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",

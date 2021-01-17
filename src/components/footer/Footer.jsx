@@ -8,8 +8,8 @@ import visaIcon from "assets/icons/visa.svg"
 import paypalIcon from "assets/icons/paypal.svg"
 import mastercardIcon from "assets/icons/mastercard.svg"
 import arrowRightIcon from "assets/icons/arrowRight.svg"
-import Icon from "../icon/Icon";
-import {makeIndex} from "../../utilities/utilities";
+import Icon from "components/icon/Icon";
+import {makeIndex} from "utilities/utilities";
 
 /**
  * Footer component
@@ -120,9 +120,7 @@ const Footer = () => {
                                     key={makeIndex(alt, "social")}
                                     src={src}
                                     className="mr-4"
-                                    style={{
-                                        height: "20px"
-                                    }}
+                                    size="20px"
                                     alt={alt}
                                 />
                             })
@@ -143,11 +141,9 @@ const Footer = () => {
                         <input type="email" placeholder="Email"/>
                         <div className={addonAfter}>
                             <Icon
+                                color="black"
                                 src={arrowRightIcon}
-                                alt="arrow-right-icon"
-                                style={{
-                                    height: "30px"
-                                }}
+                                size="30px"
                             />
                         </div>
                     </div>
@@ -166,8 +162,8 @@ const Footer = () => {
                             key={makeIndex(alt, "payement")}
                             src={src}
                             className="mr-4"
+                            size={height}
                             style={{
-                                height,
                                 marginTop
                             }}
                             alt={alt}

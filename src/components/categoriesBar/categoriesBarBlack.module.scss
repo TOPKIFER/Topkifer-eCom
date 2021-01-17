@@ -1,0 +1,92 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/keyframes";
+
+.categoriesBar {
+  @include flexCenterSpace;
+  flex-wrap: wrap;
+  background-color: #161616;
+  color: white;
+  padding: 1rem 6rem;
+  font-weight: bold;
+  @include animation("fadeInSlideInDown .3s ease");
+
+  .categoryClass, .mobileCategoryClass {
+    font-weight: 600;
+    position: relative;
+    cursor: pointer;
+    @include animation("scaleSlideInDown .3s ease");
+    transition: all .3s ease;
+
+    &::after {
+      content: "";
+      @include positionChanged;
+      position: absolute;
+      border-bottom: 2px solid white;
+      transform: scale(0);
+      transition: all .3s ease;
+      border-color: $sitePrimaryColor;
+    }
+
+    &:hover {
+      color: $sitePrimaryColor;
+      transform: translateY(2px);
+
+      &::after {
+        transform-origin: 50% 100%;
+        transform: scale(1);
+      }
+    }
+  }
+
+  .mobileCategories {
+    display: none;
+
+    .categoryController {
+      background-color: $sitePrimaryColor;
+      border-radius: 50%;
+      width: 25px;
+      text-align: center;
+      color: black;
+      font-weight: bold;
+      transition: all .3s ease;
+      cursor: pointer;
+
+      &:first-child {
+        margin-right: .6rem;
+
+        &:hover {
+          transform: translateX(-2px);
+        }
+
+      }
+
+      &:last-child {
+        margin-left: .6rem;
+
+        &:hover {
+          transform: translateX(2px);
+        }
+
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: $breakpoint) {
+  .categoriesBar {
+    padding: 1rem .4rem;
+
+    .categoryClass {
+      display: none;
+      margin-bottom: 1rem;
+    }
+
+    .mobileCategories {
+      @include flexCenterSpace;
+      width: 100%;
+    }
+  }
+}
+

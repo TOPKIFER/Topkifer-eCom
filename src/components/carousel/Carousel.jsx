@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
-import carouselClasses from "./carousel.module.scss"
-import Icon from "../icon/Icon";
-import arrowLeft from "../../assets/icons/arrowLeft.svg";
-import arrowRight from "../../assets/icons/arrowRight.svg";
-import {LEFT, RIGHT} from "../../utilities/constant";
+import carouselWhiteClasses from "./carouselWhite.module.scss"
+import carouselBlackClasses from "./carouselBlack.module.scss"
+import Icon from "components/icon/Icon";
+import arrowLeft from "assets/icons/arrowLeft.svg";
+import arrowRight from "assets/icons/arrowRight.svg";
+import {LEFT, RIGHT, WHITE} from "utilities/constant";
+import {connect} from "react-redux";
 
 /**
  * Carousel component
@@ -11,15 +13,16 @@ import {LEFT, RIGHT} from "../../utilities/constant";
  * @param {Object} pictures Object with source (src) of images and text to show
  * @param {Boolean} auto Define the carrousel mode. Passing auto means true
  * @param {int} time Define the waiting time before sliding to next image
+ * @param {String} actualTheme the actual theme of the app
  * @author Arnaud LITAABA
  */
-const Carousel = ({pictures, auto, time}) => {
+const Carousel = ({pictures, auto, time, actualTheme}) => {
     const {
         carousel, carouselController,
         carouselContainer, carouselControllerContainer,
         carouselText,
         showMore
-    } = carouselClasses;
+    } = actualTheme === WHITE ? carouselWhiteClasses : carouselBlackClasses;
 
     // Position of showed image, default 1
     const [position, setPosition] = useState(1);
@@ -92,20 +95,35 @@ const Carousel = ({pictures, auto, time}) => {
                 onClick={() => changePosition(LEFT)}
                 className={carouselController}
                 src={arrowLeft}
-                style={{
-                    height: "30px"
-                }}
+                size="30px"
             />
             <Icon
                 onClick={() => changePosition(RIGHT)}
                 className={carouselController}
                 src={arrowRight}
-                style={{
-                    height: "30px"
-                }}
+                size="30px"
             />
         </div>
     </div>
 }
 
-export default Carousel
+/**
+ * connect the item card Component to the whole store
+ * Extract the theme value
+ * @param {Object} state the whole state managed by redux
+ * @return {Object} all desired value from redux
+ * @author Arnaud LITAABA
+ */
+const mapStateToProps = state => {
+    return {
+        actualTheme: state.themeState.actualTheme
+    }
+}
+
+/**
+ * connect the item card Component to the whole store
+ * @description Extract the theme value
+ * bind theme value to item card props
+ * @author Arnaud LITAABA
+ */
+export default connect(mapStateToProps)(Carousel)

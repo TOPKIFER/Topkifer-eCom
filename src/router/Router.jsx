@@ -17,6 +17,10 @@ const {BASE} = APP_URL;
  */
 const AppRoute = (props) => {
     return <DrawerSearchContext.Consumer>
+        {/*
+        We use destructuring to extract only the data
+        we need from DrawerSearchContext. And here it is mobileSearch to adjust the height
+        when user show the search bar*/}
         {({mobileSearch}) => (
             <div className={multipleClasses(mobileSearch ? "predefinedHeight" : "", "app-container")}><Switch>
                 <Suspense fallback={null}>

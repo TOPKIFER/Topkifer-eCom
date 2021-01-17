@@ -1,0 +1,123 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/extends";
+
+.navbar {
+  @include positionChanged;
+  position: fixed;
+  width: 100%;
+  height: $commonHeight;
+  z-index: 2000;
+}
+
+//Navbar with store search icons
+.navWrapper {
+  @include flexCenterSpace;
+  position: relative;
+  padding: .4rem 1.6rem;
+  background-color: $siteColor;
+  box-shadow: $smallShadow;
+
+  // menu icon and logo
+  .menuIconAndLogo {
+    @include flexCenterSpace;
+
+    .logoContainer {
+      position: relative;
+      max-width: 400px;
+      height: 30px;
+      margin-left: 1rem;
+
+      .logo {
+        @include positionChanged;
+        position: absolute;
+        height: 100%;
+      }
+    }
+  }
+
+  .logoMobileContainer {
+    display: none;
+  }
+
+  // search, favorite and cart icons
+  .icons {
+    @include flexCenterSpace;
+
+    .icon {
+      position: relative;
+      cursor: pointer;
+      color: black;
+      margin: 0 .4rem;
+      transition: all .3s ease;
+
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      .bagBadge {
+        position: absolute;
+        right: -.1rem;
+        z-index: 8;
+        top: -.6rem;
+        @extend .commonBadge
+
+      }
+    }
+  }
+
+  .notOnMobile {
+    display: inline-flex;
+  }
+
+}
+
+.searchIcon {
+  display: none !important;
+}
+
+
+@media screen and (max-width: $breakpoint) {
+
+  .notOnMobile {
+    display: none !important;
+  }
+
+  .searchIcon {
+    display: inline-flex;
+    margin-top: .6rem !important;
+  }
+
+  .icons {
+    margin-top: -.2rem;
+
+    .icon, .icon img {
+      height: 18px !important;
+      width: 18px !important;
+
+      &:first-child {
+        display: inline-flex !important;
+      }
+
+      .bagBadge {
+        top: -.3rem !important;
+        left: 1rem !important;
+        padding: .1rem !important;
+      }
+    }
+  }
+
+
+  .logoContainer {
+    display: none !important;
+  }
+  .logoMobileContainer {
+    display: inline-flex !important;
+    margin-left: 3rem;
+
+    .logo {
+      height: 35px;
+    }
+  }
+}

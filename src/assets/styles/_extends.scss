@@ -72,3 +72,13 @@
   padding: .2rem;
   box-shadow: $smallShadow;
 }
+
+.commonBadgeBlack {
+  min-width: 20px;
+  text-align: center;
+  font-size: 10px;
+  background-color: $sitePrimaryColor;
+  border-radius: 50%;
+  padding: .2rem;
+  box-shadow: $smallBlackShadow;
+}

@@ -69,7 +69,7 @@
   }
 }
 
-@keyframes gradient {
+@include keyframes(gradient) {
   0% {
     background-position: 0 50%;
   }
@@ -78,5 +78,20 @@
   }
   100% {
     background-position: 0 50%;
+  }
+}
+
+@include keyframes(scaleIn) {
+  0% {
+    opacity: .2;
+    transform: scale(1.2) translateZ(60px);
+  }
+  20% {
+    opacity: .6;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translate(0);
   }
 }

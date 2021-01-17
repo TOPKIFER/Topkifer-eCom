@@ -3,7 +3,7 @@ import RegisterUserIcon from "../../../assets/icons/userRegister.svg";
 import Icon from "../../../components/icon/Icon";
 import registerClasses from "./register.module.scss"
 import user from "../../../assets/icons/user.svg";
-import {height} from "../../../utilities/constant";
+import {defaultIconSize} from "../../../utilities/constant";
 import lock from "../../../assets/icons/lock.svg";
 import LoginIcon from "../../../assets/icons/login.svg";
 import mailIcon from "../../../assets/icons/email.svg";
@@ -34,10 +34,7 @@ const Register = (props) => {
             <div className={registerHeader}>
                 <Icon
                     src={RegisterUserIcon}
-                    style={{
-                        height: "60px"
-                    }}
-                    alt="icon-register-user"
+                    size="60px"
                 />
                 <div className={usefulMessage}>
                     <span className={text}>Please create your account</span>
@@ -49,10 +46,7 @@ const Register = (props) => {
                     <Icon
                         className="mr-1"
                         src={user}
-                        style={{
-                            height,
-                        }}
-                        alt="user-icon"
+                        size={defaultIconSize}
                     />
                     <span className={label}>Username</span>
                     <input id="username" type="text" className={input} placeholder="Enter your username"/>
@@ -61,10 +55,7 @@ const Register = (props) => {
                     <Icon
                         className="mr-1"
                         src={mailIcon}
-                        style={{
-                            height: "24px",
-                        }}
-                        alt="email-icon"
+                        size={defaultIconSize}
                     />
                     <span className={label}>Email</span>
                     <input id="username" type="text" className={input} placeholder="Enter your email"/>
@@ -73,10 +64,7 @@ const Register = (props) => {
                     <Icon
                         className="mr-1"
                         src={lock}
-                        style={{
-                            height,
-                        }}
-                        alt="user-icon"
+                        size={defaultIconSize}
                     />
                     <span className={label}>Password</span>
                     <input type="password" className={input} placeholder="Enter your password"/>
@@ -85,10 +73,7 @@ const Register = (props) => {
                     <Icon
                         className="mr-1"
                         src={contactIcon}
-                        style={{
-                            height: "24px",
-                        }}
-                        alt="contact-icon"
+                        size={defaultIconSize}
                     />
                     <span className={label}>Contact</span>
                     <input id="username" type="tel" className={input} placeholder="Enter your phone number"/>
@@ -97,10 +82,7 @@ const Register = (props) => {
                     <Icon
                         className="mr-2"
                         src={LoginIcon}
-                        style={{
-                            height,
-                        }}
-                        alt="user-icon"
+                        size={defaultIconSize}
                     />
                     <span>Register</span>
                 </button>
@@ -108,7 +90,7 @@ const Register = (props) => {
 
             <div className={usefulMessage}>
                 <span className={text}
-                      onClick={() => changeTab("login")}
+                      onClick={() => changeTab("auth")}
                 >Already have an account ? Login now</span>
             </div>
 

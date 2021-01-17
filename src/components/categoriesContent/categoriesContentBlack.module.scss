@@ -1,0 +1,36 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+
+.categoriesContentWrapper {
+  margin-top: 3rem;
+  padding: 0 1rem;
+
+  .categoriesContentHeader {
+    @include flexCenterSpace;
+    margin-bottom: 1rem;
+
+
+    .categoriesContentTitle {
+      font-size: 36px;
+      color: white;
+      font-weight: 600;
+    }
+  }
+
+  .categoriesContent {
+    @include flexCenterSpace;
+    flex-wrap: wrap;
+
+  }
+}
+
+@media screen and (max-width: $breakpoint) {
+  .categoriesContentWrapper {
+    margin-top: 2rem !important;
+  }
+
+  .categoriesContentTitle {
+    font-size: 18px !important;
+    font-weight: 600;
+  }
+}

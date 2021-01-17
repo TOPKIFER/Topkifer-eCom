@@ -1,9 +1,12 @@
 import React from "react";
 import arrowRight from "assets/icons/arrowRight.svg"
-import categoriesContentClasses from "./categoriesContent.module.scss"
-import Icon from "../icon/Icon";
-import ItemCard from "../itemCard/ItemCard";
-import {isMobile, makeIndex} from "../../utilities/utilities";
+import categoriesContentWhiteClasses from "./categoriesContentWhite.module.scss"
+import categoriesContentBlackClasses from "./categoriesContentBlack.module.scss"
+import Icon from "components/icon/Icon";
+import ItemCard from "components/itemCard/ItemCard";
+import {isMobile, makeIndex} from "utilities/utilities";
+import {connect} from "react-redux";
+import {WHITE} from "../../utilities/constant";
 
 /**
  * Categories content component
@@ -11,17 +14,18 @@ import {isMobile, makeIndex} from "../../utilities/utilities";
  * @param {String} title A title for the category
  * @param {Function} onArrowClick The trigger for navigate to other link
  * @param {Array} pictures Array of pictures to display
+ * @param {String} actualTheme the actual theme of the app
  * @return A fully categories content with title and images
  * @author Arnaud LITAABA
  */
-const CategoriesContent = ({title, onArrowClick, pictures = []}) => {
+const CategoriesContent = ({title, onArrowClick, pictures = [],actualTheme}) => {
 
     const {
         categoriesContentWrapper,
         categoriesContentHeader,
         categoriesContentTitle,
         categoriesContent
-    } = categoriesContentClasses;
+    } = actualTheme === WHITE ? categoriesContentWhiteClasses : categoriesContentBlackClasses;
 
     return <div className={categoriesContentWrapper}>
         <div className={categoriesContentHeader}>
@@ -29,10 +33,7 @@ const CategoriesContent = ({title, onArrowClick, pictures = []}) => {
             <Icon
                 onClick={onArrowClick || null}
                 src={arrowRight}
-                alt="arrow-right"
-                style={{
-                    height: "36px"
-                }}
+                size="36px"
             />
         </div>
         <div className={categoriesContent}>
@@ -53,4 +54,23 @@ const CategoriesContent = ({title, onArrowClick, pictures = []}) => {
     </div>
 }
 
-export default CategoriesContent
+/**
+ * connect the categories content Component to the whole store
+ * Extract the theme value
+ * @param {Object} state the whole state managed by redux
+ * @return {Object} all desired value from redux
+ * @author Arnaud LITAABA
+ */
+const mapStateToProps = state => {
+    return {
+        actualTheme: state.themeState.actualTheme
+    }
+}
+
+/**
+ * connect the categories content Component to the whole store
+ * @description Extract the theme value
+ * bind theme value to categories content props
+ * @author Arnaud LITAABA
+ */
+export default connect(mapStateToProps)(CategoriesContent)

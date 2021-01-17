@@ -15,8 +15,8 @@
   @include flexCenterSpace;
   position: relative;
   padding: .4rem 1.6rem;
-  background-color: $siteColor;
-  box-shadow: $smallShadow;
+  background-color: #161616;
+  box-shadow: $smallBlackShadow;
 
   // menu icon and logo
   .menuIconAndLogo {
@@ -44,10 +44,6 @@
   .icons {
     @include flexCenterSpace;
 
-    .notOnMobile {
-      display: inline-flex;
-    }
-
     .icon {
       position: relative;
       cursor: pointer;
@@ -55,9 +51,6 @@
       margin: 0 .4rem;
       transition: all .3s ease;
 
-      &:first-child {
-        display: none;
-      }
 
       &:hover {
         transform: translateY(-2px);
@@ -65,23 +58,34 @@
 
       .bagBadge {
         position: absolute;
-        right: -.6rem;
+        right: -.1rem;
+        z-index: 8;
         top: -.6rem;
-        @extend .commonBadge
+        @extend .commonBadgeBlack
 
       }
     }
   }
 
+  .notOnMobile {
+    display: inline-flex;
+  }
+
+}
+
+.searchIcon {
+  display: none !important;
 }
 
 
 @media screen and (max-width: $breakpoint) {
+
   .notOnMobile {
     display: none !important;
   }
 
   .searchIcon {
+    display: inline-flex;
     margin-top: .6rem !important;
   }
 
@@ -90,6 +94,7 @@
 
     .icon, .icon img {
       height: 18px !important;
+      width: 18px !important;
 
       &:first-child {
         display: inline-flex !important;
@@ -97,6 +102,7 @@
 
       .bagBadge {
         top: -.3rem !important;
+        left: 1rem !important;
         padding: .1rem !important;
       }
     }

@@ -4,7 +4,9 @@
  * @summary A helper for conveniently add multiple StyleSheet classes
  * @author Arnaud LITAABA
  */
-export const multipleClasses = (...classes) => classes.join(" ");
+import {SEPARATOR} from "./constant";
+
+export const multipleClasses = (...classes) => classes.join(SEPARATOR);
 
 /**
  * Make index
@@ -33,7 +35,7 @@ export const overTen = (value) => value > 9 ? "9+" : value;
 /**
  * ToggleAuthVisibility
  * @param {function} setVisible The context trigger values function
- * @param {String} value The new context value
+ * @param {Boolean} value The new context value
  * @summary A helper for conveniently trigger context value
  * @author Arnaud LITAABA
  */

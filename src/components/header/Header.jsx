@@ -3,7 +3,7 @@ import headerClasses from "./header.module.scss";
 import Navbar from "./navbar/Navbar";
 import SearchBar from "./searchBar/SearchBar";
 import {DrawerSearchContext} from "../../App";
-import {HIDE_ALL} from "../../utilities/constant";
+import {HIDE_ALL} from "utilities/constant";
 
 /**
  * Header component
@@ -20,6 +20,12 @@ const Header = () => {
     return (
 
         <DrawerSearchContext.Consumer>
+            {/*
+        We use destructuring to extract only the data
+        we need from DrawerSearchContext. And here we have :
+        - mobileSearch to track the drawer visibility of search icon.
+        - setContextValue to toggle visibility of search icon
+        */}
             {({mobileSearch, setContextValue}) => {
                 return <header className={header}>
                     <Navbar mobileSearch={mobileSearch}

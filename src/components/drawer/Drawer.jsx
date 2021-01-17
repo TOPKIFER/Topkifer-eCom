@@ -1,8 +1,8 @@
 import React from "react";
 import drawerClasses from "./drawer.module.scss"
-import {LEFT} from "../../utilities/constant";
-import {DrawerSearchContext} from "../../App";
-import {toggleAuthVisibility} from "../../utilities/utilities";
+import {LEFT} from "utilities/constant";
+import {DrawerSearchContext} from "App";
+import {toggleAuthVisibility} from "utilities/utilities";
 
 /**
  * Drawer component
@@ -17,9 +17,22 @@ const Drawer = ({position, content}) => {
 
 
     return <DrawerSearchContext.Consumer>
+        {/*
+        We use destructuring to extract only the data
+        we need from DrawerSearchContext. And here we have :
+        - mobileSearch to hide the drawer when user click on search icon.
+        - visible to track the drawer visibility
+        - isClosing to add closing animation on the drawer while closing
+        */}
         {({visible, mobileSearch, isClosing}) => (
             visible && !mobileSearch && <>
                 <DrawerSearchContext.Consumer>
+                    {/*
+        We use destructuring to extract only the data
+        we need from DrawerSearchContext. And here we have :
+        - mobileSearch to track the visibility of search icon.
+        - setContextValue to toggle the visibility of search icon
+        */}
                     {({setContextValue}) => (
                         <div onClick={() => toggleAuthVisibility(setContextValue, !visible)}
                              className={drawerOverlay}/>
