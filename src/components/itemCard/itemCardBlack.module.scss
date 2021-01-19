@@ -19,9 +19,9 @@ $itemCardBg: #161616;
     box-shadow: $normalBlackShadow;
     transform: scale(1.06) translateY(-10px);
 
-  /*  svg {
-      fill: white !important;
-    }*/
+    /*  svg {
+        fill: white !important;
+      }*/
 
     .itemCard {
       position: relative;
@@ -41,6 +41,19 @@ $itemCardBg: #161616;
 
     .itemCardImage {
       box-shadow: $smallBlackShadow;
+
+      .moreDetails {
+        display: inline-flex !important;
+        background-color: #2efef6;
+        padding: .2rem 1rem;
+        border-top-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        width: 50%;
+        box-shadow: $normalBlackShadow;
+        cursor: pointer;
+        transition: .3s ease;
+        @include animation("slideInTopWithOpactity .3s linear")
+      }
     }
   }
 
@@ -59,6 +72,10 @@ $itemCardBg: #161616;
       background-size: contain;
       @include animation("scaleIn .6s ease");
       @extend .itemCommon;
+
+      .moreDetails {
+        display: none;
+      }
     }
 
     .itemCardActions {
@@ -97,11 +114,17 @@ $itemCardBg: #161616;
     &:hover {
       .itemCardImage {
         box-shadow: none;
+
+        .moreDetails {
+          width: 100%;
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 0;
+        }
       }
 
-     /* svg {
-        fill: white !important;
-      }*/
+      /* svg {
+         fill: white !important;
+       }*/
     }
 
   }

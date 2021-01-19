@@ -38,6 +38,19 @@ $carouselBg: #f6f6f6;
 
     .itemCardImage {
       box-shadow: $normalShadow;
+
+      .moreDetails {
+        display: inline-flex !important;
+        background-color: #2efef6;
+        padding: .2rem 1rem;
+        border-top-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        width: 50%;
+        box-shadow: $smallShadow;
+        cursor: pointer;
+        transition: .3s ease;
+        @include animation("slideInTopWithOpactity .3s linear")
+      }
     }
   }
 
@@ -56,6 +69,10 @@ $carouselBg: #f6f6f6;
       background-size: contain;
       @include animation("scaleIn .6s ease");
       @extend .itemCommon;
+
+      .moreDetails {
+        display: none;
+      }
     }
 
     .itemCardActions {
@@ -93,6 +110,12 @@ $carouselBg: #f6f6f6;
     &:hover {
       .itemCardImage {
         box-shadow: none;
+
+        .moreDetails {
+          width: 100%;
+          border-top-right-radius: 8px;
+          border-bottom-right-radius: 0;
+        }
       }
     }
 

@@ -10,13 +10,13 @@ import {connect} from "react-redux";
 /**
  * Carousel component
  * @description The carousel component for displaying certain images in automatic and/or manual mode
- * @param {Object} pictures Object with source (src) of images and text to show
+ * @param {Object} products Object with source (src) of images and text to show
  * @param {Boolean} auto Define the carrousel mode. Passing auto means true
  * @param {int} time Define the waiting time before sliding to next image
  * @param {String} actualTheme the actual theme of the app
  * @author Arnaud LITAABA
  */
-const Carousel = ({pictures, auto, time, actualTheme}) => {
+const Carousel = ({products, auto, time, actualTheme}) => {
     const {
         carousel, carouselController,
         carouselContainer, carouselControllerContainer,
@@ -83,11 +83,11 @@ const Carousel = ({pictures, auto, time, actualTheme}) => {
             * */
         }
         <div style={{
-            backgroundImage: `url(${pictures[position]?.src ?? pictures[0]?.src})`
+            backgroundImage: `url(${products[position]?.src ?? products[0]?.src})`
         }} className={carouselContainer}>
         </div>
         <div className={carouselText}>
-            {pictures[position]?.text || pictures[0]?.text}
+            {products[position]?.text || products[0]?.text}
             <div className={showMore}>Show More</div>
         </div>
         <div className={carouselControllerContainer}>

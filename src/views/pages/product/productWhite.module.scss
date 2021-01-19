@@ -1,0 +1,22 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/keyframes";
+
+.productWrapper {
+  display: flex;
+  padding: 2rem 4rem;
+  width: 80%;
+  margin: 0 auto;
+
+  .productImages {
+    justify-content: center;
+    flex-direction: column;
+    overflow: auto;
+
+    background-color: red;
+
+    .mainProductImage {
+
+    }
+  }
+}

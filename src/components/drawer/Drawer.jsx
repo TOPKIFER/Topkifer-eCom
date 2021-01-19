@@ -1,19 +1,22 @@
 import React from "react";
-import drawerClasses from "./drawer.module.scss"
-import {LEFT} from "utilities/constant";
+import drawerWhiteClasses from "./drawerWhite.module.scss"
+import drawerBlackClasses from "./drawerBlack.module.scss"
+import {LEFT, WHITE} from "utilities/constant";
 import {DrawerSearchContext} from "App";
 import {toggleAuthVisibility} from "utilities/utilities";
+import {connect} from "react-redux";
 
 /**
  * Drawer component
  * @description The drawer component to display more data. It will use @DrawerSearchContext
  * in CONSUMER mode to check the visibility and also trigger this one with @toggleAuthVisibility
  * @param {String} position Where show the drawer !!!
+ * @param {String} actualTheme Actual theme of the app
  * @param {Any} content The content to show !!!
  * @author Arnaud LITAABA
  */
-const Drawer = ({position, content}) => {
-    const {drawer, drawerOverlay, drawerClosing} = drawerClasses;
+const Drawer = ({position, content, actualTheme}) => {
+    const {drawer, drawerOverlay, drawerClosing} = actualTheme === WHITE ? drawerWhiteClasses : drawerBlackClasses
 
 
     return <DrawerSearchContext.Consumer>
@@ -50,4 +53,24 @@ const Drawer = ({position, content}) => {
     </DrawerSearchContext.Consumer>
 }
 
-export default Drawer
+
+/**
+ * connect the drawer Component to the whole store
+ * Extract the function and the value of the whole state we need here
+ * @param {Object} state the whole state managed by redux
+ * @return {Object} all desired value from redux
+ * @author Arnaud LITAABA
+ */
+const mapStateToProps = state => {
+    return {
+        actualTheme: state.themeState.actualTheme,
+    }
+}
+
+/**
+ * connect the drawer Component to the whole store
+ * @description Extract the function and the value of the whole state we need here
+ * Bind all extracted values to drawer props
+ * @author Arnaud LITAABA
+ */
+export default connect(mapStateToProps)(Drawer)

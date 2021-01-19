@@ -1,9 +1,9 @@
-import {BLACK, REDUX_CONSTANTS} from "utilities/constant";
+import {BLACK, REDUX_CONSTANTS, WHITE} from "utilities/constant";
 
 const {CHANGE_THEME} = REDUX_CONSTANTS;
 
 const initialThemeState = {
-    actualTheme: BLACK
+    actualTheme: WHITE
 }
 
 const themeReducer = (state = initialThemeState, actions) => {

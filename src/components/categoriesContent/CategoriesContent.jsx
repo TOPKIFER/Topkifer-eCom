@@ -13,12 +13,12 @@ import {WHITE} from "../../utilities/constant";
  * @description The categories content component for displaying all available categories content
  * @param {String} title A title for the category
  * @param {Function} onArrowClick The trigger for navigate to other link
- * @param {Array} pictures Array of pictures to display
+ * @param {Array} products Array of pictures to display
  * @param {String} actualTheme the actual theme of the app
  * @return A fully categories content with title and images
  * @author Arnaud LITAABA
  */
-const CategoriesContent = ({title, onArrowClick, pictures = [],actualTheme}) => {
+const CategoriesContent = ({title, onArrowClick, products = [],actualTheme}) => {
 
     const {
         categoriesContentWrapper,
@@ -38,15 +38,17 @@ const CategoriesContent = ({title, onArrowClick, pictures = [],actualTheme}) => 
         </div>
         <div className={categoriesContent}>
             {
-                pictures.map((picture, index) => {
-                    const {title} = picture
+                products.map((product, index) => {
+                    const {title} = product
                     return isMobile ? index < 4 && <ItemCard key={makeIndex(title, "categories", index)}
-                                                             picture={picture}
+                                                             product={product}
                                                              full
+                                                             allowClick
                     /> :
                         <ItemCard key={makeIndex(title, "categories", index)}
-                                  picture={picture}
+                                  product={product}
                                   full
+                                  allowClick
                         />
                 })
             }

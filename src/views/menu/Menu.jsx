@@ -122,7 +122,7 @@ const mapStateToProps = state => {
 }
 
 /**
- * connect the login Component to the whole store
+ * connect the Menu Component to the whole store
  * @description Extract the function and the value of the whole state we need here
  * Bind all extracted values to menu props
  * @author Arnaud LITAABA

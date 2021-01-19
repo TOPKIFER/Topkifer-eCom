@@ -11,7 +11,8 @@ import blackShoes3 from "assets/products/blackBgShoes3.jpg";
 import CategoriesContent from "../../../components/categoriesContent/CategoriesContent";
 import {makeIndex} from "../../../utilities/utilities";
 import {connect} from "react-redux";
-import {WHITE} from "../../../utilities/constant";
+import {categoriesBlackProducts, categoriesProducts, WHITE} from "../../../utilities/constant";
+import ScrollTo from "../../../components/scrollTo/ScrollTo";
 
 /**
  * Home component
@@ -22,7 +23,7 @@ const Home = ({actualTheme}) => {
 
     const {homepage, homeWrapper} = homeClasses;
 
-    const carouselPictures = [
+    const carouselProducts = [
         {
             src: shoes,
             text: "Admire Stylish Shoes & Looks"
@@ -36,7 +37,7 @@ const Home = ({actualTheme}) => {
             text: "Admire Stylish Shoes3 & Looks"
         },
     ]
-    const carouselBlackPictures = [
+    const carouselBlackProducts = [
         {
             src: blackShoes,
             text: "Admire Stylish Shoes & Looks"
@@ -48,42 +49,6 @@ const Home = ({actualTheme}) => {
         {
             src: blackShoes3,
             text: "Admire Stylish Shoes3 & Looks"
-        },
-    ]
-
-    const categoriesPictures = [
-        {
-            src: shoes,
-            title: "Nike Shoes",
-            price: "45000 cfa",
-        },
-        {
-            src: shoes2,
-            title: "Nike Shoes",
-            price: "45000 cfa",
-        },
-        {
-            src: shoes3,
-            title: "Nike Shoes",
-            price: "45000 cfa",
-        },
-    ]
-
-    const categoriesBlackPictures = [
-        {
-            src: blackShoes,
-            title: "Nike Shoes",
-            price: "45000 cfa",
-        },
-        {
-            src: blackShoes2,
-            title: "Nike Shoes",
-            price: "45000 cfa",
-        },
-        {
-            src: blackShoes3,
-            title: "Nike Shoes",
-            price: "45000 cfa",
         },
     ]
 
@@ -91,89 +56,80 @@ const Home = ({actualTheme}) => {
     const categories = [
         {
             title: "Top of the Day",
-            pictures: actualTheme === WHITE ? [
-                ...categoriesPictures,
-                ...categoriesPictures,
-                ...categoriesPictures,
-                ...categoriesPictures,
+            products: actualTheme === WHITE ? [
+                ...categoriesProducts,
+                ...categoriesProducts,
+                ...categoriesProducts,
+                ...categoriesProducts,
             ] : [
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
             ]
         },
         {
             title: "Phones",
-            pictures: actualTheme === WHITE ? [
-                ...categoriesPictures,
-                ...categoriesPictures,
-                ...categoriesPictures,
-                ...categoriesPictures,
+            products: actualTheme === WHITE ? [
+                ...categoriesProducts,
+                ...categoriesProducts,
+                ...categoriesProducts,
+                ...categoriesProducts,
             ] : [
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
             ]
         },
         {
             title: "Fashion",
-            pictures: actualTheme === WHITE ? [
-                ...categoriesPictures,
-                ...categoriesPictures,
-                ...categoriesPictures,
-                ...categoriesPictures,
+            products: actualTheme === WHITE ? [
+                ...categoriesProducts,
+                ...categoriesProducts,
+                ...categoriesProducts,
+                ...categoriesProducts,
             ] : [
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
             ]
         },
         {
             title: "Home Appliances",
-            pictures: actualTheme === WHITE ? [
-                ...categoriesPictures,
-                ...categoriesPictures,
-                ...categoriesPictures,
-                ...categoriesPictures,
+            products: actualTheme === WHITE ? [
+                ...categoriesProducts,
+                ...categoriesProducts,
+                ...categoriesProducts,
+                ...categoriesProducts,
             ] : [
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
-                ...categoriesBlackPictures,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
+                ...categoriesBlackProducts,
             ]
         }
     ]
 
-    return <div className={homepage}>
-        <CategoriesBar/>
-        <div className={homeWrapper}>
-            <Carousel auto time={6000} pictures={actualTheme === WHITE ? carouselPictures : carouselBlackPictures}/>
-            {
-                categories.map(category => {
-                    const {title, pictures} = category;
-                    return <CategoriesContent
-                        key={makeIndex(title, "cat")}
-                        pictures={pictures}
-                        title={title}
-                    />
-                })
-            }
+    return <ScrollTo>
+        <div className={homepage}>
+            <CategoriesBar/>
+            <div className={homeWrapper}>
+                <Carousel auto time={6000} products={actualTheme === WHITE ? carouselProducts : carouselBlackProducts}/>
+                {
+                    categories.map(category => {
+                        const {title, products} = category;
+                        return <CategoriesContent
+                            key={makeIndex(title, "cat")}
+                            products={products}
+                            title={title}
+                        />
+                    })
+                }
+            </div>
         </div>
-    </div>
-    /*return (
-        <div className="Homepage">
-            <Categories/>
-            <CarouselAuto/>
-            <ItemsDisplay name="Top of the day"/>
-            <ItemsDisplay name="Phones"/>
-            <CarouselAuto/>
-            <ItemsDisplay name="Fashion"/>
-            <ItemsDisplay name="Home apliances"/>
-        </div>
-    );*/
+    </ScrollTo>
 }
 
 /**

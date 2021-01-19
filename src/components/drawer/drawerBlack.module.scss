@@ -1,0 +1,39 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/keyframes";
+
+.drawer {
+  @include positionChanged;
+  top: 3.65rem;
+  position: fixed;
+  background-color: $siteBlackColor;
+  color: white;
+  width: 35%;
+  z-index: 2002;
+  @include animation("slideInLeft .6s ease")
+}
+
+.drawerClosing {
+  @extend .drawer;
+  @include animation("slideInRight .6s ease")
+
+}
+
+.drawerOverlay {
+  @include positionChanged;
+  top: $commonHeight;
+  position: fixed;
+  background-color: #2efef61a;
+  z-index: 2001;
+}
+
+@media screen and (max-width: $breakpoint) {
+  .drawer {
+    width: 100%;
+    margin-top: -1rem;
+  }
+
+  .drawerOverlay {
+    margin-top: -1rem;
+  }
+}

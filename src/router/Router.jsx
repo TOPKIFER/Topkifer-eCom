@@ -5,8 +5,9 @@ import {DrawerSearchContext} from "../App";
 import {multipleClasses} from "utilities/utilities";
 
 const Home = lazy(() => import("views/pages/home/Home"));
+const Product = lazy(() => import("views/pages/product/Product"));
 
-const {BASE} = APP_URL;
+const {BASE, PRODUCT} = APP_URL;
 
 /**
  * AppRoute
@@ -24,9 +25,8 @@ const AppRoute = (props) => {
         {({mobileSearch}) => (
             <div className={multipleClasses(mobileSearch ? "predefinedHeight" : "", "app-container")}><Switch>
                 <Suspense fallback={null}>
-                    <Route exact path={BASE}>
-                        <Home/>
-                    </Route>
+                    <Route exact path={BASE} component={Home}/>
+                    <Route path={PRODUCT + "/:id"} component={Product}/>
                 </Suspense>
             </Switch>
             </div>
