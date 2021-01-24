@@ -1,6 +1,8 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import LogoMobile from "assets/Logo/logo.jpg"
+import LogoMobileBlack from "assets/Logo/Wordmark Blue.png"
+import LogoBlue from "assets/Logo/Wordmark Blue.png"
 import LogoDesktop from "assets/Logo/tklogoword1-resized.png"
 import navbarWhiteClasses from "./navbarWhite.module.scss"
 import navbarBlackClasses from "./navbarBlack.module.scss"
@@ -49,7 +51,12 @@ const Navbar = ({toggleMobileSearch, mobileSearch, actualTheme}) => {
      */
     const LogoFiles = (classes, mobile) => <div className={classes}>
         <NavLink exact to="/">
-            <img className={logo} src={mobile ? LogoMobile : LogoDesktop} alt="topkifer logo"/>
+            {
+                actualTheme === WHITE ?
+                    <img className={logo} src={mobile ? LogoMobile : LogoDesktop} alt="topkifer logo"/>
+                    :
+                    <img className={logo} src={mobile ? LogoMobileBlack : LogoBlue} alt="topkifer logo"/>
+            }
         </NavLink>
     </div>
 

@@ -41,7 +41,7 @@ const Menu = ({isLoggedIn, logInTheUser, actualTheme, changeTheme}) => {
         const {name} = value;
         let onClick = null;
         switch (name) {
-            case "logout":
+            case "Logout":
                 onClick = () => logInTheUser({isLoggedIn: false});
                 break;
             case "Change theme":
