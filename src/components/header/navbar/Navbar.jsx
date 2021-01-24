@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import LogoMobile from "assets/Logo/logo.jpg"
 import LogoMobileBlack from "assets/Logo/Wordmark Blue.png"
 import LogoBlue from "assets/Logo/Wordmark Blue.png"
-import LogoDesktop from "assets/Logo/tklogoword1-resized.png"
+import LogoDesktop from "assets/Logo/Wordmark Blue White.png"
 import navbarWhiteClasses from "./navbarWhite.module.scss"
 import navbarBlackClasses from "./navbarBlack.module.scss"
 import SearchBar from "../searchBar/SearchBar";

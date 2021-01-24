@@ -27,12 +27,15 @@ const Product = ({actualTheme, ...rest}) => {
      * we find the targeted product with the extracted id;
      */
     const product = categoriesProducts.find(category => category.id === +id);
- 
+
+    console.log(product)
+
     return <ScrollTo>
         <div className={productWrapper}>
             <div className={productImages}>
                 <div className={mainProductImage}>
-
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt dolorem eligendi incidunt nam
+                    natus, veniam voluptates. Debitis molestiae sapiente voluptatem.
                 </div>
             </div>
             <div>Lorem ipsum.</div>

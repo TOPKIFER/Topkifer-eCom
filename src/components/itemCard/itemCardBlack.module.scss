@@ -36,6 +36,20 @@ $itemCardBg: #161616;
           height: 30px !important;
           @include animation("slideInTopWithOpactity .3s linear")
         }
+
+        .heartClass {
+          &:hover {
+            fill: red !important;
+            stroke: red;
+          }
+        }
+
+        .bagClass {
+          &:hover {
+            fill: $sitePrimaryColor !important;
+            stroke: $sitePrimaryColor;
+          }
+        }
       }
     }
 
@@ -43,7 +57,8 @@ $itemCardBg: #161616;
       box-shadow: $smallBlackShadow;
 
       .moreDetails {
-        display: inline-flex !important;
+        // display: inline-flex !important;
+        display: none;
         background-color: #2efef6;
         padding: .2rem 1rem;
         border-top-left-radius: 8px;
@@ -62,6 +77,7 @@ $itemCardBg: #161616;
     flex-direction: column;
     position: relative;
     width: 100%;
+    cursor: pointer;
 
     .itemCardImage {
       height: 220px;

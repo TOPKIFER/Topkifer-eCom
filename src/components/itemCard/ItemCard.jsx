@@ -1,12 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import itemCardWhiteClasses from "./itemCardWhite.module.scss";
 import itemCardBlackClasses from "./itemCardBlack.module.scss";
 import bag from "assets/icons/bag.svg";
 import heart from "assets/icons/heart.svg";
+import heartRed from "assets/icons/heart-red.svg";
 import Icon from "components/icon/Icon";
 import {APP_URL, defaultIconSize, WHITE} from "utilities/constant";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
+import {multipleClasses} from "../../utilities/utilities";
 
 const {PRODUCT} = APP_URL;
 
@@ -25,6 +27,8 @@ const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest
 
     const {history} = rest;
 
+    const [isFavorite, setIsFavorite] = useState({});
+
     const {
         itemCardWrapper,
         itemCard,
@@ -34,33 +38,40 @@ const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest
         itemCardTitle,
         itemCardPrice,
         action,
-        moreDetails
+        heartClass,
+        bagClass
+        // moreDetails
     } = actualTheme === WHITE ? itemCardWhiteClasses : itemCardBlackClasses;
 
     const {title, src, price, id} = product;
 
-    const onClick = () => history.push(PRODUCT + "/" + id);
+    // const onClick = () => history.push(PRODUCT + "/" + id);
+    const onClick = allowClick ? () => history.push(PRODUCT + "/" + id) : null;
 
     return <div className={itemCardWrapper}>
         <div className={itemCard}>
-            <div
-                style={{
-                    backgroundImage: `url(${src})`
-                }}
-                className={itemCardImage}>
-                {allowClick && <div onClick={onClick} className={moreDetails}>More details</div>}
+            <div onClick={onClick}
+                 style={{
+                     backgroundImage: `url(${src})`
+                 }}
+                 className={itemCardImage}>
+                {/*allowClick && <div onClick={onClick} className={moreDetails}>More details</div>*/}
             </div>
             {
                 full &&
                 <div className={itemCardText}>
                     <div className={itemCardActions}>
                         <Icon
-                            className={action}
-                            src={heart}
+                            onClick={(e) => e.preventDefault() & setIsFavorite({
+                                ...isFavorite,
+                                [id]: !isFavorite[id]
+                            })}
+                            className={multipleClasses(action, heartClass)}
+                            src={isFavorite[id] ? heartRed : heart}
                             size={defaultIconSize}
                         />
                         <Icon
-                            className={action}
+                            className={multipleClasses(action, bagClass)}
                             src={bag}
                             size={defaultIconSize}
                         />
