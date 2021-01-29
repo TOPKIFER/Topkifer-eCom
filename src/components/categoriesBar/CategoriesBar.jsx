@@ -3,6 +3,7 @@ import categoriesBarWhiteClasses from "./categoriesBarWhite.module.scss"
 import categoriesBarBlackClasses from "./categoriesBarBlack.module.scss"
 import {categoriesConstants, LEFT, RIGHT, WHITE} from "utilities/constant";
 import {connect} from "react-redux";
+import {getMessage} from "../../utilities/i18n";
 
 /**
  * CategoriesBar component
@@ -67,7 +68,7 @@ const CategoriesBar = (actualTheme) => {
         <div className={mobileCategories}>
             <div className={categoryController} onClick={() => move(LEFT)}> {"<"} </div>
             {categories.map((category, index) => {
-                const {name} = category;
+                const name = getMessage(category.name);
                 return index < 3 && <span className={mobileCategoryClass} key={name}>{name}</span>
             })}
             <div className={categoryController} onClick={() => move(RIGHT)}> {">"} </div>

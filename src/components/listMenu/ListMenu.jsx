@@ -3,6 +3,7 @@ import listMenuWhiteClasses from "./listMenuWhite.module.scss"
 import listMenuBlackClasses from "./listMenuBlack.module.scss"
 import {connect} from "react-redux";
 import {WHITE} from "../../utilities/constant";
+import {getMessage} from "../../utilities/i18n";
 
 /**
  * ListMenu component
@@ -20,7 +21,7 @@ const ListMenu = ({lists, actualTheme}) => {
             {lists?.map(list => {
                 const {name, total, ...rest} = list;
                 return <li key={name} {...rest} className={listMenuItem}>
-                    <span>{name}</span>
+                    <span>{getMessage(name)}</span>
                     {
                         total && <span className={menuAccountBadge}>{total}</span>
                     }

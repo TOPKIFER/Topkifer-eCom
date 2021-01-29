@@ -7,7 +7,10 @@ import Drawer from "components/drawer/Drawer";
 import Menu from "views/menu/Menu";
 import {BLACK, HIDE_ALL, LEFT} from "utilities/constant";
 import AppRoute from "./router/Router";
-import {connect} from "react-redux"
+import {connect} from "react-redux";
+import {IntlProvider} from 'react-intl';
+import {DEFAULT_LANGUAGE} from "./utilities/constant";
+import {getLanguage} from "./utilities/i18n";
 
 
 /**
@@ -22,9 +25,11 @@ export const DrawerSearchContext = createContext();
  * Main component
  * Will use the @DrawerSearchContext in PROVIDER mode since, he wraps all others components
  * @param {String} actualTheme Actual theme of the app
+ * @param {String} actualLanguage Actual language Actual theme of the app
+ * @param {Object} loggedInUser the logged in user
  * @author Arnaud LITAABA
  */
-const App = ({actualTheme}) => {
+const App = ({actualTheme, actualLanguage, loggedInUser}) => {
     const [state, setState] = useState({
         visible: false,
         isClosing: false,
@@ -60,17 +65,21 @@ const App = ({actualTheme}) => {
 
     return (
         <Router>
-            <div className="app">
-                <DrawerSearchContext.Provider value={{
-                    ...state,
-                    setContextValue: setContextValue
-                }}>
-                    <Header/>
-                    <Drawer content={<Menu/>} position={LEFT}/>
-                    <AppRoute/>
-                    <Footer/>
-                </DrawerSearchContext.Provider>
-            </div>
+            <IntlProvider messages={getLanguage()[loggedInUser.language || actualLanguage]}
+                          locale={loggedInUser.language || actualLanguage}
+                          defaultLocale={DEFAULT_LANGUAGE}>
+                <div className="app">
+                    <DrawerSearchContext.Provider value={{
+                        ...state,
+                        setContextValue: setContextValue
+                    }}>
+                        <Header/>
+                        <Drawer content={<Menu/>} position={LEFT}/>
+                        <AppRoute/>
+                        <Footer/>
+                    </DrawerSearchContext.Provider>
+                </div>
+            </IntlProvider>
         </Router>
     );
 }
@@ -84,7 +93,9 @@ const App = ({actualTheme}) => {
  */
 const mapStateToProps = state => {
     return {
-        actualTheme: state.themeState.actualTheme
+        actualTheme: state.themeState.actualTheme,
+        actualLanguage: state.languageState.actualLanguage,
+        loggedInUser: state.loginState.loggedInUser,
     }
 }
 

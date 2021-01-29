@@ -14,6 +14,9 @@ export const LEFT = "left";
 export const WHITE = "white";
 export const BLACK = "black";
 export const TOP = "top";
+export const DEFAULT_LANGUAGE = "en";
+export const FRENCH_LANGUAGE = "fr";
+export const ENGLISH_LANGUAGE = "en";
 
 export const APP_URL = {
     BASE: "/",
@@ -24,51 +27,55 @@ export const REDUX_CONSTANTS = {
     LOGIN: "auth",
     REGISTER: "register",
     CHANGE_THEME: "change theme",
+    CHANGE_LANGUAGE: "change language"
 }
 
 export const categoriesConstants = [
     {
-        name: "Fashion"
+        name: "fashion"
     },
     {
-        name: "Electronics"
+        name: "electronics"
     },
     {
-        name: "Vehicles"
+        name: "vehicles"
     },
     {
-        name: "Sports"
+        name: "sports"
     },
     {
-        name: "Machinery"
+        name: "machinery"
     },
     {
-        name: "Home"
+        name: "home"
     },
     {
-        name: "Garden"
+        name: "garden"
     },
     {
-        name: "Personal"
+        name: "personal"
     }
 ]
 
 export const accountConstants = [
     {
-        name: "Shopping cart",
+        name: "shoppingCart",
         total: overTen(120)
     },
     {
-        name: "Favorites"
+        name: "favorites"
     },
     {
-        name: "Contact us"
+        name: "contactUs"
     },
     {
-        name: "Change theme"
+        name: "changeTheme"
     },
     {
-        name: "Logout"
+        name: "changeLanguage"
+    },
+    {
+        name: "logout"
     }
 ]
 

@@ -6,24 +6,36 @@ import Icon from "components/icon/Icon";
 import LoginIcon from "assets/icons/login.svg"
 import RegisterIcon from "assets/icons/register.svg"
 import UserIcon from "assets/icons/user.svg"
-import {accountConstants, BLACK, categoriesConstants, defaultIconSize, WHITE} from "utilities/constant";
+import {
+    accountConstants,
+    BLACK,
+    categoriesConstants,
+    defaultIconSize,
+    ENGLISH_LANGUAGE,
+    FRENCH_LANGUAGE,
+    WHITE
+} from "utilities/constant";
 import Login from "../auth/login/Login";
 import Register from "../auth/register/Register";
 import menuIcon from "assets/icons/menu.svg";
 import ListMenu from "components/listMenu/ListMenu";
 import {connect} from "react-redux"
 import {logInTheUser} from "redux/actions/auth/login/loginActions";
-import {changeTheme} from "redux/actions/auth/theme/themeActions";
+import {changeTheme} from "redux/actions/theme/themeActions";
+import {changeCurrentLanguage} from "../../redux/actions/language/languageActions";
+import {getMessage} from "../../utilities/i18n";
 
 /**
  * Menu component
  * @param {Boolean} isLoggedIn tell us if the user is logged in, from redux
  * @param {Function} logInTheUser log in the user
  * @param {String} actualTheme Actual theme of the app
+ * @param {String} actualLanguage Actual language of the app
  * @param {Function} changeTheme for changing app theme
+ * @param {Function} changeCurrentLanguage for changing app language
  * @author Arnaud LITAABA
  */
-const Menu = ({isLoggedIn, logInTheUser, actualTheme, changeTheme}) => {
+const Menu = ({isLoggedIn, logInTheUser, actualTheme, actualLanguage, changeTheme, changeCurrentLanguage}) => {
     const {menu, menuTab, menuTabContent, loginTab, registerTab, active} = actualTheme === WHITE ? menuWhiteClasses : menuBlackClasses;
 
     const MENU = "menu";
@@ -41,11 +53,15 @@ const Menu = ({isLoggedIn, logInTheUser, actualTheme, changeTheme}) => {
         const {name} = value;
         let onClick = null;
         switch (name) {
-            case "Logout":
+            case "logout":
                 onClick = () => logInTheUser({isLoggedIn: false});
                 break;
-            case "Change theme":
+            case "changeTheme":
                 onClick = () => changeTheme({actualTheme: actualTheme === WHITE ? BLACK : WHITE});
+                break;
+            case "changeLanguage":
+                // temporary  action
+                onClick = () => changeCurrentLanguage({actualLanguage: actualLanguage === ENGLISH_LANGUAGE ? FRENCH_LANGUAGE : ENGLISH_LANGUAGE});
                 break;
             default:
                 break
@@ -75,7 +91,7 @@ const Menu = ({isLoggedIn, logInTheUser, actualTheme, changeTheme}) => {
                     size={defaultIconSize}
                 />
 
-                <span className="ml-2">{upperFist(MENU)}</span>
+                <span className="ml-2">{upperFist(getMessage(MENU))}</span>
             </div>
             <div
                 onClick={() => setActiveTab("auth")}
@@ -88,7 +104,7 @@ const Menu = ({isLoggedIn, logInTheUser, actualTheme, changeTheme}) => {
                 />
 
                 <span className="ml-2">
-                    {isLoggedIn ? "My account" : !isMenu() ? upperFist(activeTab) : upperFist(LOGIN)}
+                    {isLoggedIn ? getMessage("myAccount") : !isMenu() ? upperFist(activeTab) : upperFist(LOGIN)}
                 </span>
             </div>
         </div>
@@ -99,7 +115,7 @@ const Menu = ({isLoggedIn, logInTheUser, actualTheme, changeTheme}) => {
                     {
                         isLogin() ? !isLoggedIn ?
                             <Login changeTab={setActiveTab}/> :
-                            "COMPTE" :
+                            getMessage("account").toUpperCase() :
                             <Register changeTab={setActiveTab}/>
                     }
                 </div>
@@ -118,6 +134,7 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.loginState.isLoggedIn,
         actualTheme: state.themeState.actualTheme,
+        actualLanguage: state.languageState.actualLanguage,
     }
 }
 
@@ -129,5 +146,6 @@ const mapStateToProps = state => {
  */
 export default connect(mapStateToProps, {
     logInTheUser,
-    changeTheme
+    changeTheme,
+    changeCurrentLanguage,
 })(Menu)

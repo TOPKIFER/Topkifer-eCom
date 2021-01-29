@@ -8,6 +8,7 @@ import lock from "../../../assets/icons/lock.svg";
 import LoginIcon from "../../../assets/icons/login.svg";
 import mailIcon from "../../../assets/icons/email.svg";
 import contactIcon from "../../../assets/icons/contacts.svg";
+import {getMessage} from "../../../utilities/i18n";
 
 /**
  * Register component
@@ -84,7 +85,7 @@ const Register = (props) => {
                         src={LoginIcon}
                         size={defaultIconSize}
                     />
-                    <span>Register</span>
+                    <span>{getMessage("register")}</span>
                 </button>
             </div>
 

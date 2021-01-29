@@ -8,6 +8,7 @@ import {defaultIconSize} from "utilities/constant";
 import LoginIcon from "assets/icons/login.svg";
 import {connect} from "react-redux";
 import {logInTheUser} from "redux/actions/auth/login/loginActions";
+import {getMessage} from "../../../utilities/i18n";
 
 /**
  * Login component
@@ -37,6 +38,7 @@ const Login = ({changeTab, logInTheUser}) => {
         logInTheUser({isLoggedIn: true})
     }
 
+
     return (
         <div className={login}>
             <div className={loginHeader}>
@@ -45,7 +47,7 @@ const Login = ({changeTab, logInTheUser}) => {
                     size="60px"
                 />
                 <div className={usefulMessage}>
-                    <span className={text}>Please login to your account</span>
+                    <span className={text}>{getMessage("pleaseLoginInToYourAccount")}</span>
                 </div>
             </div>
             <div className={loginContent}>
@@ -55,8 +57,8 @@ const Login = ({changeTab, logInTheUser}) => {
                         src={user}
                         size={defaultIconSize}
                     />
-                    <span className={label}>Username</span>
-                    <input id="username" type="text" className={input} placeholder="Enter your username"/>
+                    <span className={label}>{getMessage("username")}</span>
+                    <input id="username" type="text" className={input} placeholder={getMessage("enterYourUsername")}/>
                 </label>
                 <label htmlFor="password">
                     <Icon
@@ -64,18 +66,18 @@ const Login = ({changeTab, logInTheUser}) => {
                         src={lock}
                         size={defaultIconSize}
                     />
-                    <span className={label}>Password</span>
-                    <input type="password" className={input} placeholder="Enter your password"/>
+                    <span className={label}>{getMessage("password")}</span>
+                    <input type="password" className={input} placeholder={getMessage("enterYourPassword")}/>
                 </label>
                 <div className={otherLoginOptions}>
                     <span className={rememberMe}>
                         <label htmlFor="rememberMe">
                              <input className={inputRadio} type="checkbox" name="rememberMe"/>
                              <span className={customRadio}/>
-                            <span>Remember me</span>
+                            <span>{getMessage("rememberMe")}</span>
                         </label>
                     </span>
-                    <span className={lostPassword}>Lost your password ?</span>
+                    <span className={lostPassword}>{getMessage("lostYourPassword")}</span>
                 </div>
                 <button onClick={connectTheUser} className={loginButton}>
                     <Icon
@@ -83,13 +85,13 @@ const Login = ({changeTab, logInTheUser}) => {
                         src={LoginIcon}
                         size={defaultIconSize}
                     />
-                    <span>Login</span>
+                    <span>{getMessage("login")}</span>
                 </button>
             </div>
             <div className={usefulMessage}>
                 <span className={text}
                       onClick={() => changeTab("register")}
-                >Do not have an account ? Create now</span>
+                >{getMessage("doNotHaveAnAccountCreateNow")}</span>
             </div>
         </div>
     );
