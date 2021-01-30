@@ -70,7 +70,7 @@ const Product = ({actualTheme, ...rest}) => {
         })
     }
 
-    useEffect(fetchProduct, []);
+    useEffect(fetchProduct, [actualTheme]);
 
     const {product, navigationPosition, otherSrc, mainId} = productState;
 
@@ -83,6 +83,8 @@ const Product = ({actualTheme, ...rest}) => {
             navigationPosition: INSIDE_NAVIGATION
         })
     }
+
+    console.log(productState)
 
     const changeMainProductSrc = (product) => {
         setProductState({

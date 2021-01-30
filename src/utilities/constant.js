@@ -166,19 +166,79 @@ export const categoriesBlackProducts = [
         src: blackShoes,
         title: "Nike Shoes",
         price: "45000 cfa",
-        id: 1
+        id: 1,
+        otherSrc: [
+            {
+                src: blackShoes,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 11
+            }, {
+                src: blackShoes2,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 12
+            }, {
+                src: blackShoes3,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 13
+            }
+        ]
     },
     {
         src: blackShoes2,
         title: "Nike Shoes",
         price: "45000 cfa",
-        id: 2
+        id: 2,
+        otherSrc: [
+            {
+                src: blackShoes,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 21
+            }, {
+                src: blackShoes2,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 22
+            }, {
+                src: blackShoes3,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 23
+            },
+            {
+                src: blackShoes,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 24
+            }
+        ]
     },
     {
         src: blackShoes3,
         title: "Nike Shoes",
         price: "45000 cfa",
-        id: 3
+        id: 3,
+        otherSrc: [
+            {
+                src: blackShoes,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 31
+            }, {
+                src: blackShoes2,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 32
+            }, {
+                src: blackShoes3,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 33
+            }
+        ]
     },
 ];
 

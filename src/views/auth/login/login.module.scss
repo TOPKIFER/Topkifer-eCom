@@ -98,6 +98,10 @@
       &:focus {
         outline: none;
       }
+
+      span svg {
+        fill: black !important;
+      }
     }
   }
 

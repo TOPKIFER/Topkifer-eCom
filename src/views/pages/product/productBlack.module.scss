@@ -2,19 +2,148 @@
 @import "~assets/styles/variables";
 @import "~assets/styles/keyframes";
 
+
+.itemCardCommon {
+  cursor: pointer;
+  border-radius: 8px;
+  height: 100%;
+  background-color: $carouselBgBlack;
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  @include animation("scaleIn .6s ease");
+  transition: all .3s ease-in;
+}
+
 .productWrapper {
+  padding: 0 6rem;
+  width: 80%;
+  margin: 2rem auto 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
 
   .productImages {
-    justify-content: center;
-    flex-direction: column;
-    overflow: auto;
-
-    background-color: red;
+    min-height: 60px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 2rem;
 
     .mainProductImage {
 
+      .itemCardWrapper {
+        width: 100%;
+
+        .itemCard {
+          height: 400px;
+
+          .itemCardImage {
+            @extend .itemCardCommon
+          }
+
+        }
+      }
+    }
+
+    .otherProductImages {
+      position: relative;
+      @include flexCenterSpace;
+      justify-content: center;
+      margin: 0 auto;
+      width: 96%;
+
+      .otherProductImage {
+        display: inline-grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 2.6rem;
+        justify-self: center;
+        z-index: 2;
+
+        .itemCardWrapper {
+          width: 100%;
+
+          .itemCard {
+            height: 100px;
+            width: 100px;
+
+            .itemCardImage {
+              @extend .itemCardCommon
+            }
+
+            .itemCardHighlighted {
+              border-radius: 8px;
+              border: 2px solid $sitePrimaryColor;
+              box-shadow: $normalBlackShadow;
+            }
+
+          }
+        }
+      }
+
+
+      .arrows {
+        @include positionChanged;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1;
+
+      }
     }
   }
+
+  .productTools {
+    background-color: black;
+  }
+}
+
+@media screen and (max-width: $breakpoint) {
+
+  .productWrapper {
+    padding: 0;
+    width: 90%;
+    grid-template-columns: 1fr;
+
+    .productImages {
+
+      .mainProductImage {
+
+        .itemCardWrapper {
+
+          .itemCard {
+            height: 300px;
+
+          }
+        }
+      }
+
+      .otherProductImages {
+
+        .otherProductImage {
+          grid-template-columns: repeat(4, 1fr);
+          grid-column-gap: .6rem;
+
+          .itemCardWrapper {
+            .itemCard {
+              height: 60px;
+              width: 60px;
+            }
+          }
+        }
+
+      }
+
+      .arrows svg {
+        height: 16px !important;
+        width: 16px !important;
+      }
+    }
+
+    .productTools {
+      background-color: black;
+    }
+  }
+
 }
