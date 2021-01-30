@@ -1,0 +1,128 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/keyframes";
+
+
+.itemCardCommon {
+  cursor: pointer;
+  border-radius: 8px;
+  height: 100%;
+  background-color: $carouselBgBlack;
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  @include animation("scaleIn .6s ease");
+  transition: all .3s ease-in;
+}
+
+.productImages {
+  min-height: 60px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2rem;
+
+  .mainProductImage {
+
+    .itemCardWrapper {
+      width: 100%;
+
+      .itemCard {
+        height: 400px;
+
+        .itemCardImage {
+          @extend .itemCardCommon
+        }
+
+      }
+    }
+  }
+
+  .otherProductImages {
+    position: relative;
+    @include flexCenterSpace;
+    justify-content: center;
+    margin: 0 auto;
+    width: 96%;
+
+    .otherProductImage {
+      display: inline-grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-column-gap: 2.6rem;
+      justify-self: center;
+      z-index: 2;
+
+      .itemCardWrapper {
+        width: 100%;
+
+        .itemCard {
+          height: 100px;
+          width: 100px;
+
+          .itemCardImage {
+            @extend .itemCardCommon
+          }
+
+          .itemCardHighlighted {
+            border-radius: 8px;
+            border: 2px solid $sitePrimaryColor;
+            box-shadow: $normalBlackShadow;
+          }
+
+        }
+      }
+    }
+
+
+    .arrows {
+      @include positionChanged;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1;
+
+    }
+  }
+}
+
+
+@media screen and (max-width: $breakpoint) {
+  
+  .productImages {
+
+    .mainProductImage {
+
+      .itemCardWrapper {
+
+        .itemCard {
+          height: 300px;
+
+        }
+      }
+    }
+
+    .otherProductImages {
+
+      .otherProductImage {
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: .6rem;
+
+        .itemCardWrapper {
+          .itemCard {
+            height: 60px;
+            width: 60px;
+          }
+        }
+      }
+
+    }
+
+    .arrows svg {
+      height: 16px !important;
+      width: 16px !important;
+    }
+  }
+
+
+}

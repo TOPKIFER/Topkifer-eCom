@@ -19,6 +19,7 @@ export const UNKNOWN = "UNKNOWN";
 export const DEFAULT_LANGUAGE = "en";
 export const FRENCH_LANGUAGE = "fr";
 export const ENGLISH_LANGUAGE = "en";
+export const MAX_PRODUCT_IMAGE_IN_CARROUSEL = 4;
 
 export const APP_URL = {
     BASE: "/",
@@ -241,4 +242,5 @@ export const categoriesBlackProducts = [
         ]
     },
 ];
+
 
