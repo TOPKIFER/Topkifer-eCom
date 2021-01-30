@@ -4,6 +4,7 @@ import categoriesBarBlackClasses from "./categoriesBarBlack.module.scss"
 import {categoriesConstants, LEFT, RIGHT, WHITE} from "utilities/constant";
 import {connect} from "react-redux";
 import {getMessage} from "../../utilities/i18n";
+import {moveFile} from "../../utilities/utilities";
 
 /**
  * CategoriesBar component
@@ -20,45 +21,17 @@ const CategoriesBar = (actualTheme) => {
     } = actualTheme === WHITE ? categoriesBarWhiteClasses : categoriesBarBlackClasses;
 
     // we initialise the state with our constants categories
-    const [state, setState] = useState({
+    const [categoriesState, setCategoriesState] = useState({
         categories: [...categoriesConstants]
     });
 
-    /**
-     * Move Categories
-     * @description The move function is to move to the next or previous categories
-     * especially on mobile
-     * @param {String} direction The direction to move
-     * @author Arnaud LITAABA
-     */
     const move = (direction) => {
-        const oldCategories = [...categories];
-        if (direction === LEFT) {
-
-            // pop() give us the last value of our array
-            const last = categories.pop();
-
-            // unshift() add the last value of our array in the first position
-            categories.unshift(last);
-
-            // Obviously save changes with this
-            setState({categories: [...categories]})
-            return
-        }
-
-        // shift() give us the first value of our array
-        const first = oldCategories.shift();
-
-        /* unshift() add the first value of our array in the first position, so
-        * we need to reverse() the array before
-        */
-        oldCategories.reverse().unshift(first);
-
-        // Obviously save changes with this
-        setState({categories: [...oldCategories.reverse()]})
+        setCategoriesState({
+            categories: [...moveFile(categoriesState.categories, direction)]
+        })
     }
 
-    const {categories} = state;
+    const {categories} = categoriesState;
 
     return <div className={categoriesBar}>
         {categories.map(category => {

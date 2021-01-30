@@ -6,19 +6,17 @@
   margin: 0 auto;
 }
 
-$carouselBg: #161616;
-
 .carousel {
   @include flexCenterSpace;
   position: relative;
   padding: 0 4rem;
-  background-color: $carouselBg;
+  background-color: $carouselBgBlack;
   border-radius: 12px;
 
   .carouselContainer {
     padding: 0 4rem;
     height: 360px;
-    background-color: $carouselBg;
+    background-color: $carouselBgBlack;
     @extend .common;
     background-position: center right;
     background-repeat: no-repeat;

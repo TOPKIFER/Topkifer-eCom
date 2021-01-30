@@ -43,6 +43,15 @@ a {
   cursor: pointer;
 }
 
+.icon_disabled_white {
+  fill: #8181814a !important;
+  cursor: not-allowed;
+}
+
+.icon__white, .icon__black {
+  cursor: pointer;
+}
+
 @media screen and (max-width: $breakpoint) {
   .app-container {
     margin-top: -.6rem;

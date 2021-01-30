@@ -17,7 +17,7 @@
 
   .searchInput, .searchInputMobile {
     width: 600px;
-    background-color: $siteBlackColor;
+    background-color: #161616;
     color: white;
     border: none;
 
@@ -53,6 +53,10 @@
 @media screen and (max-width: $breakpoint) {
   .searchBar {
     display: none !important;
+  }
+
+  .searchInput, .searchInputMobile {
+    background-color: $siteBlackColor !important;
   }
 
   .searchBarMobile {

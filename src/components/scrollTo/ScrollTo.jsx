@@ -1,5 +1,5 @@
 import React from "react";
-import {TOP} from "../../utilities/constant";
+import {INSIDE_NAVIGATION, TOP} from "utilities/constant";
 
 /**
  * Scroll to component
@@ -8,11 +8,12 @@ import {TOP} from "../../utilities/constant";
  * @param {String} position The desired position to scroll at
  * @author Arnaud LITAABA
  */
-const ScrollTo = ({children, position= TOP}) => {
+const ScrollTo = ({children, position = TOP}) => {
     switch (position) {
         case TOP:
             window.scrollTo(0, 0);
             break
+        case INSIDE_NAVIGATION:
         default:
             break
     }

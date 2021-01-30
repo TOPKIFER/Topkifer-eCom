@@ -14,6 +14,8 @@ export const LEFT = "left";
 export const WHITE = "white";
 export const BLACK = "black";
 export const TOP = "top";
+export const INSIDE_NAVIGATION = "INSIDE_NAVIGATION";
+export const UNKNOWN = "UNKNOWN";
 export const DEFAULT_LANGUAGE = "en";
 export const FRENCH_LANGUAGE = "fr";
 export const ENGLISH_LANGUAGE = "en";
@@ -84,19 +86,78 @@ export const categoriesProducts = [
         src: shoes,
         title: "Nike Shoes",
         price: "45000 cfa",
-        id: 1
+        id: 1,
+        otherSrc: [
+            {
+                src: shoes,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 11
+            }, {
+                src: shoes2,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 12
+            }, {
+                src: shoes3,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 13
+            }
+        ]
     },
     {
         src: shoes2,
         title: "Nike Shoes",
         price: "45000 cfa",
-        id: 2
+        id: 2,
+        otherSrc: [
+            {
+                src: shoes,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 21
+            }, {
+                src: shoes2,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 22
+            }, {
+                src: shoes3,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 23
+            }, {
+                src: shoes,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 24
+            }
+        ]
     },
     {
         src: shoes3,
         title: "Nike Shoes",
         price: "45000 cfa",
-        id: 3
+        id: 3,
+        otherSrc: [
+            {
+                src: shoes,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 31
+            }, {
+                src: shoes2,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 32
+            }, {
+                src: shoes3,
+                title: "Nike Shoes",
+                price: "45000 cfa",
+                id: 33
+            }
+        ]
     },
 ]
 

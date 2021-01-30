@@ -2,8 +2,6 @@
 @import "~assets/styles/variables";
 @import "~assets/styles/keyframes";
 
-$carouselBg: #f6f6f6;
-
 .itemCommon {
   border-radius: 18px;
   transition: all .3s ease-in-out;
@@ -25,7 +23,8 @@ $carouselBg: #f6f6f6;
 
       .itemCardActions {
         @include positionChanged;
-        top: 20%;
+        top: 60%;
+        bottom: 60%;
         position: absolute;
         display: inline-flex !important;
 

@@ -4,7 +4,7 @@
  * @summary A helper for conveniently add multiple StyleSheet classes
  * @author Arnaud LITAABA
  */
-import {SEPARATOR} from "./constant";
+import {LEFT, SEPARATOR} from "./constant";
 
 export const multipleClasses = (...classes) => classes.join(SEPARATOR);
 
@@ -51,3 +51,36 @@ export const toggleAuthVisibility = (setVisible, value) => {
  * @author Arnaud LITAABA
  */
 export const upperFist = (value) => value ? value[0].toUpperCase() + value.slice(1) : value
+
+/**
+ * Move file from one direction to another
+ * @description The move files function is to move to the next or previous file
+ * @param {Array} files The targeted files
+ * @param {String} direction The direction to move
+ * @author Arnaud LITAABA
+ */
+export const moveFile = (files, direction) => {
+    const oldFiles = [...files];
+    if (direction === LEFT) {
+
+        // pop() give us the last value of our array
+        const last = files.pop();
+
+        // unshift() add the last value of our array in the first position
+        files.unshift(last);
+
+        // Obviously return the files
+        return files
+    }
+
+    // shift() give us the first value of our array
+    const first = oldFiles.shift();
+
+    /* unshift() add the first value of our array in the first position, so
+    * we need to reverse() the array before
+    */
+    oldFiles.reverse().unshift(first);
+
+    // Obviously return the files
+    return oldFiles.reverse()
+}

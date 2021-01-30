@@ -28,7 +28,8 @@ $itemCardBg: #161616;
 
       .itemCardActions {
         @include positionChanged;
-        top: 20%;
+        top: 60%;
+        bottom: 60%;
         position: absolute;
         display: inline-flex !important;
 

@@ -25,7 +25,14 @@ const {PRODUCT} = APP_URL;
  */
 const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest}) => {
 
-    const {history} = rest;
+    const {history, classNames, onClick} = rest;
+
+    const {
+        itemCardWrapper: customItemCardWrapper,
+        itemCard: customItemCard,
+        itemCardImage: customItemCardImage,
+        itemCardHighlighted
+    } = classNames || {};
 
     const [isFavorite, setIsFavorite] = useState({});
 
@@ -45,16 +52,15 @@ const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest
 
     const {title, src, price, id} = product;
 
-    // const onClick = () => history.push(PRODUCT + "/" + id);
-    const onClick = allowClick ? () => history.push(PRODUCT + "/" + id) : null;
+    let onClickAction = allowClick ? onClick ? onClick : () => history.push(PRODUCT + "/" + id) : null;
 
-    return <div className={itemCardWrapper}>
-        <div className={itemCard}>
-            <div onClick={onClick}
+    return <div className={customItemCardWrapper || itemCardWrapper}>
+        <div className={customItemCard || itemCard}>
+            <div onClick={onClickAction}
                  style={{
                      backgroundImage: `url(${src})`
                  }}
-                 className={itemCardImage}>
+                 className={multipleClasses(customItemCardImage || itemCardImage, itemCardHighlighted || "")}>
                 {/*allowClick && <div onClick={onClick} className={moreDetails}>More details</div>*/}
             </div>
             {
