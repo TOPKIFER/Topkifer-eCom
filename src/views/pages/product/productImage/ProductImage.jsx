@@ -1,32 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import productImageWhiteClasses from "./productImageWhite.module.scss";
 import productImageBlackClasses from "./productImageBlack.module.scss";
-import {
-    categoriesBlackProducts,
-    categoriesProducts,
-    INSIDE_NAVIGATION,
-    LEFT,
-    MAX_PRODUCT_IMAGE_IN_CARROUSEL,
-    RIGHT,
-    TOP,
-    WHITE
-} from "../../../../utilities/constant";
-import ScrollTo from "../../../../components/scrollTo/ScrollTo";
-import ItemCard from "../../../../components/itemCard/ItemCard";
-import {makeIndex, moveFile} from "../../../../utilities/utilities";
-import arrowRight from "../../../../assets/icons/arrowRight.svg";
-import arrowLeft from "../../../../assets/icons/arrowLeft.svg";
-import Icon from "../../../../components/icon/Icon";
+import {INSIDE_NAVIGATION, LEFT, MAX_PRODUCT_IMAGE_IN_CARROUSEL, RIGHT, TOP, WHITE} from "utilities/constant";
+import ScrollTo from "components/scrollTo/ScrollTo";
+import ItemCard from "components/itemCard/ItemCard";
+import {makeIndex, moveFile} from "utilities/utilities";
+import arrowRight from "assets/icons/arrowRight.svg";
+import arrowLeft from "assets/icons/arrowLeft.svg";
+import Icon from "components/icon/Icon";
 
 
 /**
  * Product Image component
  * @param {String} actualTheme the actual theme of the app
- * @param {String} id the selected product id
+ * @param {Object} product the selected product
  * @author Arnaud LITAABA
  */
-const ProductImage = ({actualTheme, id}) => {
+const ProductImage = ({actualTheme, product}) => {
 
     const {
         productImages,
@@ -40,49 +31,34 @@ const ProductImage = ({actualTheme, id}) => {
         arrows,
     } = actualTheme === WHITE ? productImageWhiteClasses : productImageBlackClasses;
 
-    const [productState, setProductState] = useState({
-            product: {},
-            mainId: null,
-            otherSrc: [],
+    let newOtherSrc = [...product.otherSrc];
+    newOtherSrc.unshift(product);
+
+    const [productImageState, setProductImageState] = useState({
+            targetedProduct: product,
+            mainId: product.id,
+            otherSrc: [...newOtherSrc],
             navigationPosition: TOP
         }
     )
 
-    const fetchProduct = () => {
-        /*
-            * we find the targeted product with the extracted id;
-            */
-        const product = actualTheme === WHITE ? categoriesProducts.find(category => category.id === +id) :
-            categoriesBlackProducts.find(category => category.id === +id);
-        let newOtherSrc = [...product.otherSrc];
-        newOtherSrc.unshift(product);
-        setProductState({
-            ...productState,
-            mainId: product.id,
-            product: product,
-            otherSrc: [...newOtherSrc]
-        })
-    }
-
-    useEffect(fetchProduct, [actualTheme]);
-
-    const {product, navigationPosition, otherSrc, mainId} = productState;
+    const {targetedProduct, navigationPosition, otherSrc, mainId} = productImageState;
 
     const otherProductLength = otherSrc.length;
 
     const move = (direction) => {
-        setProductState({
-            ...productState,
-            otherSrc: [...moveFile(productState.otherSrc, direction)],
+        setProductImageState({
+            ...productImageState,
+            otherSrc: [...moveFile(productImageState.otherSrc, direction)],
             navigationPosition: INSIDE_NAVIGATION
         })
     }
 
-    const changeMainProductSrc = (product) => {
-        setProductState({
-            ...productState,
-            product,
-            mainId: product.id,
+    const changeMainProductSrc = (targetedProduct) => {
+        setProductImageState({
+            ...productImageState,
+            targetedProduct,
+            mainId: targetedProduct.id,
             navigationPosition: INSIDE_NAVIGATION
         })
     }
@@ -92,7 +68,7 @@ const ProductImage = ({actualTheme, id}) => {
             <div className={mainProductImage}>
                 <ItemCard
                     full={false}
-                    product={product}
+                    product={targetedProduct}
                     allowClick={false}
                     classNames={{itemCardWrapper, itemCard, itemCardImage}}
                 />
@@ -137,7 +113,7 @@ const ProductImage = ({actualTheme, id}) => {
 }
 
 /**
- * connect the product Component to the whole store
+ * connect the product image Component to the whole store
  * Extract the theme value
  * @param {Object} state the whole state managed by redux
  * @return {Object} all desired value from redux
@@ -150,7 +126,7 @@ const mapStateToProps = state => {
 }
 
 /**
- * connect the product Component to the whole store
+ * connect the product image Component to the whole store
  * @description Extract the theme value
  * bind theme value to product props
  * @author Arnaud LITAABA

@@ -46,11 +46,13 @@ a {
 .icon_disabled_white {
   fill: #8181814a !important;
   cursor: not-allowed;
+  display: none;
 }
 
 .icon__white, .icon__black {
   cursor: pointer;
 }
+
 
 @media screen and (max-width: $breakpoint) {
   .app-container {

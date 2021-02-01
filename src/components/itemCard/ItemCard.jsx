@@ -86,7 +86,7 @@ const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest
                         {title}
                     </div>
                     <div className={itemCardPrice}>
-                        {price}
+                        {price} cfa
                     </div>
                 </div>
             }

@@ -20,6 +20,13 @@ export const DEFAULT_LANGUAGE = "en";
 export const FRENCH_LANGUAGE = "fr";
 export const ENGLISH_LANGUAGE = "en";
 export const MAX_PRODUCT_IMAGE_IN_CARROUSEL = 4;
+export const MINUS_SIGN = "-";
+export const SUM_SIGN = "+";
+export const VERY_GOOD_STAR = 3000;
+export const GOOD_STAR = 2250;
+export const FAIR_STAR = 1500;
+export const POOR_RATE = 750;
+export const VERY_POOR_RATE = 0;
 
 export const APP_URL = {
     BASE: "/",
@@ -86,23 +93,71 @@ export const categoriesProducts = [
     {
         src: shoes,
         title: "Nike Shoes",
-        price: "45000 cfa",
+        price: "45000",
+        sizes: ["xs", "s", "m"],
+        colors: ["#1B2436", "#137681", "#2efef6"],
+        stock: 50,
+        reviews: {
+            total: 2500,
+            veryPoor: 200,
+            poor: 400,
+            fair: 700,
+            good: 700,
+            veryGood: 500,
+        },
+        description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
         id: 1,
         otherSrc: [
             {
                 src: shoes,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 2500,
+                    veryPoor: 200,
+                    poor: 400,
+                    fair: 700,
+                    good: 700,
+                    veryGood: 500,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 11
             }, {
                 src: shoes2,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 2500,
+                    veryPoor: 200,
+                    poor: 400,
+                    fair: 700,
+                    good: 700,
+                    veryGood: 500,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 12
             }, {
                 src: shoes3,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 2500,
+                    veryPoor: 200,
+                    poor: 400,
+                    fair: 700,
+                    good: 700,
+                    veryGood: 500,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 13
             }
         ]
@@ -110,28 +165,88 @@ export const categoriesProducts = [
     {
         src: shoes2,
         title: "Nike Shoes",
-        price: "45000 cfa",
+        price: "45000",
+        sizes: ["xs", "s", "m"],
+        colors: ["#1B2436", "#137681", "#2efef6"],
+        stock: 50,
+        reviews: {
+            total: 3000,
+            veryPoor: 300,
+            poor: 500,
+            fair: 800,
+            good: 800,
+            veryGood: 600,
+        },
+        description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
         id: 2,
         otherSrc: [
             {
                 src: shoes,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3000,
+                    veryPoor: 300,
+                    poor: 500,
+                    fair: 800,
+                    good: 800,
+                    veryGood: 600,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 21
             }, {
                 src: shoes2,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3000,
+                    veryPoor: 300,
+                    poor: 500,
+                    fair: 800,
+                    good: 800,
+                    veryGood: 600,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 22
             }, {
                 src: shoes3,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3000,
+                    veryPoor: 300,
+                    poor: 500,
+                    fair: 800,
+                    good: 800,
+                    veryGood: 600,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 23
             }, {
                 src: shoes,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3000,
+                    veryPoor: 300,
+                    poor: 500,
+                    fair: 800,
+                    good: 800,
+                    veryGood: 600,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 24
             }
         ]
@@ -139,23 +254,71 @@ export const categoriesProducts = [
     {
         src: shoes3,
         title: "Nike Shoes",
-        price: "45000 cfa",
+        price: "45000",
+        sizes: ["xs", "s", "m"],
+        colors: ["#1B2436", "#137681", "#2efef6"],
+        stock: 50,
+        reviews: {
+            total: 3500,
+            veryPoor: 400,
+            poor: 600,
+            fair: 900,
+            good: 900,
+            veryGood: 700,
+        },
+        description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
         id: 3,
         otherSrc: [
             {
                 src: shoes,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3500,
+                    veryPoor: 400,
+                    poor: 600,
+                    fair: 900,
+                    good: 900,
+                    veryGood: 700,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 31
             }, {
                 src: shoes2,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3500,
+                    veryPoor: 400,
+                    poor: 600,
+                    fair: 900,
+                    good: 900,
+                    veryGood: 700,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 32
             }, {
                 src: shoes3,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3500,
+                    veryPoor: 400,
+                    poor: 600,
+                    fair: 900,
+                    good: 900,
+                    veryGood: 700,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 33
             }
         ]
@@ -166,23 +329,71 @@ export const categoriesBlackProducts = [
     {
         src: blackShoes,
         title: "Nike Shoes",
-        price: "45000 cfa",
+        price: "45000",
+        sizes: ["xs", "s", "m"],
+        colors: ["#1B2436", "#137681", "#2efef6"],
+        stock: 50,
+        reviews: {
+            total: 2500,
+            veryPoor: 200,
+            poor: 400,
+            fair: 700,
+            good: 700,
+            veryGood: 500,
+        },
+        description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
         id: 1,
         otherSrc: [
             {
                 src: blackShoes,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 2500,
+                    veryPoor: 200,
+                    poor: 400,
+                    fair: 700,
+                    good: 700,
+                    veryGood: 500,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 11
             }, {
                 src: blackShoes2,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 2500,
+                    veryPoor: 200,
+                    poor: 400,
+                    fair: 700,
+                    good: 700,
+                    veryGood: 500,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 12
             }, {
                 src: blackShoes3,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 2500,
+                    veryPoor: 200,
+                    poor: 400,
+                    fair: 700,
+                    good: 700,
+                    veryGood: 500,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 13
             }
         ]
@@ -190,29 +401,89 @@ export const categoriesBlackProducts = [
     {
         src: blackShoes2,
         title: "Nike Shoes",
-        price: "45000 cfa",
+        price: "45000",
+        sizes: ["xs", "s", "m"],
+        colors: ["#1B2436", "#137681", "#2efef6"],
+        stock: 50,
+        reviews: {
+            total: 3500,
+            veryPoor: 400,
+            poor: 600,
+            fair: 900,
+            good: 900,
+            veryGood: 700,
+        },
+        description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
         id: 2,
         otherSrc: [
             {
                 src: blackShoes,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3500,
+                    veryPoor: 400,
+                    poor: 600,
+                    fair: 900,
+                    good: 900,
+                    veryGood: 700,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 21
             }, {
                 src: blackShoes2,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3500,
+                    veryPoor: 400,
+                    poor: 600,
+                    fair: 900,
+                    good: 900,
+                    veryGood: 700,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 22
             }, {
                 src: blackShoes3,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3500,
+                    veryPoor: 400,
+                    poor: 600,
+                    fair: 900,
+                    good: 900,
+                    veryGood: 700,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 23
             },
             {
                 src: blackShoes,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3500,
+                    veryPoor: 400,
+                    poor: 600,
+                    fair: 900,
+                    good: 900,
+                    veryGood: 700,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 24
             }
         ]
@@ -220,23 +491,71 @@ export const categoriesBlackProducts = [
     {
         src: blackShoes3,
         title: "Nike Shoes",
-        price: "45000 cfa",
+        price: "45000",
+        sizes: ["xs", "s", "m"],
+        colors: ["#1B2436", "#137681", "#2efef6"],
+        stock: 50,
+        reviews: {
+            total: 3500,
+            veryPoor: 400,
+            poor: 600,
+            fair: 900,
+            good: 900,
+            veryGood: 700,
+        },
+        description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
         id: 3,
         otherSrc: [
             {
                 src: blackShoes,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3500,
+                    veryPoor: 400,
+                    poor: 600,
+                    fair: 900,
+                    good: 900,
+                    veryGood: 700,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 31
             }, {
                 src: blackShoes2,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3500,
+                    veryPoor: 400,
+                    poor: 600,
+                    fair: 900,
+                    good: 900,
+                    veryGood: 700,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 32
             }, {
                 src: blackShoes3,
                 title: "Nike Shoes",
-                price: "45000 cfa",
+                price: "45000",
+                sizes: ["xs", "s", "m"],
+                colors: ["#1B2436", "#137681", "#2efef6"],
+                stock: 50,
+                reviews: {
+                    total: 3500,
+                    veryPoor: 400,
+                    poor: 600,
+                    fair: 900,
+                    good: 900,
+                    veryGood: 700,
+                },
+                description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
                 id: 33
             }
         ]

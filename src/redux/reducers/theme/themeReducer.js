@@ -1,4 +1,4 @@
-import {REDUX_CONSTANTS, WHITE} from "utilities/constant";
+import {BLACK, REDUX_CONSTANTS, WHITE} from "utilities/constant";
 
 const {CHANGE_THEME} = REDUX_CONSTANTS;
 

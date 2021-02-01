@@ -18,7 +18,7 @@ import {connect} from "react-redux"
  */
 const Icon = ({src, size, style, className, wrapperClassName, actualTheme, color, ...rest}) => {
 
-    const {onClick} = rest;
+    const {onClick, onMouseEnter, onMouseLeave} = rest;
     return <ReactSVG
         beforeInjection={(svg) => {
             if (className) {
@@ -37,6 +37,8 @@ const Icon = ({src, size, style, className, wrapperClassName, actualTheme, color
         className={wrapperClassName || ""}
         wrapper="span"
         onClick={onClick}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
     />
 }
 

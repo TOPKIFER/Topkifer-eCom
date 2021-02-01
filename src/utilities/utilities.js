@@ -84,3 +84,30 @@ export const moveFile = (files, direction) => {
     // Obviously return the files
     return oldFiles.reverse()
 }
+
+let total = 3089;
+
+export const calculateRate = (value) => {
+
+    const mo = value / 5;
+
+    switch (true) {
+        case value.toString().length === 7:
+            return Math.round(mo / 200000);
+        case value.toString().length === 6:
+            return Math.round(mo / 20000);
+        case value.toString().length === 5:
+            return Math.round(mo / 2000);
+        case value.toString().length === 4:
+            return Math.round(mo / 200);
+        case value.toString().length === 3:
+            return Math.round(mo / 20);
+        case value.toString().length === 2:
+            return Math.round(mo / 2);
+        default:
+            return Math.round(mo);
+    }
+}
+
+let res = calculateRate(total);
+console.log(res)

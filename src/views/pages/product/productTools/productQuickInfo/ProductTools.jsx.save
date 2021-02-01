@@ -1,0 +1,142 @@
+import React from "react";
+import {connect} from "react-redux";
+import productToolsWhiteClasses from "./productToolsWhite.module.scss";
+import productToolsBlackClasses from "./productToolsBlack.module.scss";
+import {defaultIconSize, WHITE} from "utilities/constant";
+import Icon from "components/icon/Icon";
+import shareIcon from "assets/icons/shareWhite.svg";
+import starIcon from "assets/icons/starNotChecked.svg";
+import {makeIndex, multipleClasses} from "utilities/utilities";
+
+
+/**
+ * Product Image component
+ * @param {String} actualTheme the actual theme of the app
+ * @param {Object} product the selected product
+ * @author Arnaud LITAABA
+ */
+class ProductToolsSave2 extends React.Component {
+
+    state = {
+        total: [...Array(5).keys()].map(v => v + 1),
+        hovered: [],
+        checked: [],
+        savedChecked: []
+    }
+
+    expensiveSetTheStars = (value) => {
+        // console.log(this.state.savedChecked)
+        this.setState({
+            hovered: [...Array(value).keys()].map(v => v + 1),
+            savedChecked: [...this.state.checked]
+        })
+    }
+
+    expensiveSaveTheStars = (value) => {
+
+        this.setState({
+            checked: [...Array(value).keys()].map(v => v + 1),
+            savedChecked: [...Array(value).keys()].map(v => v + 1),
+        })
+
+    }
+
+    expensiveRemoveTheStars = () => {
+        //  console.log(this.state.savedChecked)
+        this.setState({
+            hovered: [],
+            //  savedChecked: [],
+            // checked: [...this.state.savedChecked]
+        })
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return this.state.hovered.length !== nextState.hovered.length
+    }
+
+    render() {
+        const {actualTheme, product} = this.props;
+        const {title, description, price, reviews} = product;
+        const {
+            productTools,
+            productToolsTop,
+            productBestSeller,
+            productShare,
+            productStarClass,
+            productStarAndReviewsClass,
+            productStarClasses,
+            productStarClassChecked,
+            productReviewsClass,
+            productTitle,
+            productPrice,
+            priceClass,
+            currencyClass,
+            productInfo,
+            productClass
+        } = actualTheme === WHITE ? productToolsWhiteClasses : productToolsBlackClasses;
+
+        console.log("render star")
+        //  console.log(this.state)
+        const {hovered, total, checked} = this.state;
+
+        return <div className={productTools}>
+            <div className={productInfo}>
+                <div className={productToolsTop}>
+                    <div className={productBestSeller}>
+                        Best seller
+                    </div>
+                    <div className={productShare}>
+                        <Icon
+                            src={shareIcon}
+                            size={defaultIconSize}
+                        />
+                    </div>
+                </div>
+                <div className={productTitle}>{title}</div>
+                <div className={productStarAndReviewsClass}>
+                    <div className={productStarClasses}>
+                        {total.map((value, index) => {
+                            return <Icon
+                                onClick={() => this.expensiveSaveTheStars(value)}
+                                onMouseEnter={() => this.expensiveSetTheStars(value)}
+                                onMouseLeave={this.expensiveRemoveTheStars}
+                                className={multipleClasses(productStarClass, (hovered.includes(value) || checked.includes(value)) ? productStarClassChecked : "_")}
+                                key={makeIndex(value, "stars_unchecked", index)}
+                                src={starIcon}
+                                size={defaultIconSize}
+                            />
+                        })
+                        }
+                    </div>
+                    <div className={productReviewsClass}> {reviews.total} reviews}</div>
+                </div>
+                <div>{description}</div>
+                <div className={productPrice}>
+                    <span className={priceClass}> {price}</span>
+                    <span className={currencyClass}>cfa</span>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+/**
+ * connect the product tools Component to the whole store
+ * Extract the theme value
+ * @param {Object} state the whole state managed by redux
+ * @return {Object} all desired value from redux
+ * @author Arnaud LITAABA
+ */
+const mapStateToProps = state => {
+    return {
+        actualTheme: state.themeState.actualTheme
+    }
+}
+
+/**
+ * connect the product tools Component to the whole store
+ * @description Extract the theme value
+ * bind theme value to product props
+ * @author Arnaud LITAABA
+ */
+export default connect(mapStateToProps)(ProductToolsSave2)

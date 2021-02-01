@@ -4,7 +4,7 @@
 
 .productWrapper {
   padding: 0 6rem;
-  width: 80%;
+  width: 96%;
   margin: 2rem auto 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -15,10 +15,9 @@
 @media screen and (max-width: $breakpoint) {
 
   .productWrapper {
-    padding: 0;
-    width: 90%;
+    padding: 0 .6rem;
     grid-template-columns: 1fr;
-    
+
   }
 
 }

@@ -40,6 +40,8 @@ export const getLanguage = () => {
             "home": "Home",
             "garden": "Garden",
             "personal": "Personal",
+            // product section
+            "addToCart": "Add to cart"
         },
         "fr": {
             "login": "Se connecter",

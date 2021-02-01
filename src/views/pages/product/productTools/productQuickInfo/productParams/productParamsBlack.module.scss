@@ -1,0 +1,111 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/keyframes";
+
+.marginTop {
+  margin-top: .6rem;
+}
+
+.productParams {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  .productTools {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .productSizes {
+      .sizeTitle {
+
+      }
+
+      .sizeOptions {
+        @include flexCenterSpace;
+        justify-content: normal;
+        flex-direction: row;
+        @extend .marginTop;
+
+        .sizeOption {
+          text-transform: uppercase;
+          @include flexCenterSpace;
+          justify-content: center;
+          border: 1px solid #000000;
+          height: 30px;
+          width: 70px;
+          margin-right: 1rem;
+          border-radius: 4px;
+          transition: all .2s ease-in;
+          cursor: pointer;
+          color: white;
+          background-color: #161616;
+
+          &:hover {
+            background-color: $sitePrimaryColor;
+            border: none;
+            color: black;
+          }
+
+        }
+
+        .sizeOptionHighlighted {
+          background-color: $sitePrimaryColor;
+          border: none;
+          padding: .2rem;
+          transform: scale(1.1);
+          box-shadow: $normalBlackShadow;
+          color: black;
+
+        }
+      }
+    }
+
+    .productColors {
+      @include flexCenterSpace;
+      align-items: flex-start;
+
+      .colorTitle {
+
+      }
+
+      .colorOptions {
+        @include flexCenterSpace;
+        flex-direction: row;
+        @extend .marginTop;
+
+        .colorOption {
+          height: 30px;
+          width: 30px;
+          margin-right: 1rem;
+          border-radius: 6px;
+          transition: all .3s ease-in;
+          cursor: pointer;
+          border: 2px solid #cccccc;
+        }
+
+        .colorOptionHighlighted {
+          border: 1px solid black;
+          position: relative;
+          padding: .2rem;
+          transform: scale(1.1);
+          box-shadow: $normalShadow;
+
+          .optionOverlay {
+            @include positionChanged;
+            position: absolute;
+            border: 4px solid white;
+            border-radius: 4px;
+            transition: all .3s ease-in;
+          }
+        }
+      }
+
+    }
+  }
+
+
+}
+
+@media screen and (max-width: $breakpoint) {
+
+}
