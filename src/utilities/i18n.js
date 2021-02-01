@@ -41,7 +41,10 @@ export const getLanguage = () => {
             "garden": "Garden",
             "personal": "Personal",
             // product section
-            "addToCart": "Add to cart"
+            "addToCart": "Add to cart",
+            "size": "Size",
+            "color": "Color",
+            "quantity": "Quantity",
         },
         "fr": {
             "login": "Se connecter",
