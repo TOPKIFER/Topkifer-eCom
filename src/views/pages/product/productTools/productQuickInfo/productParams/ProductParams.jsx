@@ -4,9 +4,13 @@ import productParamsWhiteClasses
     from "views/pages/product/productTools/productQuickInfo/productParams/productParamsWhite.module.scss";
 import productParamsBlackClasses
     from "views/pages/product/productTools/productQuickInfo/productParams/productParamsBlack.module.scss";
-import {MINUS_SIGN, SUM_SIGN, WHITE} from "utilities/constant";
+import {defaultIconSize, MINUS_SIGN, SUM_SIGN, WHITE} from "utilities/constant";
 import {defineTextColor, makeIndex, multipleClasses} from "utilities/utilities";
 import {getMessage} from "utilities/i18n";
+import Icon from "components/icon/Icon";
+import heartIcon from "assets/icons/heart.svg"
+import heartRedIcon from "assets/icons/heart-red.svg"
+import shareIcon from "assets/icons/shareWhite.svg";
 
 
 /**
@@ -40,17 +44,20 @@ const ProductParams = ({actualTheme, product}) => {
         actions,
         addToCart,
         btn,
-        empty
+        productShare,
+        productLike,
+        likeIcon
     } = actualTheme === WHITE ? productParamsWhiteClasses : productParamsBlackClasses;
 
     const [state, setState] = useState({
         colorValue: "",
         sizeValue: "",
-        quantity: 1
+        quantity: 1,
+        isLiked: false
     });
 
 
-    const {colorValue, sizeValue, quantity} = state;
+    const {colorValue, sizeValue, quantity, isLiked} = state;
 
     const {sizes, colors, stock} = product;
 
@@ -98,7 +105,6 @@ const ProductParams = ({actualTheme, product}) => {
                 </div>
             </div>
             <div className={productColors}>
-                <div className={empty}/>
                 <div>
                     <div className={colorTitle}>
                         <span>{getMessage("color")}</span>
@@ -140,6 +146,21 @@ const ProductParams = ({actualTheme, product}) => {
             <div className={addToCart}>
                 <div className={btn}>
                     {getMessage("addToCart")}
+                </div>
+            </div>
+            <div className={productLike}>
+                <div className={productShare}>
+                    <Icon
+                        src={shareIcon}
+                        size={defaultIconSize}
+                    />
+                </div>
+                <div className={likeIcon}>
+                    <Icon
+                        onClick={() => setState({...state, isLiked: !state.isLiked})}
+                        src={isLiked ? heartRedIcon : heartIcon}
+                        size={defaultIconSize}
+                    />
                 </div>
             </div>
         </div>

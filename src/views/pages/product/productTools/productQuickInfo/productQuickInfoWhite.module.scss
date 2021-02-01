@@ -81,3 +81,28 @@
     }
   }
 }
+
+@media screen and (max-width: $breakpoint) {
+  .productTools {
+    .productInfo {
+      .productToolsTop {
+        .productShare {
+          display: none !important;
+        }
+      }
+
+      .productTitle {
+       /* margin-top: -17em;
+        text-align: center;*/
+      }
+
+      .productStarAndReviewsClass {
+      /*  @include positionChanged;
+        @include flexCenterSpace;
+        justify-content: center;
+        position: absolute;
+        bottom: 60%;*/
+      }
+    }
+  }
+}

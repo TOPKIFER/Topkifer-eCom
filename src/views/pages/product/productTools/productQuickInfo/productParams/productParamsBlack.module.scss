@@ -103,6 +103,103 @@
     }
   }
 
+  .actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    .quantityClass {
+
+
+      .quantityTitle {
+
+      }
+
+      .quantityContent {
+        @include flexCenterSpace;
+        justify-content: normal;
+        @extend .marginTop;
+
+        div {
+          margin-right: 1rem;
+        }
+
+        .sign {
+          height: 30px;
+          width: 50px;
+          user-select: none;
+          @include flexCenterSpace;
+          justify-content: center;
+          font-size: 26px;
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .signDisabled {
+          color: #cccccc;
+          cursor: not-allowed;
+          border-color: #eeeded;
+        }
+
+        .value {
+          font-weight: bold;
+          font-size: 18px;
+        }
+      }
+    }
+
+    .addToCart, .productLike {
+      @include flexCenterSpace;
+      align-items: center;
+      flex-direction: row-reverse;
+
+      .btn {
+        @include flexCenterSpace;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        color: white;
+        height: 40px;
+        padding-right: 2rem;
+        padding-left: 2rem;
+        border-radius: 4px;
+        width: 200px;
+      }
+    }
+
+    .productLike {
+
+
+      .likeIcon {
+        background-color: #161616;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        @include flexCenterSpace;
+        justify-content: center;
+        flex-direction: row-reverse;
+        cursor: pointer;
+        transition: box-shadow .3s ease-in;
+
+        span svg {
+          fill: white !important;
+          z-index: 2;
+
+          &:hover {
+            fill: red !important;
+          }
+        }
+
+        &:hover {
+          box-shadow: 0 4px 8px red;
+          transform: scale(1.02);
+        }
+      }
+
+
+    }
+  }
+
 
 }
 
