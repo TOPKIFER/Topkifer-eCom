@@ -5,7 +5,7 @@ import productParamsWhiteClasses
 import productParamsBlackClasses
     from "views/pages/product/productTools/productQuickInfo/productParams/productParamsBlack.module.scss";
 import {MINUS_SIGN, SUM_SIGN, WHITE} from "utilities/constant";
-import {makeIndex, multipleClasses} from "utilities/utilities";
+import {defineTextColor, makeIndex, multipleClasses} from "utilities/utilities";
 import {getMessage} from "utilities/i18n";
 
 
@@ -79,7 +79,10 @@ const ProductParams = ({actualTheme, product}) => {
     return <div className={productParams}>
         <div className={productTools}>
             <div className={productSizes}>
-                <div className={sizeTitle}>{getMessage("size")}</div>
+                <div className={sizeTitle}>
+                    <span>{getMessage("size")}</span>
+                    <span style={{textTransform: "uppercase"}}>{sizeValue ? " : " + sizeValue : ""}</span>
+                </div>
                 <div className={sizeOptions}>
                     {
                         sizes.map((size, index) => {
@@ -97,7 +100,10 @@ const ProductParams = ({actualTheme, product}) => {
             <div className={productColors}>
                 <div className={empty}/>
                 <div>
-                    <div className={colorTitle}>{getMessage("color")}</div>
+                    <div className={colorTitle}>
+                        <span>{getMessage("color")}</span>
+                        <span>{colorValue ? " : " + defineTextColor(colorValue) : ""}</span>
+                    </div>
                     <div className={colorOptions}>
                         {
                             colors.map((color, index) => {

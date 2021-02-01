@@ -109,5 +109,20 @@ export const calculateRate = (value) => {
     }
 }
 
+
+export const defineTextColor = (hex) => {
+    // colors: ["#1B2436", "#137681", "#2efef6"],
+    switch (true) {
+        case hex === "#1B2436":
+            return "Black"
+        case hex === "#137681":
+            return "Pure blue"
+        case hex === "#2efef6":
+            return "Skye blue"
+        default:
+            return ""
+    }
+}
+
 let res = calculateRate(total);
 console.log(res)
