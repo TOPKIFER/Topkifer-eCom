@@ -71,8 +71,8 @@
       height: 30px;
 
       .priceClass {
-        font-size: 35px;
-        font-weight: bold;
+        font-size: 28px;
+        font-weight: normal;
       }
 
       .currencyClass {
@@ -92,16 +92,16 @@
       }
 
       .productTitle {
-       /* margin-top: -17em;
-        text-align: center;*/
+        /* margin-top: -17em;
+         text-align: center;*/
       }
 
       .productStarAndReviewsClass {
-      /*  @include positionChanged;
-        @include flexCenterSpace;
-        justify-content: center;
-        position: absolute;
-        bottom: 60%;*/
+        /*  @include positionChanged;
+          @include flexCenterSpace;
+          justify-content: center;
+          position: absolute;
+          bottom: 60%;*/
       }
     }
   }

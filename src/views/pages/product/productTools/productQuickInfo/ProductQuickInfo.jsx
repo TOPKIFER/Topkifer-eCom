@@ -83,9 +83,22 @@ const ProductQuickInfo = ({actualTheme, product}) => {
             </div>
             <div className={productPrice}>
                 <span className={priceClass}> {price}</span>
-                <span className={currencyClass}>cfa</span>
+                <span style={{
+                    fontSize: "26px"
+                }} className={currencyClass}>cfa</span>
             </div>
-            <div className={productDescription}>{description}</div>
+            <div className={productDescription}>{
+                description.split("").map((s, i) => i < 200 ? s : null)
+            }
+                {description.length > 200 && <span>
+                    ...
+                    <span style={{
+                        textDecoration: "underline",
+                        marginLeft: "1rem",
+                        cursor: "pointer"
+                    }}>{getMessage("readMore")}</span>
+                </span>}
+            </div>
         </div>
         <ProductParams
             product={product}
