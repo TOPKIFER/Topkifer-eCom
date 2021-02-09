@@ -14,6 +14,11 @@
       font-size: 36px;
       color: white;
       font-weight: 600;
+      margin-bottom: 1rem;
+
+      &:nth-child(n+1) {
+        margin-top: -1rem;
+      }
     }
   }
 

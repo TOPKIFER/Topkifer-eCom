@@ -158,6 +158,12 @@
         padding-left: 2rem;
         border-radius: 4px;
         width: 200px;
+        cursor: pointer;
+        transition: all .3s ease-in;
+
+        &:hover {
+          box-shadow: 02px 4px 8px #0000008a;
+        }
       }
     }
 

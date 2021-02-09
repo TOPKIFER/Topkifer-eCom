@@ -3,8 +3,8 @@ import categoriesBarWhiteClasses from "./categoriesBarWhite.module.scss"
 import categoriesBarBlackClasses from "./categoriesBarBlack.module.scss"
 import {categoriesConstants, LEFT, RIGHT, WHITE} from "utilities/constant";
 import {connect} from "react-redux";
-import {getMessage} from "../../utilities/i18n";
-import {moveFile} from "../../utilities/utilities";
+import {getMessage} from "utilities/i18n";
+import {moveFile} from "utilities/utilities";
 
 /**
  * CategoriesBar component

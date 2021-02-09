@@ -5,7 +5,7 @@ import ProductImage from "./productImage/ProductImage";
 import {categoriesBlackProducts, categoriesProducts, WHITE} from "utilities/constant";
 import {connect} from "react-redux"
 import ProductQuickInfo from "views/pages/product/productTools/productQuickInfo/ProductQuickInfo";
-import ProductParams from "views/pages/product/productTools/productQuickInfo/productParams/ProductParams";
+import ProductMoreInfo from "views/pages/product/productMoreInfo/ProductMoreInfo";
 
 
 /**
@@ -54,6 +54,9 @@ const Product = ({actualTheme, ...rest}) => {
                 product={product}
             />
             <ProductQuickInfo
+                product={product}
+            />
+            <ProductMoreInfo
                 product={product}
             />
         </div>

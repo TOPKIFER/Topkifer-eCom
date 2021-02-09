@@ -89,13 +89,62 @@ export const accountConstants = [
     }
 ]
 
+export const categoriesProductsReviews = [
+    {
+        idProduct: 1,
+        data: {
+            total: 2500,
+            veryPoor: {
+                total: 1,
+                content: [
+                    {
+                        id: 1,
+                        stars: 1,
+                        owner: 1,
+                        createdAt: new Date().toUTCString(),
+                        updatedAt: new Date().toUTCString(),
+                        message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolor enim ex illo laudantium libero nesciunt officiis ut veniam voluptate"
+                    },
+                ]
+            },
+            poor: {
+                total: 1,
+                content: [
+                    {
+                        id: 1,
+                        stars: 2,
+                        owner: 1,
+                        createdAt: new Date().toUTCString(),
+                        updatedAt: new Date().toUTCString(),
+                        message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolor enim ex illo laudantium libero nesciunt officiis ut veniam voluptate"
+                    },
+                ]
+            },
+            veryGood: {
+                total: 1,
+                content: [
+                    {
+                        id: 1,
+                        stars: 5,
+                        owner: 1,
+                        createdAt: new Date().toUTCString(),
+                        updatedAt: new Date().toUTCString(),
+                        message: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolor enim ex illo laudantium libero nesciunt officiis ut veniam voluptate"
+                    },
+                ]
+            },
+        }
+
+    }
+]
+
 export const categoriesProducts = [
     {
         src: shoes,
         title: "Nike Shoes",
         price: "45000",
         sizes: ["xs", "s", "m"],
-        colors: ["#1B2436", "#137681", "#2efef6"],
+        colors: ["#1b2436", "#137681", "#2efef6"],
         stock: 50,
         reviews: {
             total: 2500,
@@ -561,5 +610,12 @@ export const categoriesBlackProducts = [
         ]
     },
 ];
+
+export const relativesCategoriesProduct = [
+    {
+        idProduct: 1,
+        relativeProducts: [...categoriesProducts]
+    }
+]
 
 
