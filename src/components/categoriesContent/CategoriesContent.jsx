@@ -15,10 +15,12 @@ import {WHITE} from "../../utilities/constant";
  * @param {Function} onArrowClick The trigger for navigate to other link
  * @param {Array} products Array of pictures to display
  * @param {String} actualTheme the actual theme of the app
+ * @param {Boolean} noArrow to show the arrow icon or not
+ * @param {Object} rest the rest of useful props
  * @return A fully categories content with title and images
  * @author Arnaud LITAABA
  */
-const CategoriesContent = ({title, onArrowClick, products = [],actualTheme}) => {
+const CategoriesContent = ({title, onArrowClick, products = [],actualTheme,noArrow,...rest}) => {
 
     const {
         categoriesContentWrapper,
@@ -27,14 +29,18 @@ const CategoriesContent = ({title, onArrowClick, products = [],actualTheme}) => 
         categoriesContent
     } = actualTheme === WHITE ? categoriesContentWhiteClasses : categoriesContentBlackClasses;
 
+    const {customCategoriesContentTitle} = rest;
+
     return <div className={categoriesContentWrapper}>
-        <div className={categoriesContentHeader}>
+        <div className={customCategoriesContentTitle || categoriesContentHeader}>
             <b><h3 className={categoriesContentTitle}>{title || "Title"}</h3></b>
-            <Icon
-                onClick={onArrowClick || null}
-                src={arrowRight}
-                size="36px"
-            />
+            {
+                !noArrow && <Icon
+                    onClick={onArrowClick || null}
+                    src={arrowRight}
+                    size="36px"
+                />
+            }
         </div>
         <div className={categoriesContent}>
             {

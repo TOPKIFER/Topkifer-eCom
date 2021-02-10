@@ -6,6 +6,8 @@ import {categoriesBlackProducts, categoriesProducts, WHITE} from "utilities/cons
 import {connect} from "react-redux"
 import ProductQuickInfo from "views/pages/product/productTools/productQuickInfo/ProductQuickInfo";
 import ProductMoreInfo from "views/pages/product/productMoreInfo/ProductMoreInfo";
+import RelativeProduct from "views/pages/product/relativeProducts/RelativeProduct";
+import MobileProduct from "views/pages/product/mobilePart/MobileProduct";
 
 
 /**
@@ -18,6 +20,7 @@ const Product = ({actualTheme, ...rest}) => {
 
     const {
         productWrapper,
+        productWrapperMobile,
     } = productClasses;
 
     /*
@@ -44,19 +47,34 @@ const Product = ({actualTheme, ...rest}) => {
         })
     }
 
-    useEffect(fetchProduct, [actualTheme]);
+    useEffect(fetchProduct, [actualTheme, id]);
 
     const {ready, product} = productState;
 
     return ready ? <ScrollTo>
         <div className={productWrapper}>
             <ProductImage
+                id={id}
                 product={product}
             />
             <ProductQuickInfo
+                id={id}
                 product={product}
             />
             <ProductMoreInfo
+                id={id}
+                product={product}
+            />
+
+            <RelativeProduct
+                id={id}
+                product={product}
+            />
+
+        </div>
+        <div className={productWrapperMobile}>
+            <MobileProduct
+                id={id}
                 product={product}
             />
         </div>

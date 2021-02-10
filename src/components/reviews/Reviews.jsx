@@ -12,9 +12,10 @@ import starIcon from "assets/icons/starNotChecked.svg";
  * Reviews component
  * @param {String} actualTheme the actual theme of the app
  * @param {Object} product the selected product
+ * @param {Object} rest the others useful props
  * @author Arnaud LITAABA
  */
-const Reviews = ({actualTheme, product}) => {
+const Reviews = ({actualTheme, product, ...rest}) => {
 
     const {
         reviewsClass, review,
@@ -22,19 +23,23 @@ const Reviews = ({actualTheme, product}) => {
         ownerAndDate, stars, starClass, starClassChecked
     } = actualTheme === WHITE ? reviewsWhiteClasses : reviewsBlackClasses;
 
+    const {id} = rest;
+
     const [state, setState] = useState({
         reviews: {},
         stars: [...Array(5).keys()].map(v => v + 1)
     });
 
     const fetchReviews = () => {
-        let reviews = categoriesProductsReviews.find(review => review.idProduct === product.id);
+        let reviews = categoriesProductsReviews.find(review => review.idProduct === +id);
         if (reviews) {
             setState({...state, reviews});
+        } else {
+            setState({...state, reviews: {}})
         }
     }
 
-    useEffect(fetchReviews, []);
+    useEffect(fetchReviews, [actualTheme, id]);
 
     const defineReviews = (data) => {
         return data && data.content.map((r, index) => {
@@ -72,11 +77,10 @@ const Reviews = ({actualTheme, product}) => {
         })
 
     }
-    console.log(state)
     const {reviews, stars: allStars} = state;
     const {data} = reviews;
     const {veryPoor, poor, fair, good, veryGood} = data || {}
-    return state ? <div className={reviewsClass}>
+    return Object.keys(state.reviews).length > 1 ? <div className={reviewsClass}>
         {defineReviews(veryGood)}
         {defineReviews(good)}
         {defineReviews(fair)}

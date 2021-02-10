@@ -4,22 +4,19 @@ import productParamsWhiteClasses
     from "views/pages/product/productTools/productQuickInfo/productParams/productParamsWhite.module.scss";
 import productParamsBlackClasses
     from "views/pages/product/productTools/productQuickInfo/productParams/productParamsBlack.module.scss";
-import {defaultIconSize, MINUS_SIGN, SUM_SIGN, WHITE} from "utilities/constant";
+import {MINUS_SIGN, SUM_SIGN, WHITE} from "utilities/constant";
 import {defineTextColor, makeIndex, multipleClasses} from "utilities/utilities";
 import {getMessage} from "utilities/i18n";
-import Icon from "components/icon/Icon";
-import heartIcon from "assets/icons/heart.svg"
-import heartRedIcon from "assets/icons/heart-red.svg"
-import shareIcon from "assets/icons/shareWhite.svg";
 
 
 /**
  * Product Params component
  * @param {String} actualTheme the actual theme of the app
  * @param {Object} product the selected product
+ * @param {Object} rest the of useful props
  * @author Arnaud LITAABA
  */
-const ProductParams = ({actualTheme, product}) => {
+const ProductParams = ({actualTheme, product, ...rest}) => {
 
     const {
         productParams,
@@ -49,15 +46,16 @@ const ProductParams = ({actualTheme, product}) => {
         likeIcon
     } = actualTheme === WHITE ? productParamsWhiteClasses : productParamsBlackClasses;
 
+    const {injectable, noIcons} = rest;
+
     const [state, setState] = useState({
         colorValue: "",
         sizeValue: "",
         quantity: 1,
-        isLiked: false
     });
 
 
-    const {colorValue, sizeValue, quantity, isLiked} = state;
+    const {colorValue, sizeValue, quantity,} = state;
 
     const {sizes, colors, stock} = product;
 
@@ -130,8 +128,10 @@ const ProductParams = ({actualTheme, product}) => {
 
             </div>
         </div>
+
         <div className={actions}>
             <div className={quantityClass}>
+                {injectable}
                 <div className={quantityTitle}>{getMessage("quantity")}</div>
                 <div className={quantityContent}>
                     <div unselectable="true" className={multipleClasses(sign, quantity === 0 ? signDisabled : "_")}
@@ -148,21 +148,11 @@ const ProductParams = ({actualTheme, product}) => {
                     {getMessage("addToCart")}
                 </div>
             </div>
-            <div className={productLike}>
-                <div className={productShare}>
-                    <Icon
-                        src={shareIcon}
-                        size={defaultIconSize}
-                    />
-                </div>
-                <div className={likeIcon}>
-                    <Icon
-                        onClick={() => setState({...state, isLiked: !state.isLiked})}
-                        src={isLiked ? heartRedIcon : heartIcon}
-                        size={defaultIconSize}
-                    />
-                </div>
-            </div>
+            {/*
+                !noIcons && <ProductIcons
+                    product={product}
+                />
+            */}
         </div>
 
     </div>

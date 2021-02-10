@@ -54,6 +54,7 @@ const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest
 
     let onClickAction = allowClick ? onClick ? onClick : () => history.push(PRODUCT + "/" + id) : null;
 
+
     return <div className={customItemCardWrapper || itemCardWrapper}>
         <div className={customItemCard || itemCard}>
             <div onClick={onClickAction}

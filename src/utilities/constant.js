@@ -141,7 +141,7 @@ export const categoriesProductsReviews = [
 export const categoriesProducts = [
     {
         src: shoes,
-        title: "Nike Shoes",
+        title: "Nike Shoes 1",
         price: "45000",
         sizes: ["xs", "s", "m"],
         colors: ["#1b2436", "#137681", "#2efef6"],
@@ -213,20 +213,20 @@ export const categoriesProducts = [
     },
     {
         src: shoes2,
-        title: "Nike Shoes",
-        price: "45000",
-        sizes: ["xs", "s", "m"],
+        title: "Nike Shoes 2",
+        price: "46000",
+        sizes: ["xs", "s"],
         colors: ["#1B2436", "#137681", "#2efef6"],
-        stock: 50,
+        stock: 40,
         reviews: {
-            total: 3000,
+            total: 3003,
             veryPoor: 300,
             poor: 500,
             fair: 800,
             good: 800,
             veryGood: 600,
         },
-        description: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
+        description: " WLorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque ipsum, vero! A aperiam beatae consequuntur eius eligendi esse eum, facere harum incidunt inventore laborum odio quam quidem quisquam saepe suscipit.",
         id: 2,
         otherSrc: [
             {
@@ -614,7 +614,14 @@ export const categoriesBlackProducts = [
 export const relativesCategoriesProduct = [
     {
         idProduct: 1,
-        relativeProducts: [...categoriesProducts]
+        relativeProducts: [...categoriesProducts].concat([...categoriesProducts])
+    }
+]
+
+export const relativesBlackCategoriesProduct = [
+    {
+        idProduct: 1,
+        relativeProducts: [...categoriesBlackProducts].concat([...categoriesBlackProducts])
     }
 ]
 

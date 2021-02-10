@@ -1,6 +1,6 @@
 import React from "react";
 import {ReactSVG} from 'react-svg'
-import {SEPARATOR, WHITE} from "../../utilities/constant";
+import {SEPARATOR, WHITE} from "utilities/constant";
 import {connect} from "react-redux"
 
 /**
@@ -23,7 +23,7 @@ const Icon = ({src, size, style, className, wrapperClassName, actualTheme, color
         beforeInjection={(svg) => {
             if (className) {
                 className.split(SEPARATOR).forEach(cl => {
-                    svg.classList.add(cl)
+                    svg.classList.add(cl !== "" ? cl : "_")
                 })
             }
             const styles = `

@@ -1,0 +1,58 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/keyframes";
+
+.productLike {
+  margin: 1rem 0;
+  @include flexCenterSpace;
+  justify-content: space-between;
+  flex-direction: column;
+  position: absolute;
+  right: 4%;
+  top: 0;
+  height: 100px;
+
+
+  .likeIcon, .productShare {
+    background-color: #161616;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    @include flexCenterSpace;
+    justify-content: center;
+    flex-direction: row-reverse;
+    cursor: pointer;
+    transition: box-shadow .3s ease-in;
+
+    span svg {
+      fill: white !important;
+      z-index: 2;
+
+      &:hover {
+        fill: red !important;
+      }
+    }
+
+    &:hover {
+      box-shadow: $bigShadow;
+      transform: scale(1.02);
+    }
+  }
+
+
+}
+
+
+@media screen and (max-width: $breakpoint) {
+  .productLike {
+    justify-content: center;
+
+    .productShare {
+      display: inline-flex !important;
+    }
+
+    .likeIcon {
+      justify-content: center;
+    }
+  }
+}

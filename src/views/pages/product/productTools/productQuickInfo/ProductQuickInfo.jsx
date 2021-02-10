@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {connect} from "react-redux";
 import productQuickInfoWhiteClasses
     from "views/pages/product/productTools/productQuickInfo/productQuickInfoWhite.module.scss";
@@ -8,29 +8,23 @@ import {defaultIconSize, WHITE} from "utilities/constant";
 import {getMessage} from "utilities/i18n";
 import Icon from "components/icon/Icon";
 import shareIcon from "assets/icons/shareWhite.svg";
-import starIcon from "assets/icons/starNotChecked.svg";
-import {makeIndex, multipleClasses} from "utilities/utilities";
 import ProductParams from "views/pages/product/productTools/productQuickInfo/productParams/ProductParams";
+import Stars from "views/pages/product/stars/Stars";
 
 
 /**
  * Product Tools component
  * @param {String} actualTheme the actual theme of the app
  * @param {Object} product the selected product
+ * @param {Object} rest others useful props
  * @author Arnaud LITAABA
  */
-const ProductQuickInfo = ({actualTheme, product}) => {
+const ProductQuickInfo = ({actualTheme, product,...rest}) => {
 
     const {
         productTools,
         productToolsTop,
         productBestSeller,
-        productShare,
-        productStarClass,
-        productStarAndReviewsClass,
-        productStarClasses,
-        productStarClassChecked,
-        productReviewsClass,
         productTitle,
         productPrice,
         priceClass,
@@ -39,48 +33,28 @@ const ProductQuickInfo = ({actualTheme, product}) => {
         productInfo,
     } = actualTheme === WHITE ? productQuickInfoWhiteClasses : productQuickInfoBlackClasses;
 
-    const [stars, setStars] = useState({
-        total: [...Array(5).keys()].map(v => v + 1),
-        checked: []
-    });
-
-    const defineChecked = () => {
-        setStars({
-            ...stars,
-            checked: [1, 2, 3, 4]
-        })
-    }
-
-    useEffect(defineChecked, [])
-
-    const {title, description, price, reviews} = product;
+    const {title, description, price} = product;
     return <div className={productTools}>
         <div className={productInfo}>
             <div className={productToolsTop}>
                 <div className={productBestSeller}>
                     {getMessage("bestSeller")}
                 </div>
-                <div className={productShare}>
+                {
+                    /*
+                    *  <div className={productShare}>
                     <Icon
                         src={shareIcon}
                         size={defaultIconSize}
                     />
                 </div>
+                    * */
+                }
             </div>
             <div className={productTitle}>{title}</div>
-            <div className={productStarAndReviewsClass}>
-                <div className={productStarClasses}>
-                    {stars.total.map((value, index) => {
-                        return <Icon
-                            className={multipleClasses(productStarClass, stars.checked.includes(value) ? productStarClassChecked : "_")}
-                            key={makeIndex(value, "stars", index)}
-                            src={starIcon}
-                            size={defaultIconSize}
-                        />
-                    })}
-                </div>
-                <div className={productReviewsClass}> {reviews.total} {getMessage("reviews")}</div>
-            </div>
+            <Stars
+                product={product}
+            />
             <div className={productPrice}>
                 <span className={priceClass}> {price}</span>
                 <span style={{

@@ -1,0 +1,26 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/keyframes";
+
+
+.productStarAndReviewsClass {
+  @include flexCenterSpace;
+  justify-content: flex-start;
+
+  .productStarClasses {
+    margin-right: 1rem;
+
+    .productStarClass {
+      margin-right: .2rem;
+    }
+
+    .productStarClassChecked {
+      fill: orange !important;
+    }
+  }
+
+  .productReviewsClass {
+  }
+
+
+}

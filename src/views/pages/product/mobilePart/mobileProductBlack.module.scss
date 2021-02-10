@@ -1,0 +1,74 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/keyframes";
+
+.productTools {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 1fr;
+
+
+  .productTitle {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2rem;
+    color: white;
+    // margin-bottom: 1rem;
+  }
+
+  .productBestSeller {
+    background: #e37717;
+    text-align: center;
+    width: 40%;
+    // margin: 0 auto;
+    padding: .6rem;
+    font-size: 22px;
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    visibility: hidden;
+    margin-top: -2rem;
+
+  }
+
+  .imageAndStar {
+    position: relative;
+
+    .starsClass {
+      position: absolute;
+      top: 6%;
+      right: 10%;
+      left: 10%;
+    }
+  }
+
+  .productDescription {
+    margin-top: 2rem;
+    color: white;
+  }
+
+  .tools {
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+
+    .productPrice {
+      color: white;
+      margin-bottom: 1rem;
+
+      .priceClass {
+        font-size: 28px;
+        font-weight: normal;
+      }
+
+      .currencyClass {
+        margin-left: .3rem;
+      }
+    }
+  }
+
+  .relativeProduct {
+    margin-bottom: 1rem;
+  }
+
+}

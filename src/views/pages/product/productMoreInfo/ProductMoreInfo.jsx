@@ -15,9 +15,10 @@ import Reviews from "components/reviews/Reviews";
  * Product more info component
  * @param {String} actualTheme the actual theme of the app
  * @param {Object} product the selected product
+ * @param {Object} rest the others useful props
  * @author Arnaud LITAABA
  */
-const ProductMoreInfo = ({actualTheme, product}) => {
+const ProductMoreInfo = ({actualTheme, product,...rest}) => {
 
     const {
         productMoreInfoDesktop,
@@ -38,10 +39,11 @@ const ProductMoreInfo = ({actualTheme, product}) => {
         currentTab: REVIEWS
     });
 
+    const {id} = rest;
 
     const {currentTab, collapsed} = state;
 
-    const {description, moreInfo, reviews} = product;
+    const {description} = product;
 
     const setContent = (target) => {
         const toCheck = state[target];
@@ -51,7 +53,7 @@ const ProductMoreInfo = ({actualTheme, product}) => {
             case toCheck === ADDITIONAL_INFO:
                 return <p>"additionalInformation"</p>
             case toCheck === REVIEWS:
-                return <Reviews product={product}/>
+                return <Reviews id={id} product={product}/>
             default:
                 return "...."
         }

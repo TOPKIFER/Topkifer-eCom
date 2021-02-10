@@ -22,8 +22,8 @@ import ListMenu from "components/listMenu/ListMenu";
 import {connect} from "react-redux"
 import {logInTheUser} from "redux/actions/auth/login/loginActions";
 import {changeTheme} from "redux/actions/theme/themeActions";
-import {changeCurrentLanguage} from "../../redux/actions/language/languageActions";
-import {getMessage} from "../../utilities/i18n";
+import {changeCurrentLanguage} from "redux/actions/language/languageActions";
+import {getMessage} from "utilities/i18n";
 
 /**
  * Menu component
@@ -36,7 +36,14 @@ import {getMessage} from "../../utilities/i18n";
  * @author Arnaud LITAABA
  */
 const Menu = ({isLoggedIn, logInTheUser, actualTheme, actualLanguage, changeTheme, changeCurrentLanguage}) => {
-    const {menu, menuTab, menuTabContent, loginTab, registerTab, active} = actualTheme === WHITE ? menuWhiteClasses : menuBlackClasses;
+    const {
+        menu,
+        menuTab,
+        menuTabContent,
+        loginTab,
+        registerTab,
+        active
+    } = actualTheme === WHITE ? menuWhiteClasses : menuBlackClasses;
 
     const MENU = "menu";
     const LOGIN = "auth";
