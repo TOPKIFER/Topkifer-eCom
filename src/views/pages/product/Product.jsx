@@ -6,7 +6,7 @@ import {categoriesBlackProducts, categoriesProducts, WHITE} from "utilities/cons
 import {connect} from "react-redux"
 import ProductQuickInfo from "views/pages/product/productTools/productQuickInfo/ProductQuickInfo";
 import ProductMoreInfo from "views/pages/product/productMoreInfo/ProductMoreInfo";
-import RelativeProduct from "views/pages/product/relativeProducts/RelativeProduct";
+import RelativeProduct from "views/pages/product/relatedProducts/RelatedProduct";
 import MobileProduct from "views/pages/product/mobilePart/MobileProduct";
 
 

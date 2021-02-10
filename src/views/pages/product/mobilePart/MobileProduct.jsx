@@ -8,7 +8,7 @@ import ProductImage from "views/pages/product/productImage/ProductImage";
 import Stars from "views/pages/product/stars/Stars";
 import ProductParams from "views/pages/product/productTools/productQuickInfo/productParams/ProductParams";
 import ProductMoreInfo from "views/pages/product/productMoreInfo/ProductMoreInfo";
-import RelativeProduct from "views/pages/product/relativeProducts/RelativeProduct";
+import RelativeProduct from "views/pages/product/relatedProducts/RelatedProduct";
 import ProductIcons from "views/pages/product/productsIcons/ProductIcons";
 
 

@@ -125,4 +125,3 @@ export const defineTextColor = (hex) => {
 }
 
 let res = calculateRate(total);
-console.log(res)
