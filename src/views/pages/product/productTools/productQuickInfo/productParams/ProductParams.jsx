@@ -4,9 +4,11 @@ import productParamsWhiteClasses
     from "views/pages/product/productTools/productQuickInfo/productParams/productParamsWhite.module.scss";
 import productParamsBlackClasses
     from "views/pages/product/productTools/productQuickInfo/productParams/productParamsBlack.module.scss";
-import {MINUS_SIGN, SUM_SIGN, WHITE} from "utilities/constant";
+import {WHITE} from "utilities/constant";
 import {defineTextColor, makeIndex, multipleClasses} from "utilities/utilities";
 import {getMessage} from "utilities/i18n";
+import {addToCart} from "redux/actions/auth/login/loginActions";
+import Quantity from "components/quantity/Quantity";
 
 
 /**
@@ -40,46 +42,27 @@ const ProductParams = ({actualTheme, product, ...rest}) => {
         value,
         actions,
         addToCart,
-        btn,
-        productShare,
-        productLike,
-        likeIcon
+        btn
     } = actualTheme === WHITE ? productParamsWhiteClasses : productParamsBlackClasses;
 
-    const {injectable, noIcons} = rest;
+    const {injectable, noIcons, cart, addToCart: addToCartFunction} = rest;
 
     const [state, setState] = useState({
         colorValue: "",
         sizeValue: "",
-        quantity: 1,
     });
 
 
-    const {colorValue, sizeValue, quantity,} = state;
+    const {colorValue, sizeValue} = state;
 
     const {sizes, colors, stock} = product;
 
-    const operation = (sign) => {
-        const {quantity} = state;
-        switch (sign) {
-            case MINUS_SIGN:
-                if (quantity <= 0) return;
-                setState({
-                    ...state,
-                    quantity: quantity - 1
-                })
-                return;
-            case SUM_SIGN:
-                if (quantity >= stock) return;
-                setState({
-                    ...state,
-                    quantity: quantity + 1
-                })
-                return;
-            default:
-                return;
-        }
+    const handleAddToCart = (selectedProduct) => {
+        // const {ADD_TO_CART, UPDATE_CART} = REDUX_CONSTANTS;
+
+
     }
+
 
     return <div className={productParams}>
         <div className={productTools}>
@@ -129,31 +112,23 @@ const ProductParams = ({actualTheme, product, ...rest}) => {
             </div>
         </div>
 
-        <div className={actions}>
-            <div className={quantityClass}>
-                {injectable}
-                <div className={quantityTitle}>{getMessage("quantity")}</div>
-                <div className={quantityContent}>
-                    <div unselectable="true" className={multipleClasses(sign, quantity === 0 ? signDisabled : "_")}
-                         onClick={() => operation(MINUS_SIGN)}>-
-                    </div>
-                    <div className={value}>{quantity}</div>
-                    <div unselectable="true" className={multipleClasses(sign, quantity === stock ? signDisabled : "_")}
-                         onClick={() => operation(SUM_SIGN)}>+
-                    </div>
-                </div>
-            </div>
+        <Quantity classes={{
+            quantityClass,
+            quantityTitle,
+            quantityContent,
+            sign,
+            signDisabled,
+            value,
+            actions,
+            addToCart,
+            btn
+        }} stock={stock} product={product} injectable={injectable}>
             <div className={addToCart}>
-                <div className={btn}>
+                <div onClick={() => handleAddToCart(product)} className={btn}>
                     {getMessage("addToCart")}
                 </div>
             </div>
-            {/*
-                !noIcons && <ProductIcons
-                    product={product}
-                />
-            */}
-        </div>
+        </Quantity>
 
     </div>
 }
@@ -167,7 +142,8 @@ const ProductParams = ({actualTheme, product, ...rest}) => {
  */
 const mapStateToProps = state => {
     return {
-        actualTheme: state.themeState.actualTheme
+        actualTheme: state.themeState.actualTheme,
+        cart: state.loginState.loggedInUser.cart,
     }
 }
 
@@ -177,4 +153,6 @@ const mapStateToProps = state => {
  * bind theme value to product props
  * @author Arnaud LITAABA
  */
-export default connect(mapStateToProps)(ProductParams)
+export default connect(mapStateToProps, {
+    addToCart
+})(ProductParams)

@@ -8,7 +8,7 @@ import Icon from "components/icon/Icon";
 import {APP_URL, defaultIconSize, WHITE} from "utilities/constant";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {multipleClasses} from "../../utilities/utilities";
+import {multipleClasses} from "utilities/utilities";
 
 const {PRODUCT} = APP_URL;
 
@@ -25,7 +25,7 @@ const {PRODUCT} = APP_URL;
  */
 const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest}) => {
 
-    const {history, classNames, onClick} = rest;
+    const {history, classNames, onClick, moreCl,wrapperAddonClass, itemCardAddonClass} = rest;
 
     const {
         itemCardWrapper: customItemCardWrapper,
@@ -55,13 +55,13 @@ const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest
     let onClickAction = allowClick ? onClick ? onClick : () => history.push(PRODUCT + "/" + id) : null;
 
 
-    return <div className={customItemCardWrapper || itemCardWrapper}>
-        <div className={customItemCard || itemCard}>
+    return <div className={customItemCardWrapper || multipleClasses(itemCardWrapper, wrapperAddonClass ?? "_")}>
+        <div className={customItemCard || multipleClasses(itemCard,itemCardAddonClass ?? "_")}>
             <div onClick={onClickAction}
                  style={{
                      backgroundImage: `url(${src})`
                  }}
-                 className={multipleClasses(customItemCardImage || itemCardImage, itemCardHighlighted || "")}>
+                 className={multipleClasses(customItemCardImage || itemCardImage, itemCardHighlighted || "", moreCl || "")}>
                 {/*allowClick && <div onClick={onClick} className={moreDetails}>More details</div>*/}
             </div>
             {

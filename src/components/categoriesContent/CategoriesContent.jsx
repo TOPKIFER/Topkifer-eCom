@@ -20,7 +20,10 @@ import {WHITE} from "../../utilities/constant";
  * @return A fully categories content with title and images
  * @author Arnaud LITAABA
  */
-const CategoriesContent = ({title, onArrowClick, products = [],actualTheme,noArrow,...rest}) => {
+const CategoriesContent = ({title, onArrowClick, products = [], actualTheme, noArrow, ...rest}) => {
+
+
+    const {moreCl} = rest;
 
     const {
         categoriesContentWrapper,
@@ -55,6 +58,7 @@ const CategoriesContent = ({title, onArrowClick, products = [],actualTheme,noArr
                                   product={product}
                                   full
                                   allowClick
+                                  moreCl={moreCl}
                         />
                 })
             }

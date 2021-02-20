@@ -31,13 +31,17 @@ export const VERY_POOR_RATE = 0;
 export const APP_URL = {
     BASE: "/",
     PRODUCT: "/product",
+    CART: "/cart",
+    FAVORITE: "/favorite",
 };
 
 export const REDUX_CONSTANTS = {
     LOGIN: "auth",
     REGISTER: "register",
     CHANGE_THEME: "change theme",
-    CHANGE_LANGUAGE: "change language"
+    CHANGE_LANGUAGE: "change language",
+    ADD_TO_CART: "add to cart",
+    UPDATE_CART: "update cart",
 }
 
 export const categoriesConstants = [
@@ -624,5 +628,26 @@ export const relativesBlackCategoriesProduct = [
         relativeProducts: [...categoriesBlackProducts].concat([...categoriesBlackProducts])
     }
 ]
+
+export const userWhiteShoppingCart = [...categoriesProducts.map((value,index) => {
+    return {
+        id: index + 1,
+        quantity: index + 2,
+        product: {...value},
+        size: "m",
+        color: "#137681"
+    }
+})]
+
+export const userBlackShoppingCart = [...categoriesBlackProducts.map((value, index) => {
+    return {
+        id: index + 1,
+        quantity: index + 2,
+        product: {...value},
+        size: "m",
+        color: "#137681"
+    }
+})]
+
 
 

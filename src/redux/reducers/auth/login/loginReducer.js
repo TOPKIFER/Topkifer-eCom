@@ -1,9 +1,11 @@
 import {REDUX_CONSTANTS} from "utilities/constant";
 
-const {LOGIN} = REDUX_CONSTANTS;
+const {LOGIN, ADD_TO_CART,UPDATE_CART} = REDUX_CONSTANTS;
 
 const initialLoginState = {
-    loggedInUser: {},
+    loggedInUser: {
+        cart: []
+    },
     isLoggedIn: false
 }
 
@@ -14,6 +16,17 @@ const loginReducer = (state = initialLoginState, actions) => {
             return {
                 ...state,
                 ...payload
+            }
+        case ADD_TO_CART:
+           // console.log(payload)
+            let newCart = [...state.loggedInUser.cart];
+            newCart.concat(payload);
+            return {
+                ...state,
+                loggedInUser: {
+                    ...state.loggedInUser,
+                    cart: [...newCart]
+                }
             }
         default:
             return state

@@ -1,0 +1,144 @@
+@import "~assets/styles/mixins";
+@import "~assets/styles/variables";
+@import "~assets/styles/keyframes";
+
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 1fr;
+  width: 90%;
+  margin: 0 auto;
+
+  .title {
+    @include flexCenterSpace;
+    justify-content: center;
+    padding: 2rem;
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  .wholeContent {
+    display: grid;
+    grid-template-rows: 1fr;
+    border: 2px solid #cccccc6a;
+    border-radius: 4px;
+    padding: 1rem;
+    grid-row-gap: 2rem;
+
+    .cartHeader, .cartContent {
+      display: grid;
+      grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
+      grid-row-gap: 2rem;
+    }
+
+    .cartHeader {
+
+      div {
+        font-weight: bold;
+        font-size: 20px;
+      }
+    }
+
+    .productImage {
+      @include flexCenterSpace;
+      justify-content: flex-start;
+
+      .itemCardWrapper {
+        width: 30%;
+        margin-left: 2rem;
+
+        &:hover {
+          transform: none;
+        }
+      }
+
+      .itemCard {
+        height: 100px;
+      }
+
+      .cartProductTitle {
+        font-weight: 700;
+        margin-left: 2rem;
+      }
+    }
+
+    .cartProductPrice, .cartProductTotal, .cartProductRemove {
+      @include flexCenterSpace;
+      color: #9F9F9F;
+      font-weight: 600;
+    }
+
+
+  }
+
+}
+
+.cartProductQuantity {
+  @include flexCenterSpace;
+
+  .actions {
+    @include flexCenterSpace;
+
+    .quantityClass {
+      .quantityContent {
+        @include flexCenterSpace;
+        justify-content: normal;
+        margin-top: .6rem;
+
+        div {
+          margin-right: 1rem;
+        }
+
+        .sign {
+          height: 30px;
+          width: 50px;
+          user-select: none;
+          @include flexCenterSpace;
+          justify-content: center;
+          font-size: 26px;
+          border: 1px solid #cccccc;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .signDisabled {
+          color: #cccccc;
+          cursor: not-allowed;
+          border-color: #eeeded;
+        }
+
+        .value {
+          font-weight: bold;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+
+.cartProductRemove {
+  @include flexCenterSpace;
+  justify-content: center !important;
+
+  &:hover {
+
+    span {
+      background: #cccccc6a;
+      padding: .2rem 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      box-shadow: $smallShadow;
+      font-weight: 700;
+      transition: all .3s ease;
+    }
+  }
+}
+
+
+@media screen and (max-width: $breakpoint) {
+
+  .wrapper {
+    grid-column: 1;
+  }
+}

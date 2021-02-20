@@ -1,13 +1,14 @@
 import React, {lazy, Suspense} from "react";
 import {Route, Switch} from "react-router-dom";
 import {APP_URL} from "utilities/constant";
-import {DrawerSearchContext} from "../App";
+import {DrawerSearchContext} from "App";
 import {multipleClasses} from "utilities/utilities";
 
 const Home = lazy(() => import("views/pages/home/Home"));
 const Product = lazy(() => import("views/pages/product/Product"));
+const Cart = lazy(() => import("views/pages/cart/Cart"));
 
-const {BASE, PRODUCT} = APP_URL;
+const {BASE, PRODUCT, CART} = APP_URL;
 
 /**
  * AppRoute
@@ -27,6 +28,7 @@ const AppRoute = (props) => {
                 <Suspense fallback={null}>
                     <Route exact path={BASE} component={Home}/>
                     <Route path={PRODUCT + "/:id"} component={Product}/>
+                    <Route path={CART} component={Cart}/>
                 </Suspense>
             </Switch>
             </div>

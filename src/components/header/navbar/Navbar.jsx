@@ -14,7 +14,7 @@ import heart from "assets/icons/heart.svg"
 import menu from "assets/icons/menu.svg"
 import Icon from "components/icon/Icon";
 import {multipleClasses, overTen, toggleAuthVisibility} from "utilities/utilities";
-import {defaultIconSize, WHITE} from "utilities/constant"
+import {APP_URL, defaultIconSize, WHITE} from "utilities/constant"
 import {DrawerSearchContext} from "App";
 import {connect} from "react-redux";
 
@@ -26,9 +26,12 @@ import {connect} from "react-redux";
  * @param {Function} toggleMobileSearch toggle the mobile search visibility
  * @param {Boolean} mobileSearch track the mobile search visibility
  * @param {String} actualTheme the actual theme of the app
+ * @param {Object} rest the other useful props
  * @author Arnaud LITAABA
  */
-const Navbar = ({toggleMobileSearch, mobileSearch, actualTheme}) => {
+const Navbar = ({toggleMobileSearch, mobileSearch, actualTheme, ...rest}) => {
+
+    const {cartTotal} = rest;
 
     const {
         navbar, navWrapper,
@@ -40,6 +43,8 @@ const Navbar = ({toggleMobileSearch, mobileSearch, actualTheme}) => {
         searchIcon,
         bagBadge
     } = actualTheme === WHITE ? navbarWhiteClasses : navbarBlackClasses;
+
+    const {FAVORITE, CART} = APP_URL;
 
 
     /**
@@ -94,17 +99,17 @@ const Navbar = ({toggleMobileSearch, mobileSearch, actualTheme}) => {
                         />
                     }
 
-                    <NavLink className={icon} to="/favorite">
+                    <NavLink className={icon} to={FAVORITE}>
                         <Icon
                             className={icon}
                             src={heart}
                             size={defaultIconSize}
                         />
                     </NavLink>
-                    <NavLink className={icon} to="/cart">
-                        <div className={bagBadge}>{
-                            overTen(120)
-                        }</div>
+                    <NavLink className={icon} to={CART}>
+                        {cartTotal > 0 && <div className={bagBadge}>{
+                            overTen(cartTotal)
+                        }</div>}
                         <Icon
                             className={icon}
                             src={bag}
@@ -133,7 +138,8 @@ const Navbar = ({toggleMobileSearch, mobileSearch, actualTheme}) => {
  */
 const mapStateToProps = state => {
     return {
-        actualTheme: state.themeState.actualTheme
+        actualTheme: state.themeState.actualTheme,
+        cartTotal: state.loginState.loggedInUser.cart.length
     }
 }
 

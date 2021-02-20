@@ -18,6 +18,7 @@ const RelatedProduct = ({actualTheme, product, ...rest}) => {
 
     const {
         wrapper,
+        cardImage,
         title
     } = actualTheme === WHITE ? relatedWhiteClasses : relatedBlackClasses;
 
@@ -37,6 +38,7 @@ const RelatedProduct = ({actualTheme, product, ...rest}) => {
         <div className={wrapper}>
             <CategoriesContent
                 noArrow
+                moreCl={cardImage}
                 customCategoriesContentTitle={title}
                 products={state}
                 title={getMessage("relatedProducts")}
