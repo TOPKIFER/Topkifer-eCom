@@ -39,7 +39,7 @@ const Cart = ({actualTheme, ...rest}) => {
         });
     }
 
-    useEffect(fetchUserCart, []);
+    useEffect(fetchUserCart, [actualTheme]);
 
     const {
         wrapper,
