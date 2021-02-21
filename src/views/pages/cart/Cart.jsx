@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react";
 import {getMessage} from "utilities/i18n";
 import cartWhiteClasses from "./cartWhite.module.scss";
 import cartBlackClasses from "./cartBlack.module.scss";
-import {userBlackShoppingCart, userWhiteShoppingCart, WHITE} from "utilities/constant";
+import {INSIDE_NAVIGATION, TOP, userBlackShoppingCart, userWhiteShoppingCart, WHITE} from "utilities/constant";
 import {connect} from "react-redux";
 import Quantity from "components/quantity/Quantity";
 import ItemCard from "components/itemCard/ItemCard";
 import {makeIndex, multipleClasses, toArray} from "utilities/utilities";
 import FavoritesProduct from "views/pages/cart/favoritesProducts/FavoritesProduct";
+import ScrollTo from "components/scrollTo/ScrollTo";
 
 /**
  * Cart component
@@ -27,7 +28,8 @@ const Cart = ({actualTheme, ...rest}) => {
             valid: false,
             value: "",
             isApplied: false
-        }
+        },
+        navigationPosition: TOP
     });
 
     const fetchUserCart = () => {
@@ -98,7 +100,7 @@ const Cart = ({actualTheme, ...rest}) => {
         value
     }
 
-    const {valuesCart, totals, quantities, coupon} = cart;
+    const {valuesCart, totals, quantities, coupon, navigationPosition} = cart;
 
     const editCart = (target, id, value, price) => {
         setCart({
@@ -109,7 +111,8 @@ const Cart = ({actualTheme, ...rest}) => {
             totals: {
                 ...cart.totals,
                 [id]: price * value,
-            }
+            },
+            navigationPosition: INSIDE_NAVIGATION
         })
     }
 
@@ -120,14 +123,16 @@ const Cart = ({actualTheme, ...rest}) => {
                 valid: value !== "" && value && value.length >= 6,
                 value,
                 isApplied: false
-            }
+            },
+            navigationPosition: INSIDE_NAVIGATION
         })
     }
 
     const removeItem = (id) => {
         setCart({
             ...cart,
-            valuesCart: cart.valuesCart.filter(v => v.id !== id)
+            valuesCart: cart.valuesCart.filter(v => v.id !== id),
+            navigationPosition: INSIDE_NAVIGATION
         })
     }
 
@@ -198,7 +203,7 @@ const Cart = ({actualTheme, ...rest}) => {
         <FavoritesProduct onClick={() => null /* soon willl go favorite*/}/>
     </div>
 
-    return <>
+    return <ScrollTo position={navigationPosition}>
         <div className={wrapper}>
             <div className={title}>{getMessage("cart")}</div>
             <div className={wholeContent}>
@@ -294,7 +299,7 @@ const Cart = ({actualTheme, ...rest}) => {
             {couponAndCheckout}
             {favorites}
         </div>
-    </>
+    </ScrollTo>
 }
 
 /**

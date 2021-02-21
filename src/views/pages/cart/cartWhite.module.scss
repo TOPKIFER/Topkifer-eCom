@@ -275,7 +275,8 @@
     .title {
       @include flexCenterSpace;
       justify-content: center;
-      padding: 1.2rem 2rem;
+      padding: 0 2rem;
+      margin-top: 1rem;
       font-size: 40px;
       font-weight: bold;
     }
@@ -287,7 +288,7 @@
       border-radius: 6px;
 
       .cartContent {
-        border-bottom: 2px solid #cccccc6a;
+        border-bottom: 2px solid #cccccc2a;
         display: grid;
         grid-template-columns: 4fr 1fr 1fr;
         padding-top: 1rem;

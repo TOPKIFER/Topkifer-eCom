@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import menuWhiteClasses from "./menuWhite.module.scss"
 import menuBlackClasses from "./menuBlack.module.scss"
-import {multipleClasses, upperFist} from "utilities/utilities";
+import {multipleClasses, toggleAuthVisibility, upperFist} from "utilities/utilities";
 import Icon from "components/icon/Icon";
 import LoginIcon from "assets/icons/login.svg"
 import RegisterIcon from "assets/icons/register.svg"
@@ -18,12 +18,14 @@ import {
 import Login from "../auth/login/Login";
 import Register from "../auth/register/Register";
 import menuIcon from "assets/icons/menu.svg";
+import menu from "assets/icons/menu.svg";
 import ListMenu from "components/listMenu/ListMenu";
 import {connect} from "react-redux"
 import {logInTheUser} from "redux/actions/auth/login/loginActions";
 import {changeTheme} from "redux/actions/theme/themeActions";
 import {changeCurrentLanguage} from "redux/actions/language/languageActions";
 import {getMessage} from "utilities/i18n";
+import {DrawerSearchContext} from "App";
 
 /**
  * Menu component
@@ -42,7 +44,8 @@ const Menu = ({isLoggedIn, logInTheUser, actualTheme, actualLanguage, changeThem
         menuTabContent,
         loginTab,
         registerTab,
-        active
+        active,
+        closeDrawClass
     } = actualTheme === WHITE ? menuWhiteClasses : menuBlackClasses;
 
     const MENU = "menu";
@@ -88,6 +91,8 @@ const Menu = ({isLoggedIn, logInTheUser, actualTheme, actualLanguage, changeThem
     // Tell us is the active tab is auth or menu like default
     const isDefault = () => (isLogin() || isMenu());
 
+    const closeMessage = getMessage("close");
+
     return <div className={menu}>
         <div className={menuTab}>
             <div
@@ -127,6 +132,21 @@ const Menu = ({isLoggedIn, logInTheUser, actualTheme, actualLanguage, changeThem
                     }
                 </div>
         }
+
+        <DrawerSearchContext.Consumer>
+            {/*
+        We use destructuring to extract only the data
+        we need from DrawerSearchContext. And here we have :
+        - visible to track the drawer visibility.
+        - setContextValue to toggle the visibility of menu
+        */}
+            {({visible, setContextValue}) => (
+                <div className={closeDrawClass} onClick={() => toggleAuthVisibility(setContextValue, !visible)}>
+                    <span>X {closeMessage}</span>
+                </div>
+            )}
+        </DrawerSearchContext.Consumer>
+
     </div>
 }
 

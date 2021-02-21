@@ -2,13 +2,18 @@
 @import "~assets/styles/variables";
 @import "~assets/styles/keyframes";
 
-
 .productLike {
+  margin: 1rem 0;
   @include flexCenterSpace;
-  justify-content: flex-end;
+  justify-content: space-between;
+  flex-direction: column;
+  position: absolute;
+  right: 4%;
+  top: 0;
+  height: 100px;
 
 
-  .likeIcon {
+  .likeIcon, .productShare {
     background-color: #161616;
     border-radius: 50%;
     height: 40px;
@@ -29,7 +34,7 @@
     }
 
     &:hover {
-      box-shadow: 0 4px 8px red;
+      box-shadow: $bigShadow;
       transform: scale(1.02);
     }
   }
@@ -37,8 +42,8 @@
 
 }
 
-@media screen {
 
+@media screen and (max-width: $breakpoint) {
   .productLike {
     justify-content: center;
 

@@ -40,6 +40,18 @@
       top: 6%;
       right: 10%;
       left: 10%;
+      color: white;
+    }
+
+    .iconsClass {
+      position: absolute;
+      @include flexCenterSpace;
+      flex-direction: column;
+      right: 4%;
+      top: 40%;
+      height: 100px;
+      text-align: center;
+
     }
   }
 
@@ -69,6 +81,7 @@
 
   .relativeProduct {
     margin-bottom: 1rem;
+    color: white;
   }
 
 }
