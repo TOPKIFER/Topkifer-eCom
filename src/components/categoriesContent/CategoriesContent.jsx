@@ -23,7 +23,7 @@ import {WHITE} from "../../utilities/constant";
 const CategoriesContent = ({title, onArrowClick, products = [], actualTheme, noArrow, ...rest}) => {
 
 
-    const {moreCl} = rest;
+    const {moreCl,onClick} = rest;
 
     const {
         categoriesContentWrapper,
@@ -49,12 +49,12 @@ const CategoriesContent = ({title, onArrowClick, products = [], actualTheme, noA
             {
                 products.map((product, index) => {
                     const {title} = product
-                    return isMobile ? index < 4 && <ItemCard key={makeIndex(title, "categories", index)}
+                    return isMobile ? index < 4 && <ItemCard onClick={onClick} key={makeIndex(title, "categories", index)}
                                                              product={product}
                                                              full
                                                              allowClick
                     /> :
-                        <ItemCard key={makeIndex(title, "categories", index)}
+                        <ItemCard onClick={onClick} key={makeIndex(title, "categories", index)}
                                   product={product}
                                   full
                                   allowClick

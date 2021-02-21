@@ -6,7 +6,8 @@ import {userBlackShoppingCart, userWhiteShoppingCart, WHITE} from "utilities/con
 import {connect} from "react-redux";
 import Quantity from "components/quantity/Quantity";
 import ItemCard from "components/itemCard/ItemCard";
-import {makeIndex} from "utilities/utilities";
+import {makeIndex, toArray} from "utilities/utilities";
+import FavoritesProduct from "views/pages/cart/favoritesProducts/FavoritesProduct";
 
 /**
  * Cart component
@@ -28,7 +29,6 @@ const Cart = ({actualTheme, ...rest}) => {
         let totals = {};
         let quantities = {};
         userWhiteShoppingCart.forEach(value => {
-            console.log(value)
             totals[value.id] = value.quantity * value.product.price;
             quantities[value.id] = value.quantity;
         })
@@ -78,7 +78,8 @@ const Cart = ({actualTheme, ...rest}) => {
         totalClass,
         totalTitle,
         totalValue,
-        proceedClass
+        proceedClass,
+        favoritesClass
     } = actualTheme === WHITE ? cartWhiteClasses : cartBlackClasses;
 
     const classes = {
@@ -113,6 +114,13 @@ const Cart = ({actualTheme, ...rest}) => {
         })
     }
 
+    const sumThis = (first, next) => {
+        const {data: firstData} = first;
+        const {data: nextData} = next;
+        if (firstData) return firstData + nextData;
+        return first + nextData;
+    }
+
     const couponAndCheckout = <div className={couponAndCheckoutClass}>
         <div className={couponClass}>
             <div className={couponTitleClass}>
@@ -138,7 +146,7 @@ const Cart = ({actualTheme, ...rest}) => {
                         {getMessage("subTotal")}
                     </div>
                     <div className={subTotalValue}>
-                        Price
+                        {Object.keys(totals).length > 0 ? toArray(totals).reduce(sumThis) : 0}
                     </div>
                 </div>
                 <div className={totalClass}>
@@ -146,7 +154,7 @@ const Cart = ({actualTheme, ...rest}) => {
                         {getMessage("total")}
                     </div>
                     <div className={totalValue}>
-                        Price
+                        {Object.keys(totals).length > 0 ? toArray(totals).reduce(sumThis) : 0}
                     </div>
                 </div>
                 <div className={proceedClass}>
@@ -155,6 +163,11 @@ const Cart = ({actualTheme, ...rest}) => {
             </div>
         </div>
     </div>
+
+    const favorites = <div className={favoritesClass}>
+        <FavoritesProduct onClick={() => null /* soon willl go favorite*/}/>
+    </div>
+
     return <>
         <div className={wrapper}>
             <div className={title}>{getMessage("cart")}</div>
@@ -206,6 +219,7 @@ const Cart = ({actualTheme, ...rest}) => {
                 </div>
             </div>
             {couponAndCheckout}
+            {favorites}
         </div>
         <div className={mobileWrapper}>
             <div className={title}>{getMessage("cart")}</div>
@@ -248,6 +262,7 @@ const Cart = ({actualTheme, ...rest}) => {
                 })}
             </div>
             {couponAndCheckout}
+            {favorites}
         </div>
     </>
 }

@@ -52,6 +52,20 @@ export const toggleAuthVisibility = (setVisible, value) => {
  */
 export const upperFist = (value) => value ? value[0].toUpperCase() + value.slice(1) : value
 
+
+export const toArray = (value) => {
+    const finalArray = [];
+    for (const valueKey in value) {
+        if (value.hasOwnProperty(valueKey)) {
+            finalArray.push({
+                id: valueKey,
+                data: value[valueKey]
+            })
+        }
+    }
+    return finalArray;
+}
+
 /**
  * Move file from one direction to another
  * @description The move files function is to move to the next or previous file

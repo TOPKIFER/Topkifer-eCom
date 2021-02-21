@@ -25,7 +25,8 @@ const {PRODUCT} = APP_URL;
  */
 const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest}) => {
 
-    const {history, classNames, onClick, moreCl,wrapperAddonClass, itemCardAddonClass} = rest;
+    const {history, classNames, onClick, moreCl, wrapperAddonClass, itemCardAddonClass} = rest;
+
 
     const {
         itemCardWrapper: customItemCardWrapper,
@@ -56,7 +57,7 @@ const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest
 
 
     return <div className={customItemCardWrapper || multipleClasses(itemCardWrapper, wrapperAddonClass ?? "_")}>
-        <div className={customItemCard || multipleClasses(itemCard,itemCardAddonClass ?? "_")}>
+        <div className={customItemCard || multipleClasses(itemCard, itemCardAddonClass ?? "_")}>
             <div onClick={onClickAction}
                  style={{
                      backgroundImage: `url(${src})`

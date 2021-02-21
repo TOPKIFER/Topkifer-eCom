@@ -240,7 +240,16 @@
 }
 
 
+.favoritesClass {
+  margin-bottom: 2rem;
+}
+
+
 @media screen and (max-width: $breakpoint) {
+
+  .favoritesClass {
+    margin-top: -2rem;
+  }
 
   .wrapper {
     grid-template-columns: 1fr;
