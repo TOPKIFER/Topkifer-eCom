@@ -3,6 +3,32 @@
 @import "~assets/styles/keyframes";
 
 
+.mobileWrapper {
+  display: none !important;
+}
+
+
+.blackBtn {
+  margin-left: 2rem;
+  @include flexCenterSpace;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  height: 60px;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  border-radius: 8px;
+  width: 200px;
+  cursor: pointer;
+  transition: all .3s ease-in;
+
+  &:hover {
+    box-shadow: 02px 4px 8px #0000008a;
+  }
+}
+
+
 .wrapper {
   display: grid;
   grid-template-rows: 1fr;
@@ -141,10 +167,211 @@
   }
 }
 
+.couponAndCheckoutClass {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 4rem 0;
+
+  .couponClass {
+    color: white;
+
+    .couponTitleClass {
+      font-weight: 700;
+      margin-bottom: 2rem;
+      font-size: 20px;
+    }
+
+    .applyTools {
+      @include flexCenterSpace;
+      justify-content: flex-start;
+
+      .couponInput {
+        height: 60px;
+        border: 2px solid #cccccc6a;
+        border-radius: 8px;
+        padding: 1rem 2rem;
+
+        input {
+          height: 100%;
+          width: 100%;
+          border: none;
+          background-color: $siteBlackColor;
+          color: white;
+
+          &:focus, &:active {
+            outline: none;
+          }
+        }
+      }
+
+      .applyClass {
+        @extend .blackBtn
+      }
+    }
+  }
+
+  .checkoutClass {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: white;
+
+    .checkoutTitle {
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 2rem;
+    }
+
+    .subTotalClass {
+      padding-bottom: 1rem;
+      margin-bottom: 1.6rem;
+      border-bottom: 2px solid #cccccc6a;
+    }
+
+    .subTotalClass, .totalClass {
+      @include flexCenterSpace;
+
+      .subTotalTitle, .totalTitle {
+        font-weight: 600;
+      }
+
+      .subTotalValue, .totalValue {
+        color: #9F9F9F;
+        font-weight: 600;
+      }
+    }
+
+    .proceedClass {
+      margin-top: 2rem;
+      width: 100%;
+      margin-left: 0;
+      @extend .blackBtn;
+    }
+  }
+}
+
 
 @media screen and (max-width: $breakpoint) {
 
   .wrapper {
+    grid-template-columns: 1fr;
     grid-column: 1;
+    display: none !important;
+
   }
+
+  .mobileWrapper {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    grid-row-gap: 1rem;
+
+    .title {
+      @include flexCenterSpace;
+      justify-content: center;
+      padding: 1.2rem 2rem;
+      font-size: 40px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .wholeContent {
+      width: 94%;
+      margin: 0 auto;
+      border: 2px solid #cccccc6a;
+      border-radius: 6px;
+      color: white;
+
+      .cartContent {
+        border-bottom: 2px solid #cccccc6a;
+        display: grid;
+        grid-template-columns: 4fr 1fr 1fr;
+        padding-top: 1rem;
+
+        .productImage {
+          @include flexCenterSpace;
+          justify-content: flex-start;
+
+          .itemCardWrapper {
+            width: 80% !important;
+            margin-left: 1rem;
+            margin-top: 1rem;
+
+            &:hover {
+              transform: none;
+            }
+          }
+
+          .itemCard {
+            height: 120px;
+          }
+        }
+
+        .cartProductTitle {
+          font-weight: 700;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+  .cartProductRemove {
+    @include flexCenterSpace;
+    justify-content: flex-start !important;
+    flex-direction: row-reverse;
+    align-items: flex-start !important;
+    margin-right: 1rem;
+
+    &:hover {
+
+      span {
+        background: #cccccc6a;
+        padding: .2rem 1rem;
+        cursor: pointer;
+        border-radius: 6px;
+        box-shadow: $smallShadow;
+        font-weight: 700;
+        transition: all .3s ease;
+      }
+    }
+  }
+
+  .couponAndCheckoutClass {
+    grid-template-columns: 1fr;
+    width: 94%;
+    margin: 1rem auto 2rem auto;
+
+    .couponClass {
+      .couponTitleClass {
+        margin-bottom: 1rem;
+      }
+
+      .applyTools {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-row-gap: 1rem;
+
+        .couponInput {
+
+          input {
+            height: 100%;
+            width: 100%;
+            border: none;
+
+            &:focus, &:active {
+              outline: none;
+            }
+          }
+        }
+
+        .applyClass {
+          width: 100%;
+          margin: 0;
+        }
+      }
+    }
+
+    .checkoutClass {
+      margin-top: 2rem;
+      grid-template-columns: 1fr;
+    }
+  }
+
 }

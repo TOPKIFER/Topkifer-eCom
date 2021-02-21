@@ -6,6 +6,7 @@ import {userBlackShoppingCart, userWhiteShoppingCart, WHITE} from "utilities/con
 import {connect} from "react-redux";
 import Quantity from "components/quantity/Quantity";
 import ItemCard from "components/itemCard/ItemCard";
+import {makeIndex} from "utilities/utilities";
 
 /**
  * Cart component
@@ -61,7 +62,23 @@ const Cart = ({actualTheme, ...rest}) => {
         sign,
         signDisabled,
         value,
-        actions
+        actions,
+        mobileWrapper,
+        couponAndCheckoutClass,
+        couponClass,
+        checkoutClass,
+        applyTools,
+        couponTitleClass,
+        applyClass,
+        couponInput,
+        checkoutTitle,
+        subTotalClass,
+        subTotalTitle,
+        subTotalValue,
+        totalClass,
+        totalTitle,
+        totalValue,
+        proceedClass
     } = actualTheme === WHITE ? cartWhiteClasses : cartBlackClasses;
 
     const classes = {
@@ -95,19 +112,107 @@ const Cart = ({actualTheme, ...rest}) => {
             valuesCart: cart.valuesCart.filter(v => v.id !== id)
         })
     }
-    return <div className={wrapper}>
-        <div className={title}>{getMessage("cart")}</div>
-        <div className={wholeContent}>
-            <div className={cartHeader}>
-                <div>Product</div>
-                <div>Price</div>
-                <div>Quantity</div>
-                <div>Total</div>
+
+    const couponAndCheckout = <div className={couponAndCheckoutClass}>
+        <div className={couponClass}>
+            <div className={couponTitleClass}>
+                {getMessage("applyCoupon")}
             </div>
-            <div className={cartContent}>
+            <div className={applyTools}>
+                <div className={couponInput}>
+                    <input type="text" placeholder={getMessage("yourCouponCode")}/>
+                </div>
+                <div className={applyClass}>
+                    {getMessage("applyCoupon")}
+                </div>
+            </div>
+        </div>
+        <div className={checkoutClass}>
+            <div/>
+            <div>
+                <div className={checkoutTitle}>
+                    {getMessage("cartTotals")}
+                </div>
+                <div className={subTotalClass}>
+                    <div className={subTotalTitle}>
+                        {getMessage("subTotal")}
+                    </div>
+                    <div className={subTotalValue}>
+                        Price
+                    </div>
+                </div>
+                <div className={totalClass}>
+                    <div className={totalTitle}>
+                        {getMessage("total")}
+                    </div>
+                    <div className={totalValue}>
+                        Price
+                    </div>
+                </div>
+                <div className={proceedClass}>
+                    {getMessage("proceedToCheckout")}
+                </div>
+            </div>
+        </div>
+    </div>
+    return <>
+        <div className={wrapper}>
+            <div className={title}>{getMessage("cart")}</div>
+            <div className={wholeContent}>
+                <div className={cartHeader}>
+                    <div>Product</div>
+                    <div>Price</div>
+                    <div>Quantity</div>
+                    <div>Total</div>
+                </div>
+                <div className={cartContent}>
+                    {valuesCart.map((value, index) => {
+                        const {quantity, product, size, color} = value;
+                        return <React.Fragment key={makeIndex(index, "cartContent")}>
+                            <div className={productImage}>
+                                <ItemCard
+                                    wrapperAddonClass={itemCardWrapper}
+                                    itemCardAddonClass={itemCard}
+                                    full={false}
+                                    allowClick={false}
+                                    product={product}
+                                />
+                                <div className={cartProductTitle}>
+                                    {product.title}
+                                </div>
+                            </div>
+                            <div className={cartProductPrice}>{
+                                product.price
+                            } cfa
+                            </div>
+                            <div className={cartProductQuantity}>
+                                <Quantity
+                                    noTitle
+                                    classes={classes}
+                                    stock={product.stock}
+                                    defaultQuantity={quantities[value.id]}
+                                    product={product}
+                                    setQuantity={(q) => editCart("quantities", value.id, q, product.price)}/>
+                            </div>
+                            <div className={cartProductTotal}>{
+                                totals[value.id]
+                            } cfa
+                            </div>
+                            <div className={cartProductRemove}>
+                                <span onClick={() => removeItem(value.id)}>x</span>
+                            </div>
+                        </React.Fragment>
+                    })}
+                </div>
+            </div>
+            {couponAndCheckout}
+        </div>
+        <div className={mobileWrapper}>
+            <div className={title}>{getMessage("cart")}</div>
+            <div className={wholeContent}>
                 {valuesCart.map((value, index) => {
                     const {quantity, product, size, color} = value;
-                    return <React.Fragment key={index}>
+                    return <div className={cartContent} key={makeIndex(index, "cartContent")}>
                         <div className={productImage}>
                             <ItemCard
                                 wrapperAddonClass={itemCardWrapper}
@@ -116,32 +221,35 @@ const Cart = ({actualTheme, ...rest}) => {
                                 allowClick={false}
                                 product={product}
                             />
+
+                        </div>
+                        <div>
                             <div className={cartProductTitle}>
                                 {product.title}
                             </div>
-                        </div>
-                        <div className={cartProductPrice}>{
-                            product.price
-                        } cfa
-                        </div>
-                        <div className={cartProductQuantity}><Quantity noTitle classes={classes} stock={product.stock}
-                                                                       defaultQuantity={quantities[value.id]}
-                                                                       product={product}
-                                                                       setQuantity={(q) => editCart("quantities", value.id, q, product.price)}/>
-                        </div>
-                        <div className={cartProductTotal}>{
-                            totals[value.id]
-                        } cfa
+                            <div className={cartProductPrice}>{
+                                product.price
+                            } cfa
+                            </div>
+                            <div className={cartProductQuantity}>
+                                <Quantity
+                                    noTitle
+                                    classes={classes}
+                                    stock={product.stock}
+                                    defaultQuantity={quantities[value.id]}
+                                    product={product}
+                                    setQuantity={(q) => editCart("quantities", value.id, q, product.price)}/>
+                            </div>
                         </div>
                         <div className={cartProductRemove}>
                             <span onClick={() => removeItem(value.id)}>x</span>
                         </div>
-                    </React.Fragment>
+                    </div>
                 })}
             </div>
-
+            {couponAndCheckout}
         </div>
-    </div>
+    </>
 }
 
 /**
