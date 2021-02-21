@@ -629,7 +629,7 @@ export const relativesBlackCategoriesProduct = [
     }
 ]
 
-export const userWhiteShoppingCart = [...categoriesProducts.map((value,index) => {
+export const userWhiteShoppingCart = [...categoriesProducts.map((value, index) => {
     return {
         id: index + 1,
         quantity: index + 2,

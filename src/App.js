@@ -33,7 +33,8 @@ const App = ({actualTheme, actualLanguage, loggedInUser}) => {
     const [state, setState] = useState({
         visible: false,
         isClosing: false,
-        mobileSearch: false
+        mobileSearch: false,
+        shoppingCartPreview: false
     });
 
     /**

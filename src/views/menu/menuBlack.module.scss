@@ -34,4 +34,22 @@
     padding: .4rem 1rem 1rem;
     @extend .absoluteMenu
   }
+
+  .closeDrawClass {
+    @include positionChanged;
+    top: unset;
+    @include flexCenterSpace;
+    height: 60px;
+    position: absolute;
+    margin-top: 30rem;
+    width: 100%;
+    z-index: 5555;
+    background-color: black;
+    color: white;
+
+    span {
+      margin: 0 auto;
+      font-size: 20px;
+    }
+  }
 }
