@@ -254,8 +254,9 @@
 }
 
 .disabledApply {
-  background-color: #cccccc !important;
+  background-color: #0000004a !important;
   cursor: not-allowed;
+  color: #cccccc2a !important;
 
   &:hover {
     box-shadow: none !important;
