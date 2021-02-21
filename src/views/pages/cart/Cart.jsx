@@ -6,7 +6,7 @@ import {userBlackShoppingCart, userWhiteShoppingCart, WHITE} from "utilities/con
 import {connect} from "react-redux";
 import Quantity from "components/quantity/Quantity";
 import ItemCard from "components/itemCard/ItemCard";
-import {makeIndex, toArray} from "utilities/utilities";
+import {makeIndex, multipleClasses, toArray} from "utilities/utilities";
 import FavoritesProduct from "views/pages/cart/favoritesProducts/FavoritesProduct";
 
 /**
@@ -22,7 +22,12 @@ const Cart = ({actualTheme, ...rest}) => {
     const [cart, setCart] = useState({
         valuesCart: [],
         totals: {},
-        quantities: {}
+        quantities: {},
+        coupon: {
+            valid: false,
+            value: "",
+            isApplied: false
+        }
     });
 
     const fetchUserCart = () => {
@@ -79,7 +84,8 @@ const Cart = ({actualTheme, ...rest}) => {
         totalTitle,
         totalValue,
         proceedClass,
-        favoritesClass
+        favoritesClass,
+        disabledApply
     } = actualTheme === WHITE ? cartWhiteClasses : cartBlackClasses;
 
     const classes = {
@@ -92,7 +98,7 @@ const Cart = ({actualTheme, ...rest}) => {
         value
     }
 
-    const {valuesCart, totals, quantities} = cart;
+    const {valuesCart, totals, quantities, coupon} = cart;
 
     const editCart = (target, id, value, price) => {
         setCart({
@@ -103,6 +109,17 @@ const Cart = ({actualTheme, ...rest}) => {
             totals: {
                 ...cart.totals,
                 [id]: price * value,
+            }
+        })
+    }
+
+    const setCoupon = ({value}) => {
+        setCart({
+            ...cart,
+            coupon: {
+                valid: value !== "" && value && value.length >= 6,
+                value,
+                isApplied: false
             }
         })
     }
@@ -128,9 +145,12 @@ const Cart = ({actualTheme, ...rest}) => {
             </div>
             <div className={applyTools}>
                 <div className={couponInput}>
-                    <input type="text" placeholder={getMessage("yourCouponCode")}/>
+                    <input value={coupon.value}
+                           onChange={({target}) => setCoupon(target)} type="text"
+                           placeholder={getMessage("yourCouponCode")}/>
                 </div>
-                <div className={applyClass}>
+                <div onClick={coupon.valid ? () => setCart({...cart, coupon: {...cart.coupon, isApplied: true}}) : null}
+                     className={multipleClasses(applyClass, coupon.valid ? "_" : disabledApply)}>
                     {getMessage("applyCoupon")}
                 </div>
             </div>
@@ -146,15 +166,25 @@ const Cart = ({actualTheme, ...rest}) => {
                         {getMessage("subTotal")}
                     </div>
                     <div className={subTotalValue}>
-                        {Object.keys(totals).length > 0 ? toArray(totals).reduce(sumThis) : 0}
+                        {Object.keys(totals).length > 0 ? toArray(totals).reduce(sumThis) : 0} cfa
                     </div>
                 </div>
+                {
+                    coupon.isApplied && <div className={subTotalClass}>
+                        <div className={subTotalTitle}>
+                            {getMessage("coupon")}
+                        </div>
+                        <div className={subTotalValue}>
+                            - 2000 cfa
+                        </div>
+                    </div>
+                }
                 <div className={totalClass}>
                     <div className={totalTitle}>
                         {getMessage("total")}
                     </div>
                     <div className={totalValue}>
-                        {Object.keys(totals).length > 0 ? toArray(totals).reduce(sumThis) : 0}
+                        {Object.keys(totals).length > 0 ? toArray(totals).reduce(sumThis) - (coupon.valid ? 2000 : 0) : 0} cfa
                     </div>
                 </div>
                 <div className={proceedClass}>

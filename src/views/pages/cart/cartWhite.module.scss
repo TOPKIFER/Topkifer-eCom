@@ -244,6 +244,15 @@
   margin-bottom: 2rem;
 }
 
+.disabledApply {
+  background-color: #cccccc !important;
+  cursor: not-allowed;
+
+  &:hover {
+    box-shadow: none !important;
+  }
+}
+
 
 @media screen and (max-width: $breakpoint) {
 
