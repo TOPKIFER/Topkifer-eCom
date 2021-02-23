@@ -122,7 +122,8 @@ const ProductParams = ({actualTheme, product, ...rest}) => {
             actions,
             addToCart,
             btn
-        }} stock={stock} product={product} injectable={injectable}>
+        }} stock={stock} product={product} injectable={injectable}
+        >
             <div className={addToCart}>
                 <div onClick={() => handleAddToCart(product)} className={btn}>
                     {getMessage("addToCart")}

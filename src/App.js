@@ -5,12 +5,13 @@ import Header from "components/header/Header";
 import Footer from "components/footer/Footer";
 import Drawer from "components/drawer/Drawer";
 import Menu from "views/menu/Menu";
-import {BLACK, HIDE_ALL, LEFT} from "utilities/constant";
+import {BLACK, HIDE_ALL, LEFT, MENU, RIGHT, SHOPPING} from "utilities/constant";
 import AppRoute from "./router/Router";
 import {connect} from "react-redux";
 import {IntlProvider} from 'react-intl';
 import {DEFAULT_LANGUAGE} from "./utilities/constant";
 import {getLanguage} from "./utilities/i18n";
+import PreviewCart from "views/pages/cart/cartPreview/CartPreview";
 
 
 /**
@@ -20,6 +21,14 @@ import {getLanguage} from "./utilities/i18n";
  * @author Arnaud LITAABA
  */
 export const DrawerSearchContext = createContext();
+
+/**
+ * A context (value) with createContext imported from React
+ * @value  {Context} DrawerSearchContext have a provider and a consumer and
+ * handle drawer visibility, closing state.
+ * @author Arnaud LITAABA
+ */
+export const DrawerCartContext = createContext();
 
 /**
  * Main component
@@ -33,8 +42,12 @@ const App = ({actualTheme, actualLanguage, loggedInUser}) => {
     const [state, setState] = useState({
         visible: false,
         isClosing: false,
-        mobileSearch: false,
-        shoppingCartPreview: false
+        mobileSearch: false
+    });
+
+    const [cartState, setCartState] = useState({
+        visible: true,
+        isClosing: false,
     });
 
     /**
@@ -49,6 +62,10 @@ const App = ({actualTheme, actualLanguage, loggedInUser}) => {
             return
         }
         setState({...state, [target]: value})
+    }
+
+    const setCartContextValue = (target, value) => {
+        setCartState({...cartState, [target]: value})
     }
 
     useEffect(() => {
@@ -74,10 +91,16 @@ const App = ({actualTheme, actualLanguage, loggedInUser}) => {
                         ...state,
                         setContextValue: setContextValue
                     }}>
-                        <Header/>
-                        <Drawer content={<Menu/>} position={LEFT}/>
-                        <AppRoute/>
-                        <Footer/>
+                        <DrawerCartContext.Provider value={{
+                            ...cartState,
+                            setCartContextValue: setCartContextValue
+                        }}>
+                            <Header/>
+                            <Drawer target={MENU} content={<Menu/>} position={LEFT}/>
+                            <Drawer target={SHOPPING} content={<PreviewCart/>} position={RIGHT}/>
+                            <AppRoute/>
+                            <Footer/>
+                        </DrawerCartContext.Provider>
                     </DrawerSearchContext.Provider>
                 </div>
             </IntlProvider>

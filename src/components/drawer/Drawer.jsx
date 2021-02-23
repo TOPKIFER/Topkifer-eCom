@@ -1,8 +1,8 @@
 import React from "react";
 import drawerWhiteClasses from "./drawerWhite.module.scss"
 import drawerBlackClasses from "./drawerBlack.module.scss"
-import {LEFT, WHITE} from "utilities/constant";
-import {DrawerSearchContext} from "App";
+import {LEFT, MENU, WHITE} from "utilities/constant";
+import {DrawerCartContext, DrawerSearchContext} from "App";
 import {toggleAuthVisibility} from "utilities/utilities";
 import {connect} from "react-redux";
 
@@ -11,15 +11,22 @@ import {connect} from "react-redux";
  * @description The drawer component to display more data. It will use @DrawerSearchContext
  * in CONSUMER mode to check the visibility and also trigger this one with @toggleAuthVisibility
  * @param {String} position Where show the drawer !!!
+ * @param {String} target the targeted drawer !!!
  * @param {String} actualTheme Actual theme of the app
  * @param {Any} content The content to show !!!
  * @author Arnaud LITAABA
  */
-const Drawer = ({position, content, actualTheme}) => {
-    const {drawer, drawerOverlay, drawerClosing} = actualTheme === WHITE ? drawerWhiteClasses : drawerBlackClasses
+const Drawer = ({position, content, actualTheme, target}) => {
+    const {
+        drawer,
+        rightDrawer,
+        drawerOverlay,
+        drawerClosing,
+        rightDrawerClosing
+    } = actualTheme === WHITE ? drawerWhiteClasses : drawerBlackClasses
 
 
-    return <DrawerSearchContext.Consumer>
+    return target === MENU ? <DrawerSearchContext.Consumer>
         {/*
         We use destructuring to extract only the data
         we need from DrawerSearchContext. And here we have :
@@ -50,7 +57,28 @@ const Drawer = ({position, content, actualTheme}) => {
                 </div>
             </>
         )}
-    </DrawerSearchContext.Consumer>
+    </DrawerSearchContext.Consumer> : <DrawerCartContext.Consumer>
+        {
+            ({visible, isClosing}) => (
+                visible && <>
+                    <DrawerCartContext.Consumer>
+                        {
+                            ({setCartContextValue}) => (
+                                <div onClick={() => toggleAuthVisibility(setCartContextValue, !visible)}
+                                     className={drawerOverlay}/>
+                            )
+                        }
+                    </DrawerCartContext.Consumer>
+                    <div style={{
+                        left: position === LEFT ? 0 : "unset"
+                    }
+                    } className={isClosing ? rightDrawerClosing : rightDrawer}>
+                        {content}
+                    </div>
+                </>
+            )
+        }
+    </DrawerCartContext.Consumer>
 }
 
 

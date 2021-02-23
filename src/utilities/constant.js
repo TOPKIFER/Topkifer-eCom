@@ -9,6 +9,8 @@ import blackShoes3 from "assets/products/blackBgShoes3.jpg";
 export const SEPARATOR = " ";
 export const defaultIconSize = "24px";
 export const HIDE_ALL = "hideAll";
+export const MENU = "menu";
+export const SHOPPING = "shopping";
 export const RIGHT = "right";
 export const LEFT = "left";
 export const WHITE = "white";
@@ -42,6 +44,7 @@ export const REDUX_CONSTANTS = {
     CHANGE_LANGUAGE: "change language",
     ADD_TO_CART: "add to cart",
     UPDATE_CART: "update cart",
+    CHANGE_CART: "change cart",
 }
 
 export const categoriesConstants = [

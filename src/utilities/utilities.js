@@ -9,6 +9,18 @@ import {LEFT, SEPARATOR} from "./constant";
 export const multipleClasses = (...classes) => classes.join(SEPARATOR);
 
 /**
+ * Sum cart product prices
+ * @summary A helper for conveniently sum cart values
+ * @author Arnaud LITAABA
+ */
+export const sumCart = (first, next) => {
+    const {data: firstData} = first;
+    const {data: nextData} = next;
+    if (firstData) return firstData + nextData;
+    return first + nextData;
+}
+
+/**
  * Make index
  * @param {...Any} values All values for making unique index
  * @summary A helper for conveniently add unique key to component
@@ -26,7 +38,7 @@ export const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 /**
  * Over X value, here ten
- * @param {maxValue} value A desired max value before add +
+ * @param {Number} value A desired max value before add +
  * @summary A helper for conveniently add data to badge
  * @author Arnaud LITAABA
  */
@@ -36,12 +48,13 @@ export const overTen = (value) => value > 9 ? "9+" : value;
  * ToggleAuthVisibility
  * @param {function} setVisible The context trigger values function
  * @param {Boolean} value The new context value
+ * @param {String} target the element to change
  * @summary A helper for conveniently trigger context value
  * @author Arnaud LITAABA
  */
-export const toggleAuthVisibility = (setVisible, value) => {
+export const toggleAuthVisibility = (setVisible, value, target = "visible") => {
     setVisible("isClosing", !value);
-    setTimeout(() => setVisible("visible", value), 300)
+    setTimeout(() => setVisible(target, value), 300)
 }
 
 /**

@@ -8,11 +8,11 @@ import shoes2 from "assets/products/shoes2.jpg";
 import blackShoes2 from "assets/products/blackBgShoes2.jpg";
 import shoes3 from "assets/products/shoes3.jpg";
 import blackShoes3 from "assets/products/blackBgShoes3.jpg";
-import CategoriesContent from "../../../components/categoriesContent/CategoriesContent";
-import {makeIndex} from "../../../utilities/utilities";
+import CategoriesContent from "components/categoriesContent/CategoriesContent";
+import {makeIndex} from "utilities/utilities";
 import {connect} from "react-redux";
-import {categoriesBlackProducts, categoriesProducts, WHITE} from "../../../utilities/constant";
-import ScrollTo from "../../../components/scrollTo/ScrollTo";
+import {categoriesBlackProducts, categoriesProducts, WHITE} from "utilities/constant";
+import ScrollTo from "components/scrollTo/ScrollTo";
 
 /**
  * Home component

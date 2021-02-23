@@ -15,7 +15,7 @@ import menu from "assets/icons/menu.svg"
 import Icon from "components/icon/Icon";
 import {multipleClasses, overTen, toggleAuthVisibility} from "utilities/utilities";
 import {APP_URL, defaultIconSize, WHITE} from "utilities/constant"
-import {DrawerSearchContext} from "App";
+import {DrawerCartContext, DrawerSearchContext} from "App";
 import {connect} from "react-redux";
 
 /**
@@ -77,12 +77,23 @@ const Navbar = ({toggleMobileSearch, mobileSearch, actualTheme, ...rest}) => {
         - setContextValue to toggle the visibility of menu
         */}
                         {({visible, setContextValue}) => (
-                            <Icon
-                                onClick={() => toggleAuthVisibility(setContextValue, !visible)}
-                                className={multipleClasses(icon, "pointer")}
-                                src={menu}
-                                size={defaultIconSize}
-                            />
+                            <DrawerCartContext.Consumer>
+                                {
+                                    ({visible: cart, setCartContextValue}) => (
+                                        <Icon
+                                            onClick={() => {
+                                                toggleAuthVisibility(setContextValue, !visible);
+                                                if (cart) toggleAuthVisibility(setCartContextValue, !cart);
+                                                return cart
+                                            }}
+                                            className={multipleClasses(icon, "pointer")}
+                                            src={menu}
+                                            size={defaultIconSize}
+                                        />
+                                    )
+                                }
+                            </DrawerCartContext.Consumer>
+
                         )}
                     </DrawerSearchContext.Consumer>
                     {LogoFiles(logoContainer)}

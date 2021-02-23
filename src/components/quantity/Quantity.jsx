@@ -39,7 +39,7 @@ const Quantity = ({actualTheme, ...rest}) => {
                     ...state,
                     quantity: quantity - 1
                 })
-                setQuantity(quantity - 1)
+                if (setQuantity) setQuantity(quantity - 1)
                 return;
             case SUM_SIGN:
                 if (quantity >= stock) return;
@@ -47,7 +47,7 @@ const Quantity = ({actualTheme, ...rest}) => {
                     ...state,
                     quantity: quantity + 1
                 })
-                setQuantity(quantity + 1)
+                if (setQuantity) setQuantity(quantity + 1)
                 return;
             default:
                 return;

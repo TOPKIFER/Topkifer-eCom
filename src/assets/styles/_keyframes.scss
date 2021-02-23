@@ -31,12 +31,30 @@
   }
 }
 
+@include keyframes(slideInLeftCustom) {
+  0% {
+    transform: translateX(400px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 @include keyframes(slideInRight) {
   100% {
     transform: translateX(-400px);
   }
   0% {
     transform: translateX(0);
+  }
+}
+
+@include keyframes(slideInRightCustom) {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(400px);
   }
 }
 

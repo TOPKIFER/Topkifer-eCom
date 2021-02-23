@@ -1,14 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {getMessage} from "utilities/i18n";
 import cartWhiteClasses from "./cartWhite.module.scss";
 import cartBlackClasses from "./cartBlack.module.scss";
-import {INSIDE_NAVIGATION, TOP, userBlackShoppingCart, userWhiteShoppingCart, WHITE} from "utilities/constant";
+import {INSIDE_NAVIGATION, userBlackShoppingCart, userWhiteShoppingCart, WHITE} from "utilities/constant";
 import {connect} from "react-redux";
 import Quantity from "components/quantity/Quantity";
 import ItemCard from "components/itemCard/ItemCard";
-import {makeIndex, multipleClasses, toArray} from "utilities/utilities";
+import {makeIndex, multipleClasses, sumCart, toArray} from "utilities/utilities";
 import FavoritesProduct from "views/pages/cart/favoritesProducts/FavoritesProduct";
 import ScrollTo from "components/scrollTo/ScrollTo";
+import {changeCart} from "redux/actions/cart/cartActions";
+import CatchError from "components/catchError/CatchError";
+
 
 /**
  * Cart component
@@ -18,19 +21,7 @@ import ScrollTo from "components/scrollTo/ScrollTo";
  */
 const Cart = ({actualTheme, ...rest}) => {
 
-    const {loggedInUser} = rest;
-
-    const [cart, setCart] = useState({
-        valuesCart: [],
-        totals: {},
-        quantities: {},
-        coupon: {
-            valid: false,
-            value: "",
-            isApplied: false
-        },
-        navigationPosition: TOP
-    });
+    const {loggedInUser, cartState, changeCart} = rest;
 
     const fetchUserCart = () => {
         let totals = {};
@@ -39,12 +30,12 @@ const Cart = ({actualTheme, ...rest}) => {
             totals[value.id] = value.quantity * value.product.price;
             quantities[value.id] = value.quantity;
         })
-        setCart({
-            ...cart,
+
+        changeCart({
             valuesCart: actualTheme === WHITE ? userWhiteShoppingCart : userBlackShoppingCart,
             totals: {...totals},
             quantities: {...quantities},
-        });
+        })
     }
 
     useEffect(fetchUserCart, [actualTheme]);
@@ -100,16 +91,16 @@ const Cart = ({actualTheme, ...rest}) => {
         value
     }
 
-    const {valuesCart, totals, quantities, coupon, navigationPosition} = cart;
+    const {valuesCart, totals, quantities, coupon, navigationPosition} = cartState;
 
     const editCart = (target, id, value, price) => {
-        setCart({
-            ...cart,
+
+        changeCart({
             [target]: {
                 [id]: value
             },
             totals: {
-                ...cart.totals,
+                ...cartState.totals,
                 [id]: price * value,
             },
             navigationPosition: INSIDE_NAVIGATION
@@ -117,8 +108,8 @@ const Cart = ({actualTheme, ...rest}) => {
     }
 
     const setCoupon = ({value}) => {
-        setCart({
-            ...cart,
+
+        changeCart({
             coupon: {
                 valid: value !== "" && value && value.length >= 6,
                 value,
@@ -126,24 +117,38 @@ const Cart = ({actualTheme, ...rest}) => {
             },
             navigationPosition: INSIDE_NAVIGATION
         })
+
     }
 
     const removeItem = (id) => {
-        setCart({
-            ...cart,
-            valuesCart: cart.valuesCart.filter(v => v.id !== id),
+        const oldTotals = {...totals};
+        const oldQuantities = {...quantities};
+        delete oldTotals[id];
+        delete oldQuantities[id];
+
+        console.log({
+            totals: {...oldTotals},
+            quantities: {...oldQuantities},
+            valuesCart: cartState.valuesCart.filter(v => v.id !== id),
+            navigationPosition: INSIDE_NAVIGATION
+        })
+        changeCart({
+            totals: {...oldTotals},
+            quantities: {...oldQuantities},
+            valuesCart: cartState.valuesCart.filter(v => v.id !== id),
             navigationPosition: INSIDE_NAVIGATION
         })
     }
 
-    const sumThis = (first, next) => {
-        const {data: firstData} = first;
-        const {data: nextData} = next;
-        if (firstData) return firstData + nextData;
-        return first + nextData;
+    console.log(cartState)
+
+    const getTotals = (totals) => {
+
+        return Object.keys(totals).length > 0 ? Object.values(totals).length === 1 ? Object.values(totals)[0] : toArray(totals).reduce(sumCart) - (coupon.valid ? 2000 : 0) : 0
     }
 
     const couponAndCheckout = <div className={couponAndCheckoutClass}>
+
         <div className={couponClass}>
             <div className={couponTitleClass}>
                 {getMessage("applyCoupon")}
@@ -154,7 +159,7 @@ const Cart = ({actualTheme, ...rest}) => {
                            onChange={({target}) => setCoupon(target)} type="text"
                            placeholder={getMessage("yourCouponCode")}/>
                 </div>
-                <div onClick={coupon.valid ? () => setCart({...cart, coupon: {...cart.coupon, isApplied: true}}) : null}
+                <div onClick={coupon.valid ? () => changeCart({coupon: {...cartState.coupon, isApplied: true}}) : null}
                      className={multipleClasses(applyClass, coupon.valid ? "_" : disabledApply)}>
                     {getMessage("applyCoupon")}
                 </div>
@@ -171,7 +176,7 @@ const Cart = ({actualTheme, ...rest}) => {
                         {getMessage("subTotal")}
                     </div>
                     <div className={subTotalValue}>
-                        {Object.keys(totals).length > 0 ? toArray(totals).reduce(sumThis) : 0} cfa
+                        {Object.keys(totals).length > 0 ? Object.values(totals).length === 1 ? Object.values(totals)[0] : toArray(totals).reduce(sumCart) : 0} cfa
                     </div>
                 </div>
                 {
@@ -189,7 +194,7 @@ const Cart = ({actualTheme, ...rest}) => {
                         {getMessage("total")}
                     </div>
                     <div className={totalValue}>
-                        {Object.keys(totals).length > 0 ? toArray(totals).reduce(sumThis) - (coupon.valid ? 2000 : 0) : 0} cfa
+                        {getTotals(totals)} cfa
                     </div>
                 </div>
                 <div className={proceedClass}>
@@ -204,19 +209,65 @@ const Cart = ({actualTheme, ...rest}) => {
     </div>
 
     return <ScrollTo position={navigationPosition}>
-        <div className={wrapper}>
-            <div className={title}>{getMessage("cart")}</div>
-            <div className={wholeContent}>
-                <div className={cartHeader}>
-                    <div>Product</div>
-                    <div>Price</div>
-                    <div>Quantity</div>
-                    <div>Total</div>
+        <CatchError>
+            <div className={wrapper}>
+                <div className={title}>{getMessage("cart")}</div>
+                <div className={wholeContent}>
+                    <div className={cartHeader}>
+                        <div>Product</div>
+                        <div>Price</div>
+                        <div>Quantity</div>
+                        <div>Total</div>
+                    </div>
+                    <div className={cartContent}>
+                        {valuesCart.map((value, index) => {
+                            const {quantity, product, size, color} = value;
+                            return <React.Fragment key={makeIndex(index, "cartContent")}>
+                                <div className={productImage}>
+                                    <ItemCard
+                                        wrapperAddonClass={itemCardWrapper}
+                                        itemCardAddonClass={itemCard}
+                                        full={false}
+                                        allowClick={false}
+                                        product={product}
+                                    />
+                                    <div className={cartProductTitle}>
+                                        {product.title}
+                                    </div>
+                                </div>
+                                <div className={cartProductPrice}>{
+                                    product.price
+                                } cfa
+                                </div>
+                                <div className={cartProductQuantity}>
+                                    <Quantity
+                                        noTitle
+                                        classes={classes}
+                                        stock={product.stock}
+                                        defaultQuantity={quantities[value.id]}
+                                        product={product}
+                                        setQuantity={(q) => editCart("quantities", value.id, q, product.price)}/>
+                                </div>
+                                <div className={cartProductTotal}>{
+                                    totals[value.id]
+                                } cfa
+                                </div>
+                                <div className={cartProductRemove}>
+                                    <span onClick={() => removeItem(value.id)}>x</span>
+                                </div>
+                            </React.Fragment>
+                        })}
+                    </div>
                 </div>
-                <div className={cartContent}>
+                {couponAndCheckout}
+                {favorites}
+            </div>
+            <div className={mobileWrapper}>
+                <div className={title}>{getMessage("cart")}</div>
+                <div className={wholeContent}>
                     {valuesCart.map((value, index) => {
                         const {quantity, product, size, color} = value;
-                        return <React.Fragment key={makeIndex(index, "cartContent")}>
+                        return <div className={cartContent} key={makeIndex(index, "cartContent")}>
                             <div className={productImage}>
                                 <ItemCard
                                     wrapperAddonClass={itemCardWrapper}
@@ -225,80 +276,36 @@ const Cart = ({actualTheme, ...rest}) => {
                                     allowClick={false}
                                     product={product}
                                 />
+
+                            </div>
+                            <div>
                                 <div className={cartProductTitle}>
                                     {product.title}
                                 </div>
-                            </div>
-                            <div className={cartProductPrice}>{
-                                product.price
-                            } cfa
-                            </div>
-                            <div className={cartProductQuantity}>
-                                <Quantity
-                                    noTitle
-                                    classes={classes}
-                                    stock={product.stock}
-                                    defaultQuantity={quantities[value.id]}
-                                    product={product}
-                                    setQuantity={(q) => editCart("quantities", value.id, q, product.price)}/>
-                            </div>
-                            <div className={cartProductTotal}>{
-                                totals[value.id]
-                            } cfa
+                                <div className={cartProductPrice}>{
+                                    product.price
+                                } cfa
+                                </div>
+                                <div className={cartProductQuantity}>
+                                    <Quantity
+                                        noTitle
+                                        classes={classes}
+                                        stock={product.stock}
+                                        defaultQuantity={quantities[value.id]}
+                                        product={product}
+                                        setQuantity={(q) => editCart("quantities", value.id, q, product.price)}/>
+                                </div>
                             </div>
                             <div className={cartProductRemove}>
                                 <span onClick={() => removeItem(value.id)}>x</span>
                             </div>
-                        </React.Fragment>
+                        </div>
                     })}
                 </div>
+                {couponAndCheckout}
+                {favorites}
             </div>
-            {couponAndCheckout}
-            {favorites}
-        </div>
-        <div className={mobileWrapper}>
-            <div className={title}>{getMessage("cart")}</div>
-            <div className={wholeContent}>
-                {valuesCart.map((value, index) => {
-                    const {quantity, product, size, color} = value;
-                    return <div className={cartContent} key={makeIndex(index, "cartContent")}>
-                        <div className={productImage}>
-                            <ItemCard
-                                wrapperAddonClass={itemCardWrapper}
-                                itemCardAddonClass={itemCard}
-                                full={false}
-                                allowClick={false}
-                                product={product}
-                            />
-
-                        </div>
-                        <div>
-                            <div className={cartProductTitle}>
-                                {product.title}
-                            </div>
-                            <div className={cartProductPrice}>{
-                                product.price
-                            } cfa
-                            </div>
-                            <div className={cartProductQuantity}>
-                                <Quantity
-                                    noTitle
-                                    classes={classes}
-                                    stock={product.stock}
-                                    defaultQuantity={quantities[value.id]}
-                                    product={product}
-                                    setQuantity={(q) => editCart("quantities", value.id, q, product.price)}/>
-                            </div>
-                        </div>
-                        <div className={cartProductRemove}>
-                            <span onClick={() => removeItem(value.id)}>x</span>
-                        </div>
-                    </div>
-                })}
-            </div>
-            {couponAndCheckout}
-            {favorites}
-        </div>
+        </CatchError>
     </ScrollTo>
 }
 
@@ -312,7 +319,8 @@ const Cart = ({actualTheme, ...rest}) => {
 const mapStateToProps = state => {
     return {
         actualTheme: state.themeState.actualTheme,
-        loggedInUser: state.loginState.loggedInUser
+        loggedInUser: state.loginState.loggedInUser,
+        cartState: state.cartState
     }
 }
 
@@ -322,4 +330,6 @@ const mapStateToProps = state => {
  * bind theme value to navbar props
  * @author Arnaud LITAABA
  */
-export default connect(mapStateToProps)(Cart)
+export default connect(mapStateToProps, {
+    changeCart
+})(Cart)

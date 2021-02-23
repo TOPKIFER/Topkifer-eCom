@@ -3,7 +3,7 @@ import {BLACK, REDUX_CONSTANTS, WHITE} from "utilities/constant";
 const {CHANGE_THEME} = REDUX_CONSTANTS;
 
 const initialThemeState = {
-    actualTheme: WHITE
+    actualTheme: BLACK
 }
 
 const themeReducer = (state = initialThemeState, actions) => {

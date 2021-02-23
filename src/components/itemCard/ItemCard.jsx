@@ -8,7 +8,8 @@ import Icon from "components/icon/Icon";
 import {APP_URL, defaultIconSize, WHITE} from "utilities/constant";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {multipleClasses} from "utilities/utilities";
+import {multipleClasses, toggleAuthVisibility} from "utilities/utilities";
+import {DrawerCartContext, DrawerSearchContext} from "App";
 
 const {PRODUCT} = APP_URL;
 
@@ -78,11 +79,29 @@ const ItemCard = ({full = true, allowClick = true, product, actualTheme, ...rest
                             src={isFavorite[id] ? heartRed : heart}
                             size={defaultIconSize}
                         />
-                        <Icon
-                            className={multipleClasses(action, bagClass)}
-                            src={bag}
-                            size={defaultIconSize}
-                        />
+                        <DrawerCartContext.Consumer>
+                            {
+                                ({visible, setCartContextValue}) => (
+                                    <DrawerSearchContext.Consumer>
+                                        {
+                                            ({visible: menu, setContextValue}) => (
+                                                <Icon
+                                                    onClick={() => {
+                                                        toggleAuthVisibility(setCartContextValue, !visible);
+                                                        if (menu) toggleAuthVisibility(setContextValue, !menu);
+                                                        return menu
+                                                    }}
+                                                    className={multipleClasses(action, bagClass)}
+                                                    src={bag}
+                                                    size={defaultIconSize}
+                                                />
+                                            )
+                                        }
+                                    </DrawerSearchContext.Consumer>
+
+                                )
+                            }
+                        </DrawerCartContext.Consumer>
                     </div>
                     <div className={itemCardTitle}>
                         {title}
