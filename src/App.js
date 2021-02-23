@@ -46,7 +46,7 @@ const App = ({actualTheme, actualLanguage, loggedInUser}) => {
     });
 
     const [cartState, setCartState] = useState({
-        visible: true,
+        visible: false,
         isClosing: false,
     });
 
