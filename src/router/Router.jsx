@@ -7,8 +7,9 @@ import {multipleClasses} from "utilities/utilities";
 const Home = lazy(() => import("views/pages/home/Home"));
 const Product = lazy(() => import("views/pages/product/Product"));
 const Cart = lazy(() => import("views/pages/cart/Cart"));
+const Favorites = lazy(() => import("views/pages/favorites/Favorites"));
 
-const {BASE, PRODUCT, CART} = APP_URL;
+const {BASE, PRODUCT, CART, FAVORITE} = APP_URL;
 
 /**
  * AppRoute
@@ -29,6 +30,7 @@ const AppRoute = (props) => {
                     <Route exact path={BASE} component={Home}/>
                     <Route path={PRODUCT + "/:id"} component={Product}/>
                     <Route path={CART} component={Cart}/>
+                    <Route path={FAVORITE} component={Favorites}/>
                 </Suspense>
             </Switch>
             </div>
