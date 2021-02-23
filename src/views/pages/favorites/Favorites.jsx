@@ -125,7 +125,7 @@ const Favorites = ({actualTheme, ...rest}) => {
                                 } cfa
                                 </div>
                                 <div className={cartProductQuantity}>
-                                    Add to cart
+                                    {getMessage("addToCart")}
                                 </div>
 
                                 <div className={cartProductRemove}>
@@ -138,7 +138,7 @@ const Favorites = ({actualTheme, ...rest}) => {
 
             </div>
             <div className={mobileWrapper}>
-                <div className={title}>{getMessage("cart")}</div>
+                <div className={title}>{getMessage("favorites")}</div>
                 <div className={wholeContent}>
                     {valuesCart.map((value, index) => {
                         const {quantity, product, size, color} = value;
@@ -162,7 +162,7 @@ const Favorites = ({actualTheme, ...rest}) => {
                                 } cfa
                                 </div>
                                 <div className={cartProductQuantity}>
-                                    ADD to cart
+                                    {getMessage("addToCart")}
                                 </div>
                             </div>
                             <div className={cartProductRemove}>
