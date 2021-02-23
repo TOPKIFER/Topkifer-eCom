@@ -114,6 +114,12 @@
   border-radius: 6px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: all .3s ease;
+
+  &:hover {
+    box-shadow: 0 2px 4px #000;
+  }
 }
 
 .cartProductRemove {
