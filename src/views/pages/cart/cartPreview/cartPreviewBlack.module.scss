@@ -35,11 +35,11 @@
       display: none;
       @include positionChanged;
       position: absolute;
-      background-color: red;
+      background-color: $sitePrimaryColor;
       border-radius: 50%;
+      color: black;
       height: 26px;
       width: 26px;
-      color: white;
       font-weight: bold;
       left: unset;
       right: -2rem;
@@ -56,7 +56,7 @@
   }
 
   .content {
-    height: 79%;
+    height: 78%;
     width: 100%;
     overflow: auto;
     padding: 1rem;
@@ -117,7 +117,7 @@
 
   .previewTotal {
     height: 8%;
-    background-color: #cccccc;
+    background-color: $sitePrimaryColor;
     color: black;
     display: grid;
     grid-template-columns: 1fr 1fr;

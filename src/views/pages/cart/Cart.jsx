@@ -126,12 +126,6 @@ const Cart = ({actualTheme, ...rest}) => {
         delete oldTotals[id];
         delete oldQuantities[id];
 
-        console.log({
-            totals: {...oldTotals},
-            quantities: {...oldQuantities},
-            valuesCart: cartState.valuesCart.filter(v => v.id !== id),
-            navigationPosition: INSIDE_NAVIGATION
-        })
         changeCart({
             totals: {...oldTotals},
             quantities: {...oldQuantities},
@@ -140,7 +134,6 @@ const Cart = ({actualTheme, ...rest}) => {
         })
     }
 
-    console.log(cartState)
 
     const getTotals = (totals) => {
 
