@@ -35,6 +35,7 @@ export const APP_URL = {
     PRODUCT: "/product",
     CART: "/cart",
     FAVORITE: "/favorite",
+    SEARCH: "/search",
 };
 
 export const REDUX_CONSTANTS = {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import searchBarWhiteClasses from "./searchBarWhite.module.scss"
 import searchBarBlackClasses from "./searchBarBlack.module.scss"
 import search from "assets/icons/search.svg";
@@ -6,7 +6,9 @@ import cancel from "assets/icons/cancel.svg";
 import Icon from "components/icon/Icon";
 import {multipleClasses} from "utilities/utilities";
 import {connect} from "react-redux";
-import {WHITE} from "../../../utilities/constant";
+import {APP_URL, WHITE} from "utilities/constant";
+import {withRouter} from "react-router-dom"
+import {getMessage} from "utilities/i18n";
 
 /**
  * Search bar component
@@ -25,6 +27,33 @@ const SearchBar = ({mobile, searchInputClass, actualTheme, ...rest}) => {
         searchBarMobile,
         searchOverlay
     } = actualTheme === WHITE ? searchBarWhiteClasses : searchBarBlackClasses;
+
+    const {history} = rest;
+
+    const uriValue = history.location.pathname.split("/search/")[1];
+
+    console.log(uriValue)
+
+    const {SEARCH} = APP_URL;
+
+    const [value, setValue] = useState("");
+
+    const handleChange = (value) => {
+        setValue(value)
+    }
+
+    const makeSearch = () => {
+        if (value !== "") {
+            history.push(SEARCH + "/" + value)
+        }
+    }
+
+    const handleKeyUp = (keycode) => {
+        if (keycode === 13) {
+            makeSearch()
+        }
+    }
+
     return <>
         <div className={multipleClasses(!mobile ? searchBar : searchBarMobile, searchInputClass)}>
             <Icon
@@ -32,8 +61,12 @@ const SearchBar = ({mobile, searchInputClass, actualTheme, ...rest}) => {
                 src={search}
                 size="16px"
             />
-            <input className={!mobile ? searchInput : searchInputMobile} type="text"
-                   placeholder="Search anything you want"/>
+            <input onChange={({target}) => handleChange(target.value)} onKeyUp={({keyCode}) => handleKeyUp(keyCode)}
+                   className={!mobile ? searchInput : searchInputMobile}
+                   type="text"
+                   placeholder={getMessage("searchAnythingYouWant")}
+                   value={value === "" ? uriValue ?? value : value}
+            />
             {
                 mobile && <Icon
                     src={cancel}
@@ -68,4 +101,4 @@ const mapStateToProps = state => {
  * bind theme value to search bar props
  * @author Arnaud LITAABA
  */
-export default connect(mapStateToProps)(SearchBar)
+export default connect(mapStateToProps)(withRouter(SearchBar))
