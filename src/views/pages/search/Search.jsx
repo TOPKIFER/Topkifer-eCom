@@ -38,8 +38,6 @@ const Search = ({actualTheme, ...rest}) => {
     let results = actualTheme === WHITE ? [...categoriesProducts].filter(v => v.title.toLowerCase().includes(search.toLowerCase())) :
         [...categoriesBlackProducts].filter(v => v.title.toLowerCase().includes(search.toLowerCase()));
 
-    results = results.concat(results)
-
 
     return <div className={searchWrapper}>
 
@@ -63,9 +61,9 @@ const Search = ({actualTheme, ...rest}) => {
                                 <div className={cartProductTitle}>
                                     {product.title}
                                 </div>
-                               <div className={stars}>
-                                   <Stars product={product}/>
-                               </div>
+                                <div className={stars}>
+                                    <Stars product={product}/>
+                                </div>
                                 <div className={cartProductPrice}>{
                                     product.price
                                 } cfa
